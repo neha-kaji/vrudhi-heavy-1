@@ -307,7 +307,7 @@
       color: #000;
     }
 
-    #imageModal img {
+    #modalImageDisplay { /* Changed ID from modalImage to modalImageDisplay */
       max-width: 100%;
       height: auto;
       border-radius: 10px;
@@ -466,8 +466,8 @@
       }
     }
 
-    /* Placeholder images */
-    .placeholder-img {
+    /* Placeholder images - removed as actual images are used directly */
+    /* .placeholder-img {
       background: linear-gradient(45deg, #3f8efc, #a8c0ff);
       display: flex;
       align-items: center;
@@ -475,7 +475,7 @@
       color: white;
       font-weight: bold;
       text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-    }
+    } */
   </style>
 </head>
 <body>
@@ -502,7 +502,7 @@
     <h2>About Us</h2>
     <div class="content-section">
       <p>
-        Established in 2004, <strong>Vrudhi Heavy Engineers</strong> has become a leader in the manufacture and supply of premium components for massive industrial machines. Based in <strong>Shiroli MIDC, Maharashtra</strong>, we serve clients across construction, mining, and heavy transport sectors. Our team is dedicated to combining innovation with industrial-strength durability to ensure our clients operate with the best.
+        Established in 2004, **Vrudhi Heavy Engineers** has become a leader in the manufacture and supply of premium components for massive industrial machines. Based in **Shiroli MIDC, Maharashtra**, we serve clients across construction, mining, and heavy transport sectors. Our team is dedicated to combining innovation with industrial-strength durability to ensure our clients operate with the best.
       </p>
       <p style="margin-top: 1.5rem;">
         With over 100 employees and 25,000 sq ft of manufacturing space, we deliver precision-engineered components with the highest quality standards. Our certifications include ISO 9001:2015 and ASME accreditation.
@@ -533,10 +533,10 @@
     <div class="carousel-wrapper">
       <div class="machine-title">Crane Pulley System</div>
       <div class="carousel">
-        <img src="images/image9.jpg" alt="Excavator Arm Model E450" data-info="Heavy-duty E450 with 8m reach capacity">
-        <img src="images/image10.jpg" alt="Excavator Arm in mining operation" data-info="Operating in extreme mining conditions">
-        <img src="images/image1.jpg" alt="Excavator Arm Model E450" data-info="Heavy-duty E450 with 8m reach capacity">
-        <img src="images/image2.jpg" alt="Excavator Arm in mining operation" data-info="Operating in extreme mining conditions">
+        <img src="images/image9.jpg" alt="Crane Pulley System - Heavy Lift" data-info="Designed for heavy lifting operations with precision control.">
+        <img src="images/image10.jpg" alt="Crane Pulley System - Industrial Grade" data-info="Industrial-grade pulleys for robust and reliable performance.">
+        <img src="images/image1.jpg" alt="Crane Pulley System - Large Scale" data-info="Large scale pulley system for major construction projects.">
+        <img src="images/image2.jpg" alt="Crane Pulley System - Assembly Line" data-info="Part of an automated assembly line for efficiency.">
       </div>
     </div>
   </section>
@@ -544,21 +544,21 @@
   <section id="products">
     <h2>Finished Products</h2>
     <div class="grid-section">
-      <img src="images/image3.jpg" alt="Excavator Arm Model E450" data-info="Heavy-duty E450 with 8m reach capacity">
-      <img src="images/image4.jpg" alt="Excavator Arm in mining operation" data-info="Operating in extreme mining conditions">
-      <img src="images/image5.jpg" alt="Excavator Arm Model E450" data-info="Heavy-duty E450 with 8m reach capacity">
-      <img src="images/image6.jpg" alt="Excavator Arm in mining operation" data-info="Operating in extreme mining conditions">
+      <img src="images/image3.jpg" alt="Heavy-duty Connector" data-info="Precision-engineered connector for industrial machinery.">
+      <img src="images/image4.jpg" alt="Bearing Housing Unit" data-info="Robust bearing housing for high-speed rotational parts.">
+      <img src="images/image5.jpg" alt="Hydraulic Cylinder Rod" data-info="High-strength hydraulic cylinder rod, polished finish.">
+      <img src="images/image6.jpg" alt="Gear Assembly Component" data-info="Intricate gear assembly component, heat-treated for durability.">
     </div>
   </section>
 
   <section id="gallery">
     <h2>Company Gallery</h2>
     <div class="grid-section">
-      <img src="images/image97.jpg" alt="Excavator Arm Model E450" data-info="Heavy-duty E450 with 8m reach capacity">
-        <img src="images/image8.jpg" alt="Excavator Arm in mining operation" data-info="Operating in extreme mining conditions">
-        <img src="images/image9.jpg" alt="Excavator Arm Model E450" data-info="Heavy-duty E450 with 8m reach capacity">
-        <img src="images/image10.jpg" alt="Excavator Arm in mining operation" data-info="Operating in extreme mining conditions">
-      </div>
+      <img src="images/image7.jpg" alt="Manufacturing Facility Interior" data-info="Inside our state-of-the-art manufacturing plant.">
+      <img src="images/image8.jpg" alt="Quality Control Inspection" data-info="Rigorous quality control checks on finished components.">
+      <img src="images/image9.jpg" alt="Warehouse and Logistics" data-info="Efficient warehouse operations and logistics.">
+      <img src="images/image10.jpg" alt="Engineering Design Team" data-info="Our expert engineering team at work.">
+    </div>
   </section>
 
   <section id="contact">
@@ -597,12 +597,10 @@
     </div>
   </footer>
 
-  <!-- Modal Structure -->
   <div id="imageModal">
     <div class="modal-content">
       <span class="close-btn" title="Close">&times;</span>
-      <div id="modalImage" class="placeholder-img" style="height: 300px; width: 100%;">Expanded Image</div>
-      <div class="modal-info" id="modalInfo">Additional information about the image</div>
+      <img id="modalImageDisplay" src="" alt="Expanded Image"> <div class="modal-info" id="modalInfo">Additional information about the image</div>
     </div>
   </div>
 
@@ -644,18 +642,21 @@
 
     // Modal popup for images
     const modal = document.getElementById('imageModal');
-    const modalImg = document.getElementById('modalImage');
+    const modalImageDisplay = document.getElementById('modalImageDisplay'); // Corrected ID
     const modalInfo = document.getElementById('modalInfo');
     const closeBtn = document.querySelector('.close-btn');
 
-    // Attach click event to all placeholder images
-    const clickableImages = document.querySelectorAll('.placeholder-img');
+    // Select all images in carousels and grid sections
+    const clickableImages = document.querySelectorAll('.carousel img, .grid-section img');
 
     clickableImages.forEach(img => {
       img.addEventListener('click', () => {
         modal.style.display = 'block';
-        modalImg.textContent = img.textContent;
-        modalInfo.textContent = "Detailed information about: " + img.textContent;
+        modalImageDisplay.src = img.src; // Set the image source
+        modalImageDisplay.alt = img.alt; // Set the alt text
+        
+        // Use data-info if available, otherwise fallback to alt text
+        modalInfo.textContent = img.dataset.info || img.alt; 
         document.body.style.overflow = 'hidden';
       });
     });
@@ -690,7 +691,7 @@
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
           window.scrollTo({
-            top: target.offsetTop - 70,
+            top: target.offsetTop - 70, // Adjust for fixed header
             behavior: 'smooth'
           });
         }
