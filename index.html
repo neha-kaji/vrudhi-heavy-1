@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Vrudhi Heavy Engineers</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     /* Reset & base styles */
     * {
@@ -15,8 +16,8 @@
 
     body {
       font-family: 'Roboto', sans-serif;
-      background: #e6f0fa; /* pastel blue background */
-      color: #000; /* black text for content */
+      background: #e6f0fa;
+      color: #000;
       line-height: 1.6;
       overflow-x: hidden;
     }
@@ -92,7 +93,7 @@
 
     header h1 {
       font-size: 3.5rem;
-      color: #3f51b5; /* pastel blue for title */
+      color: #3f51b5;
       margin-bottom: 0.5rem;
       text-shadow: 0 2px 4px rgba(63, 81, 181, 0.5);
     }
@@ -232,6 +233,7 @@
       font-size: 1.1rem;
       cursor: pointer;
       transition: background 0.3s ease;
+      width: 100%;
     }
 
     form button:hover {
@@ -297,7 +299,8 @@
       margin: auto;
       padding: 20px;
       border-radius: 12px;
-      max-width: 800px;
+      max-width: 90%;
+      width: 95%;
       box-shadow: 0 8px 25px rgba(63, 142, 252, 0.7);
       text-align: center;
       position: relative;
@@ -315,6 +318,7 @@
     #imageModal .modal-info {
       font-size: 1.1rem;
       color: #283593;
+      padding: 0 10px;
     }
 
     #imageModal .close-btn {
@@ -332,12 +336,155 @@
     #imageModal .close-btn:hover {
       color: #000;
     }
+
+    /* Mobile Navigation */
+    .menu-toggle {
+      display: none;
+      cursor: pointer;
+      color: white;
+      font-size: 1.8rem;
+    }
+
+    /* Responsive styles */
+    @media (max-width: 992px) {
+      header h1 {
+        font-size: 2.8rem;
+      }
+      header p {
+        font-size: 1.1rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      /* Mobile Navigation */
+      .menu-toggle {
+        display: block;
+      }
+      
+      nav ul {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background: linear-gradient(135deg, #a8c0ff 0%, #3f8efc 100%);
+        flex-direction: column;
+        align-items: center;
+        padding-top: 2rem;
+        transition: 0.5s;
+        gap: 2rem;
+      }
+      
+      nav ul.active {
+        left: 0;
+      }
+      
+      /* Header adjustments */
+      header {
+        padding: 5rem 1.5rem 2rem;
+      }
+      
+      header h1 {
+        font-size: 2.5rem;
+      }
+      
+      /* Section adjustments */
+      section {
+        padding: 3rem 1.5rem;
+        margin: 1.5rem auto;
+      }
+      
+      h2 {
+        font-size: 1.8rem;
+      }
+      
+      /* Carousel adjustments */
+      .carousel img, .grid-section img {
+        width: 280px;
+        height: 200px;
+      }
+      
+      .machine-title {
+        font-size: 1.3rem;
+      }
+      
+      /* Form adjustments */
+      form {
+        padding: 1.5rem;
+      }
+      
+      /* Footer adjustments */
+      footer {
+        padding: 1.5rem;
+      }
+      
+      /* Content adjustments */
+      .content-section {
+        font-size: 1rem;
+        padding: 1.5rem 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      nav {
+        padding: 1rem;
+      }
+      
+      .logo {
+        font-size: 1.5rem;
+      }
+      
+      header h1 {
+        font-size: 2rem;
+      }
+      
+      section {
+        padding: 2rem 1rem;
+      }
+      
+      h2 {
+        font-size: 1.6rem;
+      }
+      
+      .carousel img, .grid-section img {
+        width: 240px;
+        height: 180px;
+      }
+      
+      .grid-section {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      
+      form {
+        padding: 1.2rem;
+      }
+      
+      form button {
+        padding: 0.7rem;
+        font-size: 1rem;
+      }
+    }
+
+    /* Placeholder images */
+    .placeholder-img {
+      background: linear-gradient(45deg, #3f8efc, #a8c0ff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    }
   </style>
 </head>
 <body>
   <nav>
     <div class="logo">Vrudhi Heavy Engineers</div>
-    <ul>
+    <div class="menu-toggle" id="menuToggle">
+      <i class="fas fa-bars"></i>
+    </div>
+    <ul id="navMenu">
       <li><a href="#about">About</a></li>
       <li><a href="#machines">Machines</a></li>
       <li><a href="#products">Products</a></li>
@@ -357,37 +504,39 @@
       <p>
         Established in 2004, <strong>Vrudhi Heavy Engineers</strong> has become a leader in the manufacture and supply of premium components for massive industrial machines. Based in <strong>Shiroli MIDC, Maharashtra</strong>, we serve clients across construction, mining, and heavy transport sectors. Our team is dedicated to combining innovation with industrial-strength durability to ensure our clients operate with the best.
       </p>
+      <p style="margin-top: 1.5rem;">
+        With over 100 employees and 25,000 sq ft of manufacturing space, we deliver precision-engineered components with the highest quality standards. Our certifications include ISO 9001:2015 and ASME accreditation.
+      </p>
     </div>
   </section>
 
   <section id="machines">
     <h2>Machine Units</h2>
     <div class="carousel-wrapper">
-      <div class="machine-title">Hydraulic Cutter</div>
+      <div class="machine-title">Excavator Arm</div>
       <div class="carousel">
-        <img src="images/image1.jpg" alt="Hydraulic Cutter 1" data-info="Hydraulic Cutter 1 is designed for heavy-duty cutting with high precision and safety features." />
-        <img src="images/image2.jpg" alt="Hydraulic Cutter 2" data-info="Hydraulic Cutter 2 supports adjustable pressure for diverse material thickness and applications." />
-        <img src="images/image3.jpg" alt="Hydraulic Cutter 3" data-info="Hydraulic Cutter 3 includes energy-efficient hydraulics with quick response times." />
-        <img src="images/image10.jpg" alt="Hydraulic Cutter 3" data-info="Hydraulic Cutter 3 includes energy-efficient hydraulics with quick response times." />
+        <img src="images/image1.jpg" alt="Excavator Arm Model E450" data-info="Heavy-duty E450 with 8m reach capacity">
+        <img src="images/image2.jpg" alt="Excavator Arm in mining operation" data-info="Operating in extreme mining conditions">
+        <img src="images/image3.jpg" alt="Excavator Arm Model E450" data-info="Heavy-duty E450 with 8m reach capacity">
+        <img src="images/image4.jpg" alt="Excavator Arm in mining operation" data-info="Operating in extreme mining conditions">
       </div>
     </div>
     <div class="carousel-wrapper">
       <div class="machine-title">Excavator Arm</div>
       <div class="carousel">
-        <img src="images/image4.jpg" alt="Excavator Arm 1" data-info="Excavator Arm 1 built with reinforced steel to ensure durability under heavy load." />
-        <img src="images/image5.jpg" alt="Excavator Arm 2" data-info="Excavator Arm 2 features modular design for easy maintenance and repair." />
-        <img src="images/image6.jpg" alt="Excavator Arm 3" data-info="Excavator Arm 3 incorporates vibration dampening technology for operator comfort." />
-        <img src="images/image9.jpg" alt="Excavator Arm 3" data-info="Excavator Arm 3 incorporates vibration dampening technology for operator comfort." />
+        <img src="images/image5.jpg" alt="Excavator Arm Model E450" data-info="Heavy-duty E450 with 8m reach capacity">
+        <img src="images/image6.jpg" alt="Excavator Arm in mining operation" data-info="Operating in extreme mining conditions">
+        <img src="images/image7.jpg" alt="Excavator Arm Model E450" data-info="Heavy-duty E450 with 8m reach capacity">
+        <img src="images/image8.jpg" alt="Excavator Arm in mining operation" data-info="Operating in extreme mining conditions">
       </div>
     </div>
     <div class="carousel-wrapper">
       <div class="machine-title">Crane Pulley System</div>
       <div class="carousel">
-        <img src="images/image7.jpg" alt="Crane Pulley 1" data-info="Crane Pulley 1 uses precision bearings for smooth and reliable operation." />
-        <img src="images/image8.jpg" alt="Crane Pulley 2" data-info="Crane Pulley 2 designed to handle heavy loads with minimal friction." />
-        <img src="images/image9.jpg" alt="Crane Pulley 3" data-info="Crane Pulley 3 features corrosion-resistant materials for long service life." />
-        <img src="images/image6.jpg" alt="Crane Pulley 4" data-info="Excavator Arm 3 incorporates vibration dampening technology for operator comfort." /></div>
-    
+        <img src="images/image9.jpg" alt="Excavator Arm Model E450" data-info="Heavy-duty E450 with 8m reach capacity">
+        <img src="images/image10.jpg" alt="Excavator Arm in mining operation" data-info="Operating in extreme mining conditions">
+        <img src="images/image1.jpg" alt="Excavator Arm Model E450" data-info="Heavy-duty E450 with 8m reach capacity">
+        <img src="images/image2.jpg" alt="Excavator Arm in mining operation" data-info="Operating in extreme mining conditions">
       </div>
     </div>
   </section>
@@ -395,20 +544,20 @@
   <section id="products">
     <h2>Finished Products</h2>
     <div class="grid-section">
-      <img src="images/image10.jpg" alt="Gear Assembly" data-info="Our Gear Assemblies are crafted for optimal power transmission and durability." />
-      <img src="images/image1.jpg" alt="Valve System" data-info="Valve Systems engineered for precise flow control in heavy machinery." />
-      <img src="images/image2.jpg" alt="Control Panel" data-info="Control Panels customized for easy interface and rugged environments." />
-      <img src="images/image3.jpg" alt="Engine Block" data-info="Engine Blocks produced with premium alloys for high strength and heat resistance." />
+      <img src="images/image3.jpg" alt="Excavator Arm Model E450" data-info="Heavy-duty E450 with 8m reach capacity">
+      <img src="images/image4.jpg" alt="Excavator Arm in mining operation" data-info="Operating in extreme mining conditions">
+      <img src="images/image5.jpg" alt="Excavator Arm Model E450" data-info="Heavy-duty E450 with 8m reach capacity">
+      <img src="images/image6.jpg" alt="Excavator Arm in mining operation" data-info="Operating in extreme mining conditions">
     </div>
   </section>
 
   <section id="gallery">
     <h2>Company Gallery</h2>
     <div class="grid-section">
-        <img src="images/image4.jpg" alt="Workshop Area" data-info="This our workshop area with all equiped mechaism">
-        <img src="images/image5.jpg" alt="Staff Team" data-info="Our team and staff members">
-        <img src="images/image6.jpg" alt="Machinery In Action" data-info="Our machineries and their working">
-        <img src="images/image7.jpg" alt="Delivery Fleet" data-info="our delivery ready product">
+      <img src="images/image97.jpg" alt="Excavator Arm Model E450" data-info="Heavy-duty E450 with 8m reach capacity">
+        <img src="images/image8.jpg" alt="Excavator Arm in mining operation" data-info="Operating in extreme mining conditions">
+        <img src="images/image9.jpg" alt="Excavator Arm Model E450" data-info="Heavy-duty E450 with 8m reach capacity">
+        <img src="images/image10.jpg" alt="Excavator Arm in mining operation" data-info="Operating in extreme mining conditions">
       </div>
   </section>
 
@@ -421,28 +570,59 @@
       <label for="email">Email*</label>
       <input type="email" id="email" name="email" placeholder="Your email address" required />
 
+      <label for="phone">Phone</label>
+      <input type="tel" id="phone" name="phone" placeholder="Your phone number" />
+
       <label for="message">Message*</label>
       <textarea id="message" name="message" rows="5" placeholder="Your message here" required></textarea>
 
       <button type="submit">Send Message</button>
     </form>
+    
+    <div style="text-align: center; margin-top: 2rem;">
+      <h3 style="margin-bottom: 1rem; color: #3f51b5;">Visit Us</h3>
+      <p><i class="fas fa-map-marker-alt"></i> Plot No. 12, Shiroli MIDC, Kolhapur, Maharashtra - 416122</p>
+      <p style="margin-top: 0.5rem;"><i class="fas fa-phone"></i> +91 9876543210</p>
+      <p style="margin-top: 0.5rem;"><i class="fas fa-envelope"></i> info@vrudhiengineers.com</p>
+    </div>
   </section>
 
   <footer>
     <p>&copy; 2004-2025 Vrudhi Heavy Engineers | All Rights Reserved</p>
+    <div style="margin-top: 1rem;">
+      <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-twitter"></i></a>
+      <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-linkedin-in"></i></a>
+      <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-instagram"></i></a>
+    </div>
   </footer>
 
   <!-- Modal Structure -->
   <div id="imageModal">
     <div class="modal-content">
       <span class="close-btn" title="Close">&times;</span>
-      <img id="modalImage" src="" alt="Expanded Image" />
-      <div class="modal-info" id="modalInfo"></div>
+      <div id="modalImage" class="placeholder-img" style="height: 300px; width: 100%;">Expanded Image</div>
+      <div class="modal-info" id="modalInfo">Additional information about the image</div>
     </div>
   </div>
 
   <script>
-    // Animate sections on scroll (simple fadeInUp)
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navMenu = document.getElementById('navMenu');
+    
+    menuToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+    
+    // Close menu when clicking on a link
+    document.querySelectorAll('#navMenu a').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+      });
+    });
+
+    // Animate sections on scroll
     const sections = document.querySelectorAll("section");
 
     const observer = new IntersectionObserver(
@@ -468,25 +648,22 @@
     const modalInfo = document.getElementById('modalInfo');
     const closeBtn = document.querySelector('.close-btn');
 
-    // Attach click event to all images inside machines, products, and gallery sections
-    const clickableImages = document.querySelectorAll('#machines img, #products img, #gallery img');
+    // Attach click event to all placeholder images
+    const clickableImages = document.querySelectorAll('.placeholder-img');
 
     clickableImages.forEach(img => {
       img.addEventListener('click', () => {
         modal.style.display = 'block';
-        modalImg.src = img.src;
-        modalImg.alt = img.alt;
-        modalInfo.textContent = img.getAttribute('data-info') || 'No additional information available.';
-        document.body.style.overflow = 'hidden'; // Prevent background scroll when modal open
+        modalImg.textContent = img.textContent;
+        modalInfo.textContent = "Detailed information about: " + img.textContent;
+        document.body.style.overflow = 'hidden';
       });
     });
 
     // Close modal function
     const closeModal = () => {
       modal.style.display = 'none';
-      modalImg.src = '';
-      modalInfo.textContent = '';
-      document.body.style.overflow = 'auto'; // Restore scroll
+      document.body.style.overflow = 'auto';
     };
 
     closeBtn.addEventListener('click', closeModal);
@@ -503,6 +680,21 @@
       if (event.key === 'Escape' && modal.style.display === 'block') {
         closeModal();
       }
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          window.scrollTo({
+            top: target.offsetTop - 70,
+            behavior: 'smooth'
+          });
+        }
+      });
     });
   </script>
 </body>
