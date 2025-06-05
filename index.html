@@ -159,7 +159,7 @@
       background: transparent;
     }
 
-    .carousel img, .grid-section img {
+    .carousel img, .grid-section img { /* Keep grid-section img for consistent styling if needed */
       width: 350px;
       height: 250px;
       object-fit: cover;
@@ -174,12 +174,13 @@
       transform: scale(1.05) rotate(1deg);
       box-shadow: 0 10px 25px rgba(63, 142, 252, 0.7);
     }
-
-    .grid-section {
+    
+    /* Removed .grid-section as it will now use carousel */
+    /* .grid-section {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 2rem;
-    }
+    } */
 
     .content-section {
       max-width: 900px;
@@ -307,7 +308,7 @@
       color: #000;
     }
 
-    #modalImageDisplay { /* Changed ID from modalImage to modalImageDisplay */
+    #modalImageDisplay {
       max-width: 100%;
       height: auto;
       border-radius: 10px;
@@ -399,7 +400,7 @@
       }
       
       /* Carousel adjustments */
-      .carousel img, .grid-section img {
+      .carousel img { /* Only target carousel images now */
         width: 280px;
         height: 200px;
       }
@@ -446,15 +447,16 @@
         font-size: 1.6rem;
       }
       
-      .carousel img, .grid-section img {
+      .carousel img { /* Only target carousel images now */
         width: 240px;
         height: 180px;
       }
       
-      .grid-section {
+      /* Removed grid-section media query as it's now a carousel */
+      /* .grid-section {
         grid-template-columns: 1fr;
         gap: 1.5rem;
-      }
+      } */
       
       form {
         padding: 1.2rem;
@@ -465,17 +467,6 @@
         font-size: 1rem;
       }
     }
-
-    /* Placeholder images - removed as actual images are used directly */
-    /* .placeholder-img {
-      background: linear-gradient(45deg, #3f8efc, #a8c0ff);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-weight: bold;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-    } */
   </style>
 </head>
 <body>
@@ -514,7 +505,7 @@
     <h2>Machine Units</h2>
     <div class="carousel-wrapper">
       <div class="machine-title">Excavator Arm</div>
-      <div class="carousel">
+      <div class="carousel" id="machineCarousel1">
         <img src="images/image1.jpg" alt="Excavator Arm Model E450" data-info="Heavy-duty E450 with 8m reach capacity">
         <img src="images/image2.jpg" alt="Excavator Arm in mining operation" data-info="Operating in extreme mining conditions">
         <img src="images/image3.jpg" alt="Excavator Arm Model E450" data-info="Heavy-duty E450 with 8m reach capacity">
@@ -523,7 +514,7 @@
     </div>
     <div class="carousel-wrapper">
       <div class="machine-title">Excavator Arm</div>
-      <div class="carousel">
+      <div class="carousel" id="machineCarousel2">
         <img src="images/image5.jpg" alt="Excavator Arm Model E450" data-info="Heavy-duty E450 with 8m reach capacity">
         <img src="images/image6.jpg" alt="Excavator Arm in mining operation" data-info="Operating in extreme mining conditions">
         <img src="images/image7.jpg" alt="Excavator Arm Model E450" data-info="Heavy-duty E450 with 8m reach capacity">
@@ -532,7 +523,7 @@
     </div>
     <div class="carousel-wrapper">
       <div class="machine-title">Crane Pulley System</div>
-      <div class="carousel">
+      <div class="carousel" id="machineCarousel3">
         <img src="images/image9.jpg" alt="Crane Pulley System - Heavy Lift" data-info="Designed for heavy lifting operations with precision control.">
         <img src="images/image10.jpg" alt="Crane Pulley System - Industrial Grade" data-info="Industrial-grade pulleys for robust and reliable performance.">
         <img src="images/image1.jpg" alt="Crane Pulley System - Large Scale" data-info="Large scale pulley system for major construction projects.">
@@ -543,21 +534,31 @@
 
   <section id="products">
     <h2>Finished Products</h2>
-    <div class="grid-section">
-      <img src="images/image3.jpg" alt="Heavy-duty Connector" data-info="Precision-engineered connector for industrial machinery.">
-      <img src="images/image4.jpg" alt="Bearing Housing Unit" data-info="Robust bearing housing for high-speed rotational parts.">
-      <img src="images/image5.jpg" alt="Hydraulic Cylinder Rod" data-info="High-strength hydraulic cylinder rod, polished finish.">
-      <img src="images/image6.jpg" alt="Gear Assembly Component" data-info="Intricate gear assembly component, heat-treated for durability.">
+    <div class="carousel-wrapper">
+      <div class="machine-title">Product Showcase</div>
+      <div class="carousel" id="productCarousel">
+        <img src="images/image3.jpg" alt="Heavy-duty Connector" data-info="Precision-engineered connector for industrial machinery.">
+        <img src="images/image4.jpg" alt="Bearing Housing Unit" data-info="Robust bearing housing for high-speed rotational parts.">
+        <img src="images/image5.jpg" alt="Hydraulic Cylinder Rod" data-info="High-strength hydraulic cylinder rod, polished finish.">
+        <img src="images/image6.jpg" alt="Gear Assembly Component" data-info="Intricate gear assembly component, heat-treated for durability.">
+        <img src="images/image7.jpg" alt="Industrial Valve" data-info="High-pressure industrial valve for fluid control.">
+        <img src="images/image8.jpg" alt="Casting Part" data-info="Precision cast metal component for heavy machinery.">
+      </div>
     </div>
   </section>
 
   <section id="gallery">
     <h2>Company Gallery</h2>
-    <div class="grid-section">
-      <img src="images/image7.jpg" alt="Manufacturing Facility Interior" data-info="Inside our state-of-the-art manufacturing plant.">
-      <img src="images/image8.jpg" alt="Quality Control Inspection" data-info="Rigorous quality control checks on finished components.">
-      <img src="images/image9.jpg" alt="Warehouse and Logistics" data-info="Efficient warehouse operations and logistics.">
-      <img src="images/image10.jpg" alt="Engineering Design Team" data-info="Our expert engineering team at work.">
+    <div class="carousel-wrapper">
+      <div class="machine-title">Our Facilities & Team</div>
+      <div class="carousel" id="galleryCarousel">
+        <img src="images/image97.jpg" alt="Manufacturing Facility Interior" data-info="Inside our state-of-the-art manufacturing plant.">
+        <img src="images/image8.jpg" alt="Quality Control Inspection" data-info="Rigorous quality control checks on finished components.">
+        <img src="images/image9.jpg" alt="Warehouse and Logistics" data-info="Efficient warehouse operations and logistics.">
+        <img src="images/image10.jpg" alt="Engineering Design Team" data-info="Our expert engineering team at work.">
+        <img src="images/image1.jpg" alt="Client Meeting" data-info="Collaborating with clients to understand their needs.">
+        <img src="images/image2.jpg" alt="Loading Bay" data-info="Shipping high-quality products to our customers.">
+      </div>
     </div>
   </section>
 
@@ -600,7 +601,8 @@
   <div id="imageModal">
     <div class="modal-content">
       <span class="close-btn" title="Close">&times;</span>
-      <img id="modalImageDisplay" src="" alt="Expanded Image"> <div class="modal-info" id="modalInfo">Additional information about the image</div>
+      <img id="modalImageDisplay" src="" alt="Expanded Image">
+      <div class="modal-info" id="modalInfo">Additional information about the image</div>
     </div>
   </div>
 
@@ -642,20 +644,19 @@
 
     // Modal popup for images
     const modal = document.getElementById('imageModal');
-    const modalImageDisplay = document.getElementById('modalImageDisplay'); // Corrected ID
+    const modalImageDisplay = document.getElementById('modalImageDisplay');
     const modalInfo = document.getElementById('modalInfo');
     const closeBtn = document.querySelector('.close-btn');
 
-    // Select all images in carousels and grid sections
-    const clickableImages = document.querySelectorAll('.carousel img, .grid-section img');
+    // Select all images in all carousels
+    const clickableImages = document.querySelectorAll('.carousel img');
 
     clickableImages.forEach(img => {
       img.addEventListener('click', () => {
         modal.style.display = 'block';
-        modalImageDisplay.src = img.src; // Set the image source
-        modalImageDisplay.alt = img.alt; // Set the alt text
+        modalImageDisplay.src = img.src;
+        modalImageDisplay.alt = img.alt;
         
-        // Use data-info if available, otherwise fallback to alt text
         modalInfo.textContent = img.dataset.info || img.alt; 
         document.body.style.overflow = 'hidden';
       });
@@ -697,6 +698,53 @@
         }
       });
     });
+
+    // --- Horizontal Slideshow Functionality ---
+    // Function to initialize auto-scroll for a carousel
+    function setupCarouselAutoScroll(carouselId, scrollAmount = 370, intervalTime = 3000) {
+      const carousel = document.getElementById(carouselId);
+      if (!carousel) return; // Exit if carousel doesn't exist
+
+      let scrollDirection = 1; // 1 for right, -1 for left
+      let currentScrollPosition = 0;
+      let scrollInterval;
+
+      const startScroll = () => {
+        scrollInterval = setInterval(() => {
+          currentScrollPosition += scrollDirection * scrollAmount;
+          carousel.scrollTo({
+            left: currentScrollPosition,
+            behavior: 'smooth'
+          });
+
+          // Reverse direction if at end or beginning
+          if (carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 10) { // -10 for buffer
+            scrollDirection = -1; // Go left
+          } else if (carousel.scrollLeft <= 10) { // +10 for buffer
+            scrollDirection = 1; // Go right
+          }
+        }, intervalTime);
+      };
+
+      const stopScroll = () => {
+        clearInterval(scrollInterval);
+      };
+
+      // Pause on hover
+      carousel.addEventListener('mouseenter', stopScroll);
+      carousel.addEventListener('mouseleave', startScroll);
+
+      // Start scrolling initially
+      startScroll();
+    }
+
+    // Initialize auto-scroll for specific carousels
+    setupCarouselAutoScroll('machineCarousel1');
+    setupCarouselAutoScroll('machineCarousel2');
+    setupCarouselAutoScroll('machineCarousel3');
+    setupCarouselAutoScroll('productCarousel');
+    setupCarouselAutoScroll('galleryCarousel');
+
   </script>
 </body>
 </html>
