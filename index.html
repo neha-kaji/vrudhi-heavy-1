@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vrudhi Heavy Engineers</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    /* Reset & base styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: #e6f0fa; /* pastel blue background */
+      color: #000; /* black text for content */
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    nav {
+      background: linear-gradient(135deg, #a8c0ff 0%, #3f8efc 100%);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 15px rgba(63, 142, 252, 0.4);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav .logo {
+      position: relative;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 2px;
+      user-select: none;
+      padding: 0.3rem 1rem;
+      overflow: visible;
+      z-index: 10;
+    }
+
+    nav .logo::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 120px;
+      height: 50px;
+      background-size: cover;
+      background-position: center;
+      opacity: 0.15;
+      transform: translate(-50%, -50%);
+      filter: grayscale(100%) brightness(150%);
+      border-radius: 8px;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 1.8rem;
+      list-style: none;
+    }
+
+    nav ul li a {
+      color: #e0e7ff;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+      cursor: pointer;
+    }
+
+    nav ul li a:hover {
+      color: #ffd369;
+      text-shadow: 0 0 5px #ffd369;
+    }
+
+    header {
+      padding: 6rem 2rem 3rem 2rem;
+      text-align: center;
+      animation: fadeInDown 1s ease forwards;
+      opacity: 0;
+      color: #000;
+    }
+
+    header h1 {
+      font-size: 3.5rem;
+      color: #3f51b5; /* pastel blue for title */
+      margin-bottom: 0.5rem;
+      text-shadow: 0 2px 4px rgba(63, 81, 181, 0.5);
+    }
+
+    header p {
+      font-size: 1.3rem;
+      color: #283593;
+      font-weight: 500;
+      letter-spacing: 1px;
+    }
+
+    section {
+      padding: 4rem 2rem;
+      background-color: #f4f8ff;
+      border-radius: 12px;
+      margin: 2rem auto;
+      max-width: 1200px;
+      box-shadow: 0 10px 30px rgba(63, 142, 252, 0.1);
+      opacity: 0;
+      transform: translateY(50px);
+      animation: fadeInUp 1s ease forwards;
+      animation-delay: 0.3s;
+      color: #000;
+    }
+
+    h2 {
+      text-align: center;
+      color: #3f51b5;
+      margin-bottom: 2rem;
+      font-size: 2rem;
+      font-weight: 700;
+    }
+
+    .carousel-wrapper {
+      margin-bottom: 3rem;
+    }
+
+    .machine-title {
+      text-align: center;
+      font-size: 1.5rem;
+      margin: 1rem 0;
+      color: #283593;
+      font-weight: 600;
+    }
+
+    .carousel {
+      display: flex;
+      overflow-x: auto;
+      gap: 1rem;
+      padding-bottom: 1rem;
+      scroll-behavior: smooth;
+      scrollbar-width: thin;
+      scrollbar-color: #90caf9 transparent;
+    }
+    .carousel::-webkit-scrollbar {
+      height: 8px;
+    }
+    .carousel::-webkit-scrollbar-thumb {
+      background-color: #90caf9;
+      border-radius: 10px;
+    }
+    .carousel::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .carousel img, .grid-section img {
+      width: 350px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 10px;
+      flex-shrink: 0;
+      box-shadow: 0 4px 15px rgba(63, 142, 252, 0.4);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .carousel img:hover, .grid-section img:hover {
+      transform: scale(1.05) rotate(1deg);
+      box-shadow: 0 10px 25px rgba(63, 142, 252, 0.7);
+    }
+
+    .grid-section {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .content-section {
+      max-width: 900px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+      color: #000;
+      padding: 2rem 0;
+      line-height: 1.8;
+    }
+
+    form {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #dbe9ff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(63, 142, 252, 0.3);
+      color: #000;
+    }
+
+    form label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #283593;
+    }
+
+    form input, form textarea {
+      width: 100%;
+      padding: 0.7rem;
+      margin-bottom: 1.2rem;
+      border: 2px solid #90caf9;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: 'Roboto', sans-serif;
+      transition: border-color 0.3s ease;
+    }
+
+    form input:focus, form textarea:focus {
+      outline: none;
+      border-color: #3f51b5;
+      box-shadow: 0 0 10px #3f51b5;
+    }
+
+    form button {
+      background: #3f51b5;
+      color: white;
+      padding: 0.8rem 2rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    form button:hover {
+      background: #283593;
+    }
+
+    footer {
+      background: #a8c0ff;
+      color: #fff;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 3rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      box-shadow: inset 0 0 30px #3f8efc;
+    }
+
+    /* Animations */
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Modal styles */
+    #imageModal {
+      display: none; /* Hidden by default */
+      position: fixed;
+      z-index: 200;
+      padding-top: 60px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.8);
+      animation: fadeInModal 0.3s ease forwards;
+    }
+
+    @keyframes fadeInModal {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    #imageModal .modal-content {
+      background-color: #f4f8ff;
+      margin: auto;
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 800px;
+      box-shadow: 0 8px 25px rgba(63, 142, 252, 0.7);
+      text-align: center;
+      position: relative;
+      color: #000;
+    }
+
+    #imageModal img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 15px rgba(63, 142, 252, 0.6);
+    }
+
+    #imageModal .modal-info {
+      font-size: 1.1rem;
+      color: #283593;
+    }
+
+    #imageModal .close-btn {
+      position: absolute;
+      top: 12px;
+      right: 18px;
+      color: #3f51b5;
+      font-size: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      user-select: none;
+      transition: color 0.3s ease;
+    }
+
+    #imageModal .close-btn:hover {
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">Vrudhi Heavy Engineers</div>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#machines">Machines</a></li>
+      <li><a href="#products">Products</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header>
+    <h1>Vrudhi Heavy Engineers</h1>
+    <p>Based in Shiroli MIDC, Maharashtra | Precision Engineering Since 2004</p>
+  </header>
+
+  <section id="about">
+    <h2>About Us</h2>
+    <div class="content-section">
+      <p>
+        Established in 2004, <strong>Vrudhi Heavy Engineers</strong> has become a leader in the manufacture and supply of premium components for massive industrial machines. Based in <strong>Shiroli MIDC, Maharashtra</strong>, we serve clients across construction, mining, and heavy transport sectors. Our team is dedicated to combining innovation with industrial-strength durability to ensure our clients operate with the best.
+      </p>
+    </div>
+  </section>
+
+  <section id="machines">
+    <h2>Machine Units</h2>
+    <div class="carousel-wrapper">
+      <div class="machine-title">Hydraulic Cutter</div>
+      <div class="carousel">
+        <img src="images/image1.jpg" alt="Hydraulic Cutter 1" data-info="Hydraulic Cutter 1 is designed for heavy-duty cutting with high precision and safety features." />
+        <img src="images/image2.jpg" alt="Hydraulic Cutter 2" data-info="Hydraulic Cutter 2 supports adjustable pressure for diverse material thickness and applications." />
+        <img src="images/image3.jpg" alt="Hydraulic Cutter 3" data-info="Hydraulic Cutter 3 includes energy-efficient hydraulics with quick response times." />
+        <img src="images/image10.jpg" alt="Hydraulic Cutter 3" data-info="Hydraulic Cutter 3 includes energy-efficient hydraulics with quick response times." />
+      </div>
+    </div>
+    <div class="carousel-wrapper">
+      <div class="machine-title">Excavator Arm</div>
+      <div class="carousel">
+        <img src="images/image4.jpg" alt="Excavator Arm 1" data-info="Excavator Arm 1 built with reinforced steel to ensure durability under heavy load." />
+        <img src="images/image5.jpg" alt="Excavator Arm 2" data-info="Excavator Arm 2 features modular design for easy maintenance and repair." />
+        <img src="images/image6.jpg" alt="Excavator Arm 3" data-info="Excavator Arm 3 incorporates vibration dampening technology for operator comfort." />
+        <img src="images/image9.jpg" alt="Excavator Arm 3" data-info="Excavator Arm 3 incorporates vibration dampening technology for operator comfort." />
+      </div>
+    </div>
+    <div class="carousel-wrapper">
+      <div class="machine-title">Crane Pulley System</div>
+      <div class="carousel">
+        <img src="images/image7.jpg" alt="Crane Pulley 1" data-info="Crane Pulley 1 uses precision bearings for smooth and reliable operation." />
+        <img src="images/image8.jpg" alt="Crane Pulley 2" data-info="Crane Pulley 2 designed to handle heavy loads with minimal friction." />
+        <img src="images/image9.jpg" alt="Crane Pulley 3" data-info="Crane Pulley 3 features corrosion-resistant materials for long service life." />
+        <img src="images/image6.jpg" alt="Crane Pulley 4" data-info="Excavator Arm 3 incorporates vibration dampening technology for operator comfort." /></div>
+    
+      </div>
+    </div>
+  </section>
+
+  <section id="products">
+    <h2>Finished Products</h2>
+    <div class="grid-section">
+      <img src="images/image10.jpg" alt="Gear Assembly" data-info="Our Gear Assemblies are crafted for optimal power transmission and durability." />
+      <img src="images/image1.jpg" alt="Valve System" data-info="Valve Systems engineered for precise flow control in heavy machinery." />
+      <img src="images/image2.jpg" alt="Control Panel" data-info="Control Panels customized for easy interface and rugged environments." />
+      <img src="images/image3.jpg" alt="Engine Block" data-info="Engine Blocks produced with premium alloys for high strength and heat resistance." />
+    </div>
+  </section>
+
+  <section id="gallery">
+    <h2>Company Gallery</h2>
+    <div class="grid-section">
+        <img src="images/image4.jpg" alt="Workshop Area" data-info="This our workshop area with all equiped mechaism">
+        <img src="images/image5.jpg" alt="Staff Team" data-info="Our team and staff members">
+        <img src="images/image6.jpg" alt="Machinery In Action" data-info="Our machineries and their working">
+        <img src="images/image7.jpg" alt="Delivery Fleet" data-info="our delivery ready product">
+      </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <form action="#" method="post">
+      <label for="name">Name*</label>
+      <input type="text" id="name" name="name" placeholder="Your full name" required />
+
+      <label for="email">Email*</label>
+      <input type="email" id="email" name="email" placeholder="Your email address" required />
+
+      <label for="message">Message*</label>
+      <textarea id="message" name="message" rows="5" placeholder="Your message here" required></textarea>
+
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2004-2025 Vrudhi Heavy Engineers | All Rights Reserved</p>
+  </footer>
+
+  <!-- Modal Structure -->
+  <div id="imageModal">
+    <div class="modal-content">
+      <span class="close-btn" title="Close">&times;</span>
+      <img id="modalImage" src="" alt="Expanded Image" />
+      <div class="modal-info" id="modalInfo"></div>
+    </div>
+  </div>
+
+  <script>
+    // Animate sections on scroll (simple fadeInUp)
+    const sections = document.querySelectorAll("section");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = 1;
+            entry.target.style.transform = "translateY(0)";
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    sections.forEach((section) => {
+      observer.observe(section);
+    });
+
+    // Modal popup for images
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    const modalInfo = document.getElementById('modalInfo');
+    const closeBtn = document.querySelector('.close-btn');
+
+    // Attach click event to all images inside machines, products, and gallery sections
+    const clickableImages = document.querySelectorAll('#machines img, #products img, #gallery img');
+
+    clickableImages.forEach(img => {
+      img.addEventListener('click', () => {
+        modal.style.display = 'block';
+        modalImg.src = img.src;
+        modalImg.alt = img.alt;
+        modalInfo.textContent = img.getAttribute('data-info') || 'No additional information available.';
+        document.body.style.overflow = 'hidden'; // Prevent background scroll when modal open
+      });
+    });
+
+    // Close modal function
+    const closeModal = () => {
+      modal.style.display = 'none';
+      modalImg.src = '';
+      modalInfo.textContent = '';
+      document.body.style.overflow = 'auto'; // Restore scroll
+    };
+
+    closeBtn.addEventListener('click', closeModal);
+
+    // Close modal on clicking outside the modal-content
+    window.addEventListener('click', (event) => {
+      if (event.target === modal) {
+        closeModal();
+      }
+    });
+
+    // Close modal on Escape key
+    window.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && modal.style.display === 'block') {
+        closeModal();
+      }
+    });
+  </script>
+</body>
+</html>
