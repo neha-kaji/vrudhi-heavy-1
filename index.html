@@ -16,19 +16,19 @@
 
     body {
       font-family: 'Roboto', sans-serif;
-      background: #e6f0fa;
-      color: #000;
+      background: #e6f0fa; /* Original background */
+      color: #000; /* Original text color */
       line-height: 1.6;
       overflow-x: hidden;
     }
 
     nav {
-      background: linear-gradient(135deg, #a8c0ff 0%, #3f8efc 100%);
+      background: linear-gradient(135deg, #a8c0ff 0%, #3f8efc 100%); /* Original gradient */
       padding: 1rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-shadow: 0 4px 15px rgba(63, 142, 252, 0.4);
+      box-shadow: 0 4px 15px rgba(63, 142, 252, 0.4); /* Original shadow */
       position: sticky;
       top: 0;
       z-index: 100;
@@ -38,7 +38,7 @@
       position: relative;
       font-size: 1.8rem;
       font-weight: 700;
-      color: #fff;
+      color: #fff; /* Original logo color */
       letter-spacing: 2px;
       user-select: none;
       padding: 0.3rem 1rem;
@@ -70,7 +70,7 @@
     }
 
     nav ul li a {
-      color: #e0e7ff;
+      color: #e0e7ff; /* Original nav link color */
       text-decoration: none;
       font-weight: 500;
       font-size: 1rem;
@@ -79,8 +79,8 @@
     }
 
     nav ul li a:hover {
-      color: #ffd369;
-      text-shadow: 0 0 5px #ffd369;
+      color: #ffd369; /* Original nav link hover color */
+      text-shadow: 0 0 5px #ffd369; /* Original nav link hover shadow */
     }
 
     header {
@@ -88,40 +88,40 @@
       text-align: center;
       animation: fadeInDown 1s ease forwards;
       opacity: 0;
-      color: #000;
+      color: #000; /* Original text color */
     }
 
     header h1 {
       font-size: 3.5rem;
-      color: #3f51b5;
+      color: #3f51b5; /* Original heading color */
       margin-bottom: 0.5rem;
-      text-shadow: 0 2px 4px rgba(63, 81, 181, 0.5);
+      text-shadow: 0 2px 4px rgba(63, 81, 181, 0.5); /* Original shadow */
     }
 
     header p {
       font-size: 1.3rem;
-      color: #283593;
+      color: #283593; /* Original paragraph color */
       font-weight: 500;
       letter-spacing: 1px;
     }
 
     section {
       padding: 4rem 2rem;
-      background-color: #f4f8ff;
+      background-color: #f4f8ff; /* Original section background */
       border-radius: 12px;
       margin: 2rem auto;
       max-width: 1200px;
-      box-shadow: 0 10px 30px rgba(63, 142, 252, 0.1);
+      box-shadow: 0 10px 30px rgba(63, 142, 252, 0.1); /* Original section shadow */
       opacity: 0;
       transform: translateY(50px);
       animation: fadeInUp 1s ease forwards;
       animation-delay: 0.3s;
-      color: #000;
+      color: #000; /* Original text color */
     }
 
     h2 {
       text-align: center;
-      color: #3f51b5;
+      color: #3f51b5; /* Original heading color */
       margin-bottom: 2rem;
       font-size: 2rem;
       font-weight: 700;
@@ -135,7 +135,7 @@
       text-align: center;
       font-size: 1.5rem;
       margin: 1rem 0;
-      color: #283593;
+      color: #283593; /* Original machine title color */
       font-weight: 600;
     }
 
@@ -146,13 +146,13 @@
       padding-bottom: 1rem;
       scroll-behavior: smooth;
       scrollbar-width: thin;
-      scrollbar-color: #90caf9 transparent;
+      scrollbar-color: #90caf9 transparent; /* Original scrollbar color */
     }
     .carousel::-webkit-scrollbar {
       height: 8px;
     }
     .carousel::-webkit-scrollbar-thumb {
-      background-color: #90caf9;
+      background-color: #90caf9; /* Original scrollbar thumb color */
       border-radius: 10px;
     }
     .carousel::-webkit-scrollbar-track {
@@ -165,7 +165,7 @@
       object-fit: cover;
       border-radius: 10px;
       flex-shrink: 0;
-      box-shadow: 0 4px 15px rgba(63, 142, 252, 0.4);
+      box-shadow: 0 4px 15px rgba(63, 142, 252, 0.4); /* Original image shadow */
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       cursor: pointer;
     }
@@ -181,58 +181,78 @@
         height: auto;
         object-fit: contain; /* Ensure the whole image is visible */
         border-radius: 10px;
-        box-shadow: 0 8px 25px rgba(63, 142, 252, 0.5);
+        box-shadow: 0 8px 25px rgba(63, 142, 252, 0.5); /* Original shadow */
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         cursor: pointer;
     }
 
     #certification-image-container img:hover {
         transform: scale(1.03) rotate(0deg); /* Slightly less rotation for single image */
-        box-shadow: 0 12px 30px rgba(63, 142, 252, 0.8);
+        box-shadow: 0 12px 30px rgba(63, 142, 252, 0.8); /* Original hover shadow */
     }
 
-    /* Styling for the BOD image */
-    #bod-section {
+    /* Styling for BOD carousel and individual cards (colors matched to original theme) */
+    .person-card {
+        flex-shrink: 0; /* Prevents cards from shrinking */
+        width: 280px; /* Fixed width for each card in carousel */
+        padding: 1.5rem;
+        background-color: #f4f8ff; /* Matched to section background */
+        border-radius: 12px;
+        box-shadow: 0 5px 20px rgba(63, 142, 252, 0.2); /* Adjusted to original theme's blue shadow */
         text-align: center;
-        padding: 4rem 2rem; /* Keep consistent section padding */
-    }
-
-    #md-image-container {
-        display: inline-block; /* Allows setting width and height */
-        width: 200px; /* Adjust as needed */
-        height: 200px; /* Adjust to match width for a circle, or set differently */
-        border-radius: 50%; /* Makes the image circular */
-        overflow: hidden; /* Hides parts of the image that go outside the circle */
-        margin-bottom: 1rem; /* Space below the image */
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
     }
 
-    #md-image-container:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    .person-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 8px 25px rgba(63, 142, 252, 0.4); /* Adjusted to original theme's blue shadow */
     }
 
-    #md-image-container img {
+    .person-image-container {
+        width: 150px; /* Size of the circular image */
+        height: 150px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-bottom: 1rem;
+        border: 4px solid #90caf9; /* Matched to input border color */
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .person-image-container img {
         width: 100%;
         height: 100%;
-        object-fit: cover; /* Ensures the image fills the circle without distortion */
-        display: block; /* Removes extra space below image */
+        object-fit: cover; /* Ensures image covers the circular area */
+        object-position: center; /* Centers the image within the circle */
+        transition: transform 0.3s ease;
     }
 
-    #bod-section h3 {
+    .person-image-container img:hover {
+      transform: scale(1.05); /* Slight zoom on image hover */
+    }
+
+    .person-card h3 {
+        font-size: 1.5rem;
+        color: #3f51b5; /* Matched to section title color */
         margin-bottom: 0.5rem;
-        color: #3f51b5;
-        font-size: 1.8rem;
+        font-weight: 700;
     }
 
-    #bod-section p {
-        color: #283593;
+    .person-card .person-post {
+        font-size: 1rem;
+        color: #283593; /* Matched to machine title color */
+        margin-bottom: 0.3rem;
         font-weight: 500;
-        font-size: 1.1rem;
-        line-height: 1.6;
-        max-width: 600px; /* Constrain text width */
-        margin: 0 auto; /* Center text */
+    }
+
+    .person-card .person-experience {
+        font-size: 0.9rem;
+        color: #283593; /* Matched to paragraph/machine title color */
+        font-style: italic;
     }
 
 
@@ -240,7 +260,7 @@
       max-width: 900px;
       margin: 0 auto;
       font-size: 1.1rem;
-      color: #000;
+      color: #000; /* Original text color */
       padding: 2rem 0;
       line-height: 1.8;
     }
@@ -248,25 +268,25 @@
     form {
       max-width: 600px;
       margin: 0 auto;
-      background: #dbe9ff;
+      background: #dbe9ff; /* Original form background */
       padding: 2rem;
       border-radius: 12px;
-      box-shadow: 0 5px 20px rgba(63, 142, 252, 0.3);
-      color: #000;
+      box-shadow: 0 5px 20px rgba(63, 142, 252, 0.3); /* Original form shadow */
+      color: #000; /* Original text color */
     }
 
     form label {
       display: block;
       margin-bottom: 0.5rem;
       font-weight: 600;
-      color: #283593;
+      color: #283593; /* Original label color */
     }
 
     form input, form textarea {
       width: 100%;
       padding: 0.7rem;
       margin-bottom: 1.2rem;
-      border: 2px solid #90caf9;
+      border: 2px solid #90caf9; /* Original border color */
       border-radius: 8px;
       font-size: 1rem;
       font-family: 'Roboto', sans-serif;
@@ -275,12 +295,12 @@
 
     form input:focus, form textarea:focus {
       outline: none;
-      border-color: #3f51b5;
-      box-shadow: 0 0 10px #3f51b5;
+      border-color: #3f51b5; /* Original focus border color */
+      box-shadow: 0 0 10px #3f51b5; /* Original focus shadow */
     }
 
     form button {
-      background: #3f51b5;
+      background: #3f51b5; /* Original button background */
       color: white;
       padding: 0.8rem 2rem;
       border: none;
@@ -292,18 +312,18 @@
     }
 
     form button:hover {
-      background: #283593;
+      background: #283593; /* Original button hover background */
     }
 
     footer {
-      background: #a8c0ff;
-      color: #fff;
+      background: #a8c0ff; /* Original footer background */
+      color: #fff; /* Original footer text color */
       text-align: center;
       padding: 2rem;
       margin-top: 3rem;
       font-weight: 600;
       letter-spacing: 1px;
-      box-shadow: inset 0 0 30px #3f8efc;
+      box-shadow: inset 0 0 30px #3f8efc; /* Original footer shadow */
     }
 
     /* Animations */
@@ -340,7 +360,7 @@
       width: 100%;
       height: 100%;
       overflow: auto;
-      background-color: rgba(0, 0, 0, 0.8);
+      background-color: rgba(0, 0, 0, 0.8); /* Original modal background */
       animation: fadeInModal 0.3s ease forwards;
     }
 
@@ -350,16 +370,16 @@
     }
 
     #imageModal .modal-content {
-      background-color: #f4f8ff;
+      background-color: #f4f8ff; /* Original modal content background */
       margin: auto;
       padding: 20px;
       border-radius: 12px;
       max-width: 90%;
       width: 95%;
-      box-shadow: 0 8px 25px rgba(63, 142, 252, 0.7);
+      box-shadow: 0 8px 25px rgba(63, 142, 252, 0.7); /* Original modal content shadow */
       text-align: center;
       position: relative;
-      color: #000;
+      color: #000; /* Original modal text color */
     }
 
     #modalImageDisplay {
@@ -367,12 +387,12 @@
       height: auto;
       border-radius: 10px;
       margin-bottom: 1rem;
-      box-shadow: 0 4px 15px rgba(63, 142, 252, 0.6);
+      box-shadow: 0 4px 15px rgba(63, 142, 252, 0.6); /* Original modal image shadow */
     }
 
     #imageModal .modal-info {
       font-size: 1.1rem;
-      color: #283593;
+      color: #283593; /* Original modal info color */
       padding: 0 10px;
     }
 
@@ -380,7 +400,7 @@
       position: absolute;
       top: 12px;
       right: 18px;
-      color: #3f51b5;
+      color: #3f51b5; /* Original close button color */
       font-size: 30px;
       font-weight: bold;
       cursor: pointer;
@@ -389,7 +409,7 @@
     }
 
     #imageModal .close-btn:hover {
-      color: #000;
+      color: #000; /* Original close button hover color */
     }
 
     /* Mobile Navigation */
@@ -422,7 +442,7 @@
         left: -100%;
         width: 100%;
         height: calc(100vh - 70px);
-        background: linear-gradient(135deg, #a8c0ff 0%, #3f8efc 100%);
+        background: linear-gradient(135deg, #a8c0ff 0%, #3f8efc 100%); /* Original nav background */
         flex-direction: column;
         align-items: center;
         padding-top: 2rem;
@@ -482,9 +502,20 @@
       #certification-image-container img {
           width: 90%; /* More responsive on small screens */
       }
-      #md-image-container {
-          width: 150px;
-          height: 150px;
+      /* BOD section adjustments */
+      .person-card {
+        width: 240px; /* Adjust card width for smaller screens */
+        padding: 1rem;
+      }
+      .person-image-container {
+        width: 120px;
+        height: 120px;
+      }
+      .person-card h3 {
+        font-size: 1.3rem;
+      }
+      .person-card .person-post, .person-card .person-experience {
+        font-size: 0.9rem;
       }
     }
 
@@ -522,6 +553,21 @@
         padding: 0.7rem;
         font-size: 1rem;
       }
+      /* BOD section adjustments */
+      .person-card {
+        width: 200px; /* Even smaller card width */
+        padding: 0.8rem;
+      }
+      .person-image-container {
+        width: 100px;
+        height: 100px;
+      }
+      .person-card h3 {
+        font-size: 1.2rem;
+      }
+      .person-card .person-post, .person-card .person-experience {
+        font-size: 0.8rem;
+      }
     }
   </style>
 </head>
@@ -535,9 +581,10 @@
       <li><a href="#about">About</a></li>
       <li><a href="#certification-iso">ISO 1990 Certification</a></li>
       <li><a href="#machines">Machines</a></li>
-      <li><a href="#products">Products</a></li>
-      <li><a href="#gallery">Gallery</a></li>
-      <li><a href="#board-of-directors">Leadership</a></li> <li><a href="#contact">Contact</a></li>
+      <li><a href="#products">Office</a></li> <!-- Changed from Products -->
+      <li><a href="#gallery">Projects</a></li> <!-- Changed from Gallery -->
+      <li><a href="#board-of-directors">Board of Directors</a></li> <!-- Updated Nav Link -->
+      <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
 
@@ -564,6 +611,9 @@
         <img src="images/iso.jpg" alt="ISO 1990 Certification" data-info="Official ISO 1990 certification for our quality management systems.">
     </div>
     <div class="content-section">
+      <p>
+        The ISO 1990 standard, titled "Petroleum and natural gas industries — Specific requirements for offshore structures," is a crucial certification for companies operating in the demanding offshore oil and gas sectors. This standard outlines requirements for the design, fabrication, installation, and in-service inspection of fixed steel offshore structures, ensuring the highest levels of safety, reliability, and environmental protection.
+      </p>
       <p style="margin-top: 1rem;">
         At Vrudhi Heavy Engineers, our adherence to ISO 1990 demonstrates our unwavering commitment to producing components that meet stringent international benchmarks for offshore applications. This certification assures our clients of our capability to deliver products that withstand the harsh marine environment, maintain structural integrity under extreme conditions, and contribute to the overall safety and efficiency of offshore operations. It reflects our dedication to continuous improvement and our expertise in specialized heavy engineering for critical infrastructure.
       </p>
@@ -602,48 +652,87 @@
   </section>
 
   <section id="products">
-    <h2>Office</h2>
+    <h2>Office</h2> <!-- Changed heading -->
     <div class="carousel-wrapper">
-      <div class="machine-title">Product Showcase</div>
+      <div class="machine-title">Office Showcase</div> <!-- Changed title -->
       <div class="carousel" id="productCarousel">
-        <img src="images/image3.jpg" alt="Heavy-duty Connector" data-info="Precision-engineered connector for industrial machinery.">
-        <img src="images/image4.jpg" alt="Bearing Housing Unit" data-info="Robust bearing housing for high-speed rotational parts.">
-        <img src="images/image5.jpg" alt="Hydraulic Cylinder Rod" data-info="High-strength hydraulic cylinder rod, polished finish.">
-        <img src="images/image6.jpg" alt="Gear Assembly Component" data-info="Intricate gear assembly component, heat-treated for durability.">
-        <img src="images/image7.jpg" alt="Industrial Valve" data-info="High-pressure industrial valve for fluid control.">
-        <img src="images/image8.jpg" alt="Casting Part" data-info="Precision cast metal component for heavy machinery.">
+        <img src="images/office1.jpg" alt="Modern Office Interior" data-info="Our spacious and well-lit office environment.">
+        <img src="images/office2.jpg" alt="Team Collaboration Space" data-info="Dedicated area for team collaboration and meetings.">
+        <img src="images/office3.jpg" alt="Reception Area" data-info="Welcoming reception area for our visitors and clients.">
+        <img src="images/office4.jpg" alt="Workstations" data-info="Ergonomic workstations for our dedicated employees.">
+        <img src="images/office5.jpg" alt="Meeting Room" data-info="Well-equipped meeting room for client presentations and internal discussions.">
+        <img src="images/office6.jpg" alt="Break Area" data-info="Comfortable break area for employees to relax and recharge.">
       </div>
     </div>
   </section>
 
   <section id="gallery">
-    <h2> Projects </h2>
+    <h2>Projects</h2> <!-- Changed heading -->
     <div class="carousel-wrapper">
-      <div class="machine-title">Our Facilities & Team</div>
+      <div class="machine-title">Our Key Projects</div> <!-- Changed title -->
       <div class="carousel" id="galleryCarousel">
-        <img src="images/image7.jpg" alt="Manufacturing Facility Interior" data-info="Inside our state-of-the-art manufacturing plant.">
-        <img src="images/image8.jpg" alt="Quality Control Inspection" data-info="Rigorous quality control checks on finished components.">
-        <img src="images/image9.jpg" alt="Warehouse and Logistics" data-info="Efficient warehouse operations and logistics.">
-        <img src="images/image10.jpg" alt="Engineering Design Team" data-info="Our expert engineering team at work.">
-        <img src="images/image1.jpg" alt="Client Meeting" data-info="Collaborating with clients to understand their needs.">
-        <img src="images/image2.jpg" alt="Loading Bay" data-info="Shipping high-quality products to our customers.">
+        <img src="images/project1.jpg" alt="Large Scale Construction Project" data-info="Supplying critical components for a major infrastructure project.">
+        <img src="images/project2.jpg" alt="Mining Site Installation" data-info="On-site installation and maintenance at a mining operation.">
+        <img src="images/project3.jpg" alt="Custom Fabrication for Heavy Industry" data-info="Specialized fabrication for heavy industrial clients.">
+        <img src="images/project4.jpg" alt="Port Machinery Upgrade" data-info="Upgrading heavy machinery at a major port.">
+        <img src="images/project5.jpg" alt="Offshore Platform Component Delivery" data-info="Delivering robust components for offshore oil and gas platforms.">
+        <img src="images/project6.jpg" alt="Tunnel Boring Machine Components" data-info="Manufacturing precision parts for tunnel boring machines.">
       </div>
     </div>
   </section>
 
-  ---
+  <!-- Board of Directors Section - Now a Carousel -->
   <section id="board-of-directors">
     <h2>Board of Directors</h2>
-    <div id="md-image-container">
-      <img src="images/MD.jpg" alt="Managing Director Mr. Uttam Jadhav"> </div>
-    <h3>Mr. Uttam Jadhav </h3> <p>
-      As the visionary Managing Director of Vrudhi Heavy Engineers, Mr. Uttam Jadhav has been instrumental in shaping the company's trajectory since its inception. With over 25+ years of experience in the heavy engineering industry, his strategic leadership and deep understanding of market dynamics have driven our growth and fostered a culture of innovation and excellence. He is committed to upholding our core values of quality, integrity, and client satisfaction.
-    </p>
+    <div class="carousel-wrapper">
+      <div class="machine-title">Meet Our Leadership Team</div>
+      <div class="carousel" id="bodCarousel">
+        <!-- Managing Director -->
+        <div class="person-card">
+          <div class="person-image-container">
+            <img src="images/md_uttam_jadhav.jpg" alt="Mr. Uttam Jadhav">
+          </div>
+          <h3>Mr. Uttam Jadhav</h3>
+          <p class="person-post">Managing Director</p>
+          <p class="person-experience">25+ years of experience</p>
+        </div>
+
+        <!-- Director -->
+        <div class="person-card">
+          <div class="person-image-container">
+            <img src="images/dir_kulkarni.jpg" alt="Mr. Kulkarni">
+          </div>
+          <h3>Mr. Kulkarni</h3>
+          <p class="person-post">Director</p>
+          <p class="person-experience">30+ years of experience</p>
+        </div>
+
+        <!-- Finance and Accounting -->
+        <div class="person-card">
+          <div class="person-image-container">
+            <img src="images/finance_prakash.jpg" alt="Mr. Prakash">
+          </div>
+          <h3>Mr. Prakash</h3>
+          <p class="person-post">Head of Finance & Accounting</p>
+          <p class="person-experience">20+ years of experience</p>
+        </div>
+
+        <!-- Mrs. Vijayalaxmi Jadhav -->
+        <div class="person-card">
+          <div class="person-image-container">
+            <img src="images/v_jadhav.jpg" alt="Mrs. Vijayalaxmi Jadhav">
+          </div>
+          <h3>Mrs. Vijayalaxmi Jadhav</h3>
+          <p class="person-post">Board Member</p>
+          <p class="person-experience">18+ years of experience</p>
+        </div>
+      </div>
+    </div>
   </section>
   
   <section id="contact">
     <div style="text-align: center; margin-top: 2rem;">
-      <h3 style="margin-bottom: 1rem; color: #3f51b5;">Visit Us</h3>
+      <h3 style="margin-bottom: 1rem; color: #3f51b5;">Visit Us</h3> <!-- Original color -->
       <p><i class="fas fa-map-marker-alt"></i> Plot No. 12, Shiroli MIDC, Kolhapur, Maharashtra - 416122</p>
       <p style="margin-top: 0.5rem;"><i class="fas fa-phone"></i> +91 9876543210</p>
       <p style="margin-top: 0.5rem;"><i class="fas fa-envelope"></i> info@vrudhiengineers.com</p>
@@ -710,7 +799,7 @@
     const closeBtn = document.querySelector('.close-btn');
 
     // Select all images that should open the modal
-    const clickableImages = document.querySelectorAll('.carousel img, #certification-image-container img, #md-image-container img');
+    const clickableImages = document.querySelectorAll('.carousel img, #certification-image-container img, .person-card img');
 
     clickableImages.forEach(img => {
       img.addEventListener('click', () => {
@@ -718,7 +807,17 @@
         modalImageDisplay.src = img.src;
         modalImageDisplay.alt = img.alt;
         
-        modalInfo.textContent = img.dataset.info || img.alt; 
+        // For person cards, combine name, post, and experience for data-info
+        if (img.closest('.person-card')) {
+          const card = img.closest('.person-card');
+          const name = card.querySelector('h3').textContent;
+          const post = card.querySelector('.person-post').textContent;
+          const experience = card.querySelector('.person-experience').textContent;
+          modalInfo.textContent = `${name}, ${post}, ${experience}`;
+        } else {
+          modalInfo.textContent = img.dataset.info || img.alt; 
+        }
+
         document.body.style.overflow = 'hidden';
       });
     });
@@ -806,6 +905,7 @@
       setupCarouselAutoScroll('machineCarousel3');
       setupCarouselAutoScroll('productCarousel');
       setupCarouselAutoScroll('galleryCarousel');
+      setupCarouselAutoScroll('bodCarousel', 300); // Initialize the new BOD carousel with a slightly smaller scroll amount
     });
   </script>
 </body>
