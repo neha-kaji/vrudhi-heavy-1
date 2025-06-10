@@ -159,7 +159,7 @@
       background: transparent;
     }
 
-    .carousel img, .grid-section img { /* Keep grid-section img for consistent styling if needed */
+    .carousel img {
       width: 350px;
       height: 250px;
       object-fit: cover;
@@ -170,17 +170,71 @@
       cursor: pointer;
     }
 
-    .carousel img:hover, .grid-section img:hover {
-      transform: scale(1.05) rotate(1deg);
-      box-shadow: 0 10px 25px rgba(63, 142, 252, 0.7);
+    /* Styling for the single certification image */
+    #certification-image-container {
+        text-align: center;
+        margin-bottom: 2rem;
     }
-    
-    /* Removed .grid-section as it will now use carousel */
-    /* .grid-section {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-    } */
+
+    #certification-image-container img {
+        width: clamp(250px, 70%, 500px); /* Responsive width */
+        height: auto;
+        object-fit: contain; /* Ensure the whole image is visible */
+        border-radius: 10px;
+        box-shadow: 0 8px 25px rgba(63, 142, 252, 0.5);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+    }
+
+    #certification-image-container img:hover {
+        transform: scale(1.03) rotate(0deg); /* Slightly less rotation for single image */
+        box-shadow: 0 12px 30px rgba(63, 142, 252, 0.8);
+    }
+
+    /* Styling for the BOD image */
+    #bod-section {
+        text-align: center;
+        padding: 4rem 2rem; /* Keep consistent section padding */
+    }
+
+    #md-image-container {
+        display: inline-block; /* Allows setting width and height */
+        width: 200px; /* Adjust as needed */
+        height: 200px; /* Adjust to match width for a circle, or set differently */
+        border-radius: 50%; /* Makes the image circular */
+        overflow: hidden; /* Hides parts of the image that go outside the circle */
+        margin-bottom: 1rem; /* Space below the image */
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    #md-image-container:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    #md-image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Ensures the image fills the circle without distortion */
+        display: block; /* Removes extra space below image */
+    }
+
+    #bod-section h3 {
+        margin-bottom: 0.5rem;
+        color: #3f51b5;
+        font-size: 1.8rem;
+    }
+
+    #bod-section p {
+        color: #283593;
+        font-weight: 500;
+        font-size: 1.1rem;
+        line-height: 1.6;
+        max-width: 600px; /* Constrain text width */
+        margin: 0 auto; /* Center text */
+    }
+
 
     .content-section {
       max-width: 900px;
@@ -424,6 +478,14 @@
         font-size: 1rem;
         padding: 1.5rem 0;
       }
+
+      #certification-image-container img {
+          width: 90%; /* More responsive on small screens */
+      }
+      #md-image-container {
+          width: 150px;
+          height: 150px;
+      }
     }
 
     @media (max-width: 480px) {
@@ -452,12 +514,6 @@
         height: 180px;
       }
       
-      /* Removed grid-section media query as it's now a carousel */
-      /* .grid-section {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-      } */
-      
       form {
         padding: 1.2rem;
       }
@@ -477,10 +533,11 @@
     </div>
     <ul id="navMenu">
       <li><a href="#about">About</a></li>
+      <li><a href="#certification-iso">ISO 1990 Certification</a></li>
       <li><a href="#machines">Machines</a></li>
       <li><a href="#products">Products</a></li>
       <li><a href="#gallery">Gallery</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#board-of-directors">Leadership</a></li> <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
 
@@ -497,6 +554,18 @@
       </p>
       <p style="margin-top: 1.5rem;">
         With over 100 employees and 25,000 sq ft of manufacturing space, we deliver precision-engineered components with the highest quality standards. Our certifications include ISO 9001:2015 and ASME accreditation.
+      </p>
+    </div>
+  </section>
+
+  <section id="certification-iso">
+    <h2>ISO 1990 Certification</h2>
+    <div id="certification-image-container">
+        <img src="images/iso.jpg" alt="ISO 1990 Certification" data-info="Official ISO 1990 certification for our quality management systems.">
+    </div>
+    <div class="content-section">
+      <p style="margin-top: 1rem;">
+        At Vrudhi Heavy Engineers, our adherence to ISO 1990 demonstrates our unwavering commitment to producing components that meet stringent international benchmarks for offshore applications. This certification assures our clients of our capability to deliver products that withstand the harsh marine environment, maintain structural integrity under extreme conditions, and contribute to the overall safety and efficiency of offshore operations. It reflects our dedication to continuous improvement and our expertise in specialized heavy engineering for critical infrastructure.
       </p>
     </div>
   </section>
@@ -562,6 +631,16 @@
     </div>
   </section>
 
+  ---
+  <section id="board-of-directors">
+    <h2>Board of Directors</h2>
+    <div id="md-image-container">
+      <img src="images/MD.jpg" alt="Managing Director Mr. Uttam Jadhav"> </div>
+    <h3>Mr. Uttam Jadhav </h3> <p>
+      As the visionary Managing Director of Vrudhi Heavy Engineers, Mr. Uttam Jadhav has been instrumental in shaping the company's trajectory since its inception. With over 25+ years of experience in the heavy engineering industry, his strategic leadership and deep understanding of market dynamics have driven our growth and fostered a culture of innovation and excellence. He is committed to upholding our core values of quality, integrity, and client satisfaction.
+    </p>
+  </section>
+  
   <section id="contact">
     <div style="text-align: center; margin-top: 2rem;">
       <h3 style="margin-bottom: 1rem; color: #3f51b5;">Visit Us</h3>
@@ -631,8 +710,8 @@
     const modalInfo = document.getElementById('modalInfo');
     const closeBtn = document.querySelector('.close-btn');
 
-    // Select all images in all carousels
-    const clickableImages = document.querySelectorAll('.carousel img');
+    // Select all images that should open the modal
+    const clickableImages = document.querySelectorAll('.carousel img, #certification-image-container img, #md-image-container img');
 
     clickableImages.forEach(img => {
       img.addEventListener('click', () => {
@@ -721,7 +800,14 @@
       startScroll();
     }
 
-
+    // Initialize auto-scroll for all carousels
+    document.addEventListener('DOMContentLoaded', () => {
+      setupCarouselAutoScroll('machineCarousel1');
+      setupCarouselAutoScroll('machineCarousel2');
+      setupCarouselAutoScroll('machineCarousel3');
+      setupCarouselAutoScroll('productCarousel');
+      setupCarouselAutoScroll('galleryCarousel');
+    });
   </script>
 </body>
 </html>
