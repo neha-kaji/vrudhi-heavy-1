@@ -16,52 +16,39 @@
 
     body {
       font-family: 'Roboto', sans-serif;
-      background: #e6f0fa; /* Original background */
-      color: #000; /* Original text color */
+      background: linear-gradient(135deg, #e6f0fa 0%, #d4e4fa 100%);
+      color: #000;
       line-height: 1.6;
       overflow-x: hidden;
     }
 
     nav {
-      background: linear-gradient(135deg, #a8c0ff 0%, #3f8efc 100%); /* Original gradient */
-      padding: 1rem 2rem;
+      background: linear-gradient(135deg, #a8c0ff 0%, #3f8efc 100%);
+      padding: 0.8rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-shadow: 0 4px 15px rgba(63, 142, 252, 0.4); /* Original shadow */
+      box-shadow: 0 4px 15px rgba(63, 142, 252, 0.4);
       position: sticky;
       top: 0;
       z-index: 100;
     }
 
-    nav .logo {
-      position: relative;
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: #fff; /* Original logo color */
-      letter-spacing: 2px;
-      user-select: none;
-      padding: 0.3rem 1rem;
-      overflow: visible;
-      z-index: 10;
+    .logo-container {
+      display: flex;
+      align-items: center;
+      margin-left: 20px;
     }
 
-    nav .logo::before {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 120px;
-      height: 50px;
-      background-position: center;
-      background: url('images/logo.png') no-repeat center center;
-      background-size: contain;
-      opacity: 0.15;
-      transform: translate(-50%, -50%);
-      filter: grayscale(100%) brightness(150%);
-      border-radius: 8px;
-      z-index: -1;
-      pointer-events: none;
+    .logo {
+      height: 60px;
+      opacity: 0.85;
+      transition: all 0.3s ease;
+    }
+
+    .logo:hover {
+      opacity: 1;
+      transform: scale(1.05);
     }
 
     nav ul {
@@ -71,17 +58,20 @@
     }
 
     nav ul li a {
-      color: #e0e7ff; /* Original nav link color */
+      color: #e0e7ff;
       text-decoration: none;
       font-weight: 500;
       font-size: 1rem;
       transition: color 0.3s ease;
       cursor: pointer;
+      padding: 0.5rem 0.8rem;
+      border-radius: 5px;
     }
 
     nav ul li a:hover {
-      color: #ffd369; /* Original nav link hover color */
-      text-shadow: 0 0 5px #ffd369; /* Original nav link hover shadow */
+      color: #ffd369;
+      text-shadow: 0 0 5px #ffd369;
+      background: rgba(255, 255, 255, 0.1);
     }
 
     header {
@@ -89,55 +79,134 @@
       text-align: center;
       animation: fadeInDown 1s ease forwards;
       opacity: 0;
-      color: #000; /* Original text color */
+      color: #000;
+      position: relative;
+      overflow: hidden;
+      min-height: 70vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* NEW: Background image with overlay */
+    .header-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('images/header-background.jpg') center/cover no-repeat;
+      z-index: -2;
+    }
+
+    .header-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(195, 204, 248, 0.39) 0%, rgba(168, 184, 255, 0.8) 100%); 
+      z-index: -1;
     }
 
     header h1 {
       font-size: 3.5rem;
-      color: #3f51b5; /* Original heading color */
+      color: white; /* Changed to white for better contrast */
       margin-bottom: 0.5rem;
-      text-shadow: 0 2px 4px rgba(63, 81, 181, 0.5); /* Original shadow */
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+      position: relative;
+      z-index: 2;
+      background: rgba(40, 53, 147, 0.7); /* Semi-transparent background */
+      padding: 1rem 2rem;
+      border-radius: 10px;
+      max-width: 80%;
+      margin: 0 auto;
+      backdrop-filter: blur(5px);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
     }
 
     header p {
       font-size: 1.3rem;
-      color: #283593; /* Original paragraph color */
+      color: white; /* Changed to white for better contrast */
       font-weight: 500;
       letter-spacing: 1px;
+      max-width: 800px;
+      margin: 1.5rem auto 0;
+      position: relative;
+      z-index: 2;
+      background: rgba(63, 81, 181, 0.7);
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
     }
 
     section {
       padding: 4rem 2rem;
-      background-color: #f4f8ff; /* Original section background */
+      background-color: #f4f8ff;
       border-radius: 12px;
       margin: 2rem auto;
       max-width: 1200px;
-      box-shadow: 0 10px 30px rgba(63, 142, 252, 0.1); /* Original section shadow */
+      box-shadow: 0 10px 30px rgba(63, 142, 252, 0.1);
       opacity: 0;
       transform: translateY(50px);
       animation: fadeInUp 1s ease forwards;
       animation-delay: 0.3s;
-      color: #000; /* Original text color */
+      color: #000;
+      position: relative;
+      overflow: hidden;
+    }
+
+    section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80"><rect width="80" height="80" fill="none" stroke="%233f8efc" stroke-width="1" stroke-opacity="0.05" stroke-dasharray="4,4"/></svg>') center/cover;
+      z-index: 0;
     }
 
     h2 {
       text-align: center;
-      color: #3f51b5; /* Original heading color */
+      color: #3f51b5;
       margin-bottom: 2rem;
       font-size: 2rem;
       font-weight: 700;
+      position: relative;
+      z-index: 1;
+    }
+
+    .content-section {
+      max-width: 900px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+      color: #000;
+      padding: 2rem 0;
+      line-height: 1.8;
+      position: relative;
+      z-index: 1;
+    }
+
+    .content-section p {
+      margin-bottom: 1.5rem;
     }
 
     .carousel-wrapper {
       margin-bottom: 3rem;
+      position: relative;
+      z-index: 1;
     }
 
     .machine-title {
       text-align: center;
       font-size: 1.5rem;
       margin: 1rem 0;
-      color: #283593; /* Original machine title color */
+      color: #283593;
       font-weight: 600;
+      position: relative;
     }
 
     .carousel {
@@ -147,59 +216,95 @@
       padding-bottom: 1rem;
       scroll-behavior: smooth;
       scrollbar-width: thin;
-      scrollbar-color: #90caf9 transparent; /* Original scrollbar color */
+      scrollbar-color: #90caf9 transparent;
     }
+    
     .carousel::-webkit-scrollbar {
       height: 8px;
     }
+    
     .carousel::-webkit-scrollbar-thumb {
-      background-color: #90caf9; /* Original scrollbar thumb color */
+      background-color: #90caf9;
       border-radius: 10px;
     }
+    
     .carousel::-webkit-scrollbar-track {
       background: transparent;
     }
 
-    .carousel img {
+    .media-container {
       width: 350px;
       height: 250px;
-      object-fit: cover;
       border-radius: 10px;
       flex-shrink: 0;
-      box-shadow: 0 4px 15px rgba(63, 142, 252, 0.4); /* Original image shadow */
+      box-shadow: 0 4px 15px rgba(63, 142, 252, 0.4);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       cursor: pointer;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .media-container:hover {
+      transform: scale(1.05) rotate(1deg);
+      box-shadow: 0 8px 25px rgba(63, 142, 252, 0.8);
+    }
+
+    .media-container img,
+    .media-container video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .video-play-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 3rem;
+      text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      opacity: 0.8;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    .media-container:hover .video-play-icon {
+      opacity: 1;
+      text-shadow: 0 0 15px rgba(255, 211, 105, 0.7);
     }
 
     /* Styling for the single certification image */
     #certification-image-container {
         text-align: center;
         margin-bottom: 2rem;
+        position: relative;
+        z-index: 1;
     }
 
     #certification-image-container img {
-        width: clamp(250px, 70%, 500px); /* Responsive width */
+        width: clamp(250px, 70%, 500px);
         height: auto;
-        object-fit: contain; /* Ensure the whole image is visible */
+        object-fit: contain;
         border-radius: 10px;
-        box-shadow: 0 8px 25px rgba(63, 142, 252, 0.5); /* Original shadow */
+        box-shadow: 0 8px 25px rgba(63, 142, 252, 0.5);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         cursor: pointer;
     }
 
     #certification-image-container img:hover {
-        transform: scale(1.03) rotate(0deg); /* Slightly less rotation for single image */
-        box-shadow: 0 12px 30px rgba(63, 142, 252, 0.8); /* Original hover shadow */
+        transform: scale(1.03);
+        box-shadow: 0 12px 30px rgba(63, 142, 252, 0.8);
     }
 
-    /* Styling for BOD carousel and individual cards (colors matched to original theme) */
+    /* Styling for BOD carousel and individual cards */
     .person-card {
-        flex-shrink: 0; /* Prevents cards from shrinking */
-        width: 280px; /* Fixed width for each card in carousel */
+        flex-shrink: 0;
+        width: 280px;
         padding: 1.5rem;
-        background-color: #f4f8ff; /* Matched to section background */
+        background-color: #f4f8ff;
         border-radius: 12px;
-        box-shadow: 0 5px 20px rgba(63, 142, 252, 0.2); /* Adjusted to original theme's blue shadow */
+        box-shadow: 0 5px 20px rgba(63, 142, 252, 0.2);
         text-align: center;
         display: flex;
         flex-direction: column;
@@ -207,101 +312,96 @@
         justify-content: center;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         cursor: pointer;
+        position: relative;
+        z-index: 1;
     }
 
     .person-card:hover {
         transform: translateY(-8px);
-        box-shadow: 0 8px 25px rgba(63, 142, 252, 0.4); /* Adjusted to original theme's blue shadow */
+        box-shadow: 0 8px 25px rgba(63, 142, 252, 0.4);
     }
 
     .person-image-container {
-        width: 150px; /* Size of the circular image */
+        width: 150px;
         height: 150px;
         border-radius: 50%;
         overflow: hidden;
         margin-bottom: 1rem;
-        border: 4px solid #90caf9; /* Matched to input border color */
+        border: 4px solid #90caf9;
         box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
     }
 
     .person-image-container img {
         width: 100%;
         height: 100%;
-        object-fit: cover; /* Ensures image covers the circular area */
-        object-position: center; /* Centers the image within the circle */
+        object-fit: cover;
+        object-position: center;
         transition: transform 0.3s ease;
     }
 
     .person-image-container img:hover {
-      transform: scale(1.05); /* Slight zoom on image hover */
+      transform: scale(1.05);
     }
 
     .person-card h3 {
         font-size: 1.5rem;
-        color: #3f51b5; /* Matched to section title color */
+        color: #3f51b5;
         margin-bottom: 0.5rem;
         font-weight: 700;
     }
 
     .person-card .person-post {
         font-size: 1rem;
-        color: #283593; /* Matched to machine title color */
+        color: #283593;
         margin-bottom: 0.3rem;
         font-weight: 500;
     }
 
     .person-card .person-experience {
         font-size: 0.9rem;
-        color: #283593; /* Matched to paragraph/machine title color */
+        color: #283593;
         font-style: italic;
-    }
-
-
-    .content-section {
-      max-width: 900px;
-      margin: 0 auto;
-      font-size: 1.1rem;
-      color: #000; /* Original text color */
-      padding: 2rem 0;
-      line-height: 1.8;
     }
 
     form {
       max-width: 600px;
       margin: 0 auto;
-      background: #dbe9ff; /* Original form background */
+      background: #dbe9ff;
       padding: 2rem;
       border-radius: 12px;
-      box-shadow: 0 5px 20px rgba(63, 142, 252, 0.3); /* Original form shadow */
-      color: #000; /* Original text color */
+      box-shadow: 0 5px 20px rgba(63, 142, 252, 0.3);
+      color: #000;
+      position: relative;
+      z-index: 1;
     }
 
     form label {
       display: block;
       margin-bottom: 0.5rem;
       font-weight: 600;
-      color: #283593; /* Original label color */
+      color: #283593;
     }
 
     form input, form textarea {
       width: 100%;
       padding: 0.7rem;
       margin-bottom: 1.2rem;
-      border: 2px solid #90caf9; /* Original border color */
+      border: 2px solid #90caf9;
       border-radius: 8px;
       font-size: 1rem;
       font-family: 'Roboto', sans-serif;
       transition: border-color 0.3s ease;
+      background: #fff;
     }
 
     form input:focus, form textarea:focus {
       outline: none;
-      border-color: #3f51b5; /* Original focus border color */
-      box-shadow: 0 0 10px #3f51b5; /* Original focus shadow */
+      border-color: #3f51b5;
+      box-shadow: 0 0 10px #3f51b5;
     }
 
     form button {
-      background: #3f51b5; /* Original button background */
+      background: #3f51b5;
       color: white;
       padding: 0.8rem 2rem;
       border: none;
@@ -313,18 +413,64 @@
     }
 
     form button:hover {
-      background: #283593; /* Original button hover background */
+      background: #283593;
     }
 
     footer {
-      background: #a8c0ff; /* Original footer background */
-      color: #fff; /* Original footer text color */
+      background: #a8c0ff;
+      color: #fff;
       text-align: center;
       padding: 2rem;
       margin-top: 3rem;
       font-weight: 600;
       letter-spacing: 1px;
-      box-shadow: inset 0 0 30px #3f8efc; /* Original footer shadow */
+      box-shadow: inset 0 0 30px #3f8efc;
+      position: relative;
+    }
+
+    footer::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(168, 192, 255, 0.4) 0%, rgba(63, 142, 252, 0.4) 100%);
+      z-index: 0;
+    }
+
+    .contact-info {
+      position: relative;
+      z-index: 1;
+      margin-top: 1rem;
+    }
+
+    .contact-info p {
+      margin: 0.5rem 0;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: #3f51b5;
+      color: white;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+
+    .social-links a:hover {
+      background: #283593;
+      transform: translateY(-3px);
     }
 
     /* Animations */
@@ -350,9 +496,21 @@
       }
     }
 
+    @keyframes float {
+      0% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
     /* Modal styles */
     #imageModal {
-      display: none; /* Hidden by default */
+      display: none;
       position: fixed;
       z-index: 200;
       padding-top: 60px;
@@ -361,7 +519,7 @@
       width: 100%;
       height: 100%;
       overflow: auto;
-      background-color: rgba(0, 0, 0, 0.8); /* Original modal background */
+      background-color: rgba(0, 0, 0, 0.8);
       animation: fadeInModal 0.3s ease forwards;
     }
 
@@ -371,16 +529,16 @@
     }
 
     #imageModal .modal-content {
-      background-color: #f4f8ff; /* Original modal content background */
+      background-color: #f4f8ff;
       margin: auto;
       padding: 20px;
       border-radius: 12px;
       max-width: 90%;
       width: 95%;
-      box-shadow: 0 8px 25px rgba(63, 142, 252, 0.7); /* Original modal content shadow */
+      box-shadow: 0 8px 25px rgba(63, 142, 252, 0.7);
       text-align: center;
       position: relative;
-      color: #000; /* Original modal text color */
+      color: #000;
     }
 
     #modalImageDisplay {
@@ -388,12 +546,12 @@
       height: auto;
       border-radius: 10px;
       margin-bottom: 1rem;
-      box-shadow: 0 4px 15px rgba(63, 142, 252, 0.6); /* Original modal image shadow */
+      box-shadow: 0 4px 15px rgba(63, 142, 252, 0.6);
     }
 
     #imageModal .modal-info {
       font-size: 1.1rem;
-      color: #283593; /* Original modal info color */
+      color: #283593;
       padding: 0 10px;
     }
 
@@ -401,7 +559,7 @@
       position: absolute;
       top: 12px;
       right: 18px;
-      color: #3f51b5; /* Original close button color */
+      color: #3f51b5;
       font-size: 30px;
       font-weight: bold;
       cursor: pointer;
@@ -410,7 +568,7 @@
     }
 
     #imageModal .close-btn:hover {
-      color: #000; /* Original close button hover color */
+      color: #000;
     }
 
     /* Mobile Navigation */
@@ -419,6 +577,7 @@
       cursor: pointer;
       color: white;
       font-size: 1.8rem;
+      z-index: 10;
     }
 
     /* Responsive styles */
@@ -432,7 +591,6 @@
     }
 
     @media (max-width: 768px) {
-      /* Mobile Navigation */
       .menu-toggle {
         display: block;
       }
@@ -443,7 +601,7 @@
         left: -100%;
         width: 100%;
         height: calc(100vh - 70px);
-        background: linear-gradient(135deg, #a8c0ff 0%, #3f8efc 100%); /* Original nav background */
+        background: linear-gradient(135deg, #a8c0ff 0%, #3f8efc 100%);
         flex-direction: column;
         align-items: center;
         padding-top: 2rem;
@@ -455,16 +613,15 @@
         left: 0;
       }
       
-      /* Header adjustments */
       header {
         padding: 5rem 1.5rem 2rem;
       }
       
       header h1 {
         font-size: 2.5rem;
+        padding: 0.8rem 1.5rem;
       }
       
-      /* Section adjustments */
       section {
         padding: 3rem 1.5rem;
         margin: 1.5rem auto;
@@ -474,8 +631,7 @@
         font-size: 1.8rem;
       }
       
-      /* Carousel adjustments */
-      .carousel img { /* Only target carousel images now */
+      .media-container {
         width: 280px;
         height: 200px;
       }
@@ -484,38 +640,39 @@
         font-size: 1.3rem;
       }
       
-      /* Form adjustments */
       form {
         padding: 1.5rem;
       }
       
-      /* Footer adjustments */
       footer {
         padding: 1.5rem;
       }
       
-      /* Content adjustments */
       .content-section {
         font-size: 1rem;
         padding: 1.5rem 0;
       }
 
       #certification-image-container img {
-          width: 90%; /* More responsive on small screens */
+          width: 90%;
       }
-      /* BOD section adjustments */
+      
       .person-card {
-        width: 240px; /* Adjust card width for smaller screens */
+        width: 240px;
         padding: 1rem;
       }
+      
       .person-image-container {
         width: 120px;
         height: 120px;
       }
+      
       .person-card h3 {
         font-size: 1.3rem;
       }
-      .person-card .person-post, .person-card .person-experience {
+      
+      .person-card .person-post, 
+      .person-card .person-experience {
         font-size: 0.9rem;
       }
     }
@@ -526,11 +683,21 @@
       }
       
       .logo {
-        font-size: 1.5rem;
+        height: 50px;
+      }
+
+      .logo-container {
+        margin-left: 20px;
       }
       
       header h1 {
         font-size: 2rem;
+        padding: 0.8rem 1rem;
+      }
+      
+      header p {
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
       }
       
       section {
@@ -541,7 +708,7 @@
         font-size: 1.6rem;
       }
       
-      .carousel img { /* Only target carousel images now */
+      .media-container {
         width: 240px;
         height: 180px;
       }
@@ -554,19 +721,23 @@
         padding: 0.7rem;
         font-size: 1rem;
       }
-      /* BOD section adjustments */
+      
       .person-card {
-        width: 200px; /* Even smaller card width */
+        width: 200px;
         padding: 0.8rem;
       }
+      
       .person-image-container {
         width: 100px;
         height: 100px;
       }
+      
       .person-card h3 {
         font-size: 1.2rem;
       }
-      .person-card .person-post, .person-card .person-experience {
+      
+      .person-card .person-post, 
+      .person-card .person-experience {
         font-size: 0.8rem;
       }
     }
@@ -574,7 +745,10 @@
 </head>
 <body>
   <nav>
-    <div class="logo">Vrudhi Heavy Engineers Pvt. Ltd.</div>
+    <div class="logo-container">
+      <!-- Logo image from local images folder -->
+      <img src="images/logo.png" alt="Vrudhi Heavy Engineers Logo" class="logo">
+    </div>
     <div class="menu-toggle" id="menuToggle">
       <i class="fas fa-bars"></i>
     </div>
@@ -582,14 +756,18 @@
       <li><a href="#about">About</a></li>
       <li><a href="#certification-iso">ISO 1990 Certification</a></li>
       <li><a href="#machines">Machines</a></li>
-      <li><a href="#products">Office</a></li> <!-- Changed from Products -->
-      <li><a href="#gallery">Projects</a></li> <!-- Changed from Gallery -->
-      <li><a href="#board-of-directors">Board of Directors</a></li> <!-- Updated Nav Link -->
+      <li><a href="#products">Office</a></li>
+      <li><a href="#gallery">Projects</a></li>
+      <li><a href="#board-of-directors">Board of Directors</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
 
   <header>
+    <!-- NEW: Background image container -->
+    <div class="header-background"></div>
+    <div class="header-overlay"></div>
+    
     <h1>Vrudhi Heavy Engineers Pvt. Ltd. </h1>
     <p>Based in Shiroli MIDC, Maharashtra | Precision Engineering Since 2004</p>
   </header>
@@ -600,7 +778,7 @@
       <p>
         Established in 2004, Vrudhi Heavy Engineers has become a leader in the manufacture and supply of premium components for massive industrial machines. Based in Shiroli MIDC, Maharashtra, we serve clients across construction, mining, and heavy transport sectors. Our team is dedicated to combining innovation with industrial-strength durability to ensure our clients operate with the best.
       </p>
-      <p style="margin-top: 1.5rem;">
+      <p>
         With over 100 employees and 25,000 sq ft of manufacturing space, we deliver precision-engineered components with the highest quality standards. Our certifications include ISO 9001:2015 and ASME accreditation.
       </p>
     </div>
@@ -612,8 +790,7 @@
         <img src="images/iso.jpg" alt="ISO 1990 Certification" data-info="Official ISO 1990 certification for our quality management systems.">
     </div>
     <div class="content-section">
-
-      <p style="margin-top: 1rem;">
+      <p>
         At Vrudhi Heavy Engineers, our adherence to ISO 1990 demonstrates our unwavering commitment to producing components that meet stringent international benchmarks for offshore applications. This certification assures our clients of our capability to deliver products that withstand the harsh marine environment, maintain structural integrity under extreme conditions, and contribute to the overall safety and efficiency of offshore operations. It reflects our dedication to continuous improvement and our expertise in specialized heavy engineering for critical infrastructure.
       </p>
     </div>
@@ -622,68 +799,230 @@
   <section id="machines">
     <h2>Machine Units</h2>
     <div class="carousel-wrapper">
-      <div class="machine-title">Excavator Arm</div>
+
+      <div class="machine-title">Unit 1</div>
       <div class="carousel" id="machineCarousel1">
-        <img src="images/Unit-1-1.JPG" alt="Excavator Arm Model E450">
-        <img src="images/unit-1-2.JPG" alt="Excavator Arm in mining operation" data-info="Operating in extreme mining conditions">
-        <img src="images/unit-1-3.MOV" alt="Excavator Arm Model E450" data-info="Heavy-duty E450 with 8m reach capacity">
-        <img src="images/unit-1-4.JPG" alt="Excavator Arm in mining operation" data-info="Operating in extreme mining conditions">
-        <img src="images/unit-1-5.JPG" alt="Excavator Arm Model E450" data-info="Heavy-duty E450 with 8m reach capacity">
-        <img src="images/unit-1-6.MOV" alt="Excavator Arm Model E450" data-info="Heavy-duty E450 with 8m reach capacity">
-        <img src="images/unit-1-7.JPG" alt="Excavator Arm Model E450" data-info="Heavy-duty E450 with 8m reach capacity">
-        <img src="images/unit-1-8.JPG" alt="Excavator Arm Model E450" data-info="Heavy-duty E450 with 8m reach capacity">
-        <img src="images/unit-1-9.jpg" alt="Excavator Arm Model E450" data-info="Heavy-duty E450 with 8m reach capacity">
-        <img src="images/unit-1-10.MOV" alt="Excavator Arm Model E450" data-info="Heavy-duty E450 with 8m reach capacity">
+        <!-- Images -->
+        <div class="media-container">
+          <img src="images/unit-1/unit-1-1.jpg" alt="Excavator Arm Model E450" data-info="Heavy-duty E450 with 8m reach capacity">
+        </div>
+        <div class="media-container">
+          <img src="images/unit-1/unit-1-2.JPG" alt="Excavator Arm in mining operation" data-info="Operating in extreme mining conditions">
+        </div>
         
+        <!-- Videos -->
+        <div class="media-container" data-type="video">
+          <video>
+            <source src="images/unit-1/unit-1-3.MOV" type="video/mp4">
+          </video>
+          <div class="video-play-icon">
+            <i class="fas fa-play-circle"></i>
+          </div>
+        </div>
+        
+        <div class="media-container">
+          <img src="images/unit-1/unit-1-4.JPG" alt="Excavator Arm Model E450" data-info="Heavy-duty E450 with 8m reach capacity">
+        </div>
+
+        <div class="media-container">
+          <img src="images/unit-1/unit-1-5.JPG" alt="Excavator Arm Model E450" data-info="Heavy-duty E450 with 8m reach capacity">
+        </div>
+        
+        <div class="media-container" data-type="video">
+          <video>
+            <source src="images/unit-1/unit-1-6.MOV" type="video/mp4">
+          </video>
+          <div class="video-play-icon">
+            <i class="fas fa-play-circle"></i>
+          </div>
+        </div>
+        
+        <div class="media-container">
+          <img src="images/unit-1/unit-1-7.JPG" alt="Excavator Arm in mining operation" data-info="Operating in extreme mining conditions">
+        </div>
+        
+         <div class="media-container">
+          <img src="images/unit-1/unit-1-8.JPG" alt="Excavator Arm in mining operation" data-info="Operating in extreme mining conditions">
+        </div>
+
+         <div class="media-container">
+          <img src="images/unit-1/unit-1-9.jpg" alt="Excavator Arm in mining operation" data-info="Operating in extreme mining conditions">
+        </div>
+
+        <div class="media-container" data-type="video">
+          <video>
+            <source src="images/unit-1/unit-1-10.MOV" type="video/mp4">
+          </video>
+          <div class="video-play-icon">
+            <i class="fas fa-play-circle"></i>
+          </div>
+        </div>
+
       </div>
     </div>
+    
     <div class="carousel-wrapper">
-      <div class="machine-title">Excavator Arm</div>
+      <div class="machine-title">Unit 2</div>
       <div class="carousel" id="machineCarousel2">
-        <img src="images/image5.jpg" alt="Excavator Arm Model E450" data-info="Heavy-duty E450 with 8m reach capacity">
-        <img src="images/image6.jpg" alt="Excavator Arm in mining operation" data-info="Operating in extreme mining conditions">
-        <img src="images/image7.jpg" alt="Excavator Arm Model E450" data-info="Heavy-duty E450 with 8m reach capacity">
-        <img src="images/image8.jpg" alt="Excavator Arm in mining operation" data-info="Operating in extreme mining conditions">
+
+        <div class="media-container">
+          <img src="images/unit-2/unit-2-1.JPG" alt="Crane Pulley System - Heavy Lift" data-info="Designed for heavy lifting operations with precision control.">
+        </div>
+        
+        <div class="media-container">
+          <img src="images/unit-2/unit-2-2.jpg" alt="Crane Pulley System - Industrial Grade" data-info="Industrial-grade pulleys for robust and reliable performance.">
+        </div>
+
+        <div class="media-container">
+          <img src="images/unit-2/unit-2-3.JPG" alt="Crane Pulley System - Industrial Grade" data-info="Industrial-grade pulleys for robust and reliable performance.">
+        </div>
+        
+        <div class="media-container">
+          <img src="images/unit-2/unit-2-4.jpg" alt="Crane Pulley System - Industrial Grade" data-info="Industrial-grade pulleys for robust and reliable performance.">
+        </div>
+
+        <div class="media-container" data-type="video">
+          <video>
+            <source src="images/unit-2/unit-2-5.MOV" type="video/mp4">
+          </video>
+          <div class="video-play-icon">
+            <i class="fas fa-play-circle"></i>
+          </div>
+        </div>
+
+        <div class="media-container">
+          <img src="images/unit-2/unit-2-6.jpg" alt="Crane Pulley System - Industrial Grade" data-info="Industrial-grade pulleys for robust and reliable performance.">
+        </div>
+
+        <div class="media-container">
+          <img src="images/unit-2/unit-2-7.jpg" alt="Crane Pulley System - Industrial Grade" data-info="Industrial-grade pulleys for robust and reliable performance.">
+        </div>
+
+        <div class="media-container">
+          <img src="images/unit-2/unit-2-8.jpg" alt="Crane Pulley System - Industrial Grade" data-info="Industrial-grade pulleys for robust and reliable performance.">
+        </div>
+
+        <div class="media-container">
+          <img src="images/unit-2/unit-2-9.jpg" alt="Crane Pulley System - Industrial Grade" data-info="Industrial-grade pulleys for robust and reliable performance.">
+        </div>
+
       </div>
     </div>
-    <div class="carousel-wrapper">
-      <div class="machine-title">Crane Pulley System</div>
-      <div class="carousel" id="machineCarousel3">
-        <img src="images/image9.jpg" alt="Crane Pulley System - Heavy Lift" data-info="Designed for heavy lifting operations with precision control.">
-        <img src="images/image10.jpg" alt="Crane Pulley System - Industrial Grade" data-info="Industrial-grade pulleys for robust and reliable performance.">
-        <img src="images/image1.jpg" alt="Crane Pulley System - Large Scale" data-info="Large scale pulley system for major construction projects.">
-        <img src="images/image2.jpg" alt="Crane Pulley System - Assembly Line" data-info="Part of an automated assembly line for efficiency.">
+  
+
+
+  <div class="carousel-wrapper">
+      <div class="machine-title">Unit 3</div>
+      <div class="carousel" id="machineCarousel2">
+
+        <div class="media-container">
+          <img src="images/unit-2/unit-2-1.JPG" alt="Crane Pulley System - Heavy Lift" data-info="Designed for heavy lifting operations with precision control.">
+        </div>
+        
+        <div class="media-container">
+          <img src="images/unit-2/unit-2-2.jpg" alt="Crane Pulley System - Industrial Grade" data-info="Industrial-grade pulleys for robust and reliable performance.">
+        </div>
+
+        <div class="media-container">
+          <img src="images/unit-2/unit-2-3.JPG" alt="Crane Pulley System - Industrial Grade" data-info="Industrial-grade pulleys for robust and reliable performance.">
+        </div>
+        
+        <div class="media-container">
+          <img src="images/unit-2/unit-2-4.jpg" alt="Crane Pulley System - Industrial Grade" data-info="Industrial-grade pulleys for robust and reliable performance.">
+        </div>
+
+        <div class="media-container" data-type="video">
+          <video>
+            <source src="images/unit-2/unit-2-5.MOV" type="video/mp4">
+          </video>
+          <div class="video-play-icon">
+            <i class="fas fa-play-circle"></i>
+          </div>
+        </div>
+
+        <div class="media-container">
+          <img src="images/unit-2/unit-2-6.jpg" alt="Crane Pulley System - Industrial Grade" data-info="Industrial-grade pulleys for robust and reliable performance.">
+        </div>
+
+        <div class="media-container">
+          <img src="images/unit-2/unit-2-7.jpg" alt="Crane Pulley System - Industrial Grade" data-info="Industrial-grade pulleys for robust and reliable performance.">
+        </div>
+
+        <div class="media-container">
+          <img src="images/unit-2/unit-2-8.jpg" alt="Crane Pulley System - Industrial Grade" data-info="Industrial-grade pulleys for robust and reliable performance.">
+        </div>
+
+        <div class="media-container">
+          <img src="images/unit-2/unit-2-9.jpg" alt="Crane Pulley System - Industrial Grade" data-info="Industrial-grade pulleys for robust and reliable performance.">
+        </div>
+
       </div>
     </div>
   </section>
 
   <section id="products">
-    <h2>Office</h2> <!-- Changed heading -->
+    <h2>Office</h2>
     <div class="carousel-wrapper">
-      <div class="machine-title">Office Showcase</div> <!-- Changed title -->
+      <div class="machine-title">Office Showcase</div>
       <div class="carousel" id="productCarousel">
-        <img src="images/image3.jpg" alt="Modern Office Interior" data-info="Our spacious and well-lit office environment.">
-        <img src="images/image4.jpg" alt="Team Collaboration Space" data-info="Dedicated area for team collaboration and meetings.">
-        <img src="images/image5.jpg" alt="Reception Area" data-info="Welcoming reception area for our visitors and clients.">
-        <img src="images/image6.jpg" alt="Workstations" data-info="Ergonomic workstations for our dedicated employees.">
-       </div>
-    </div>
-  </section>
-
-  <section id="gallery">
-    <h2>Projects</h2> <!-- Changed heading -->
-    <div class="carousel-wrapper">
-      <div class="machine-title">Our Key Projects</div> <!-- Changed title -->
-      <div class="carousel" id="galleryCarousel">
-        <img src="images/image7.jpg" alt="Large Scale Construction Project" data-info="Supplying critical components for a major infrastructure project.">
-        <img src="images/image8.jpg" alt="Mining Site Installation" data-info="On-site installation and maintenance at a mining operation.">
-        <img src="images/image9.jpg" alt="Custom Fabrication for Heavy Industry" data-info="Specialized fabrication for heavy industrial clients.">
-        <img src="images/image10.jpg" alt="Port Machinery Upgrade" data-info="Upgrading heavy machinery at a major port.">
+        <div class="media-container">
+          <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Modern Office Interior" data-info="Our spacious and well-lit office environment.">
+        </div>
+        
+        <div class="media-container" data-type="video">
+          <video>
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-manager-walking-in-an-office-4109-large.mp4" type="video/mp4">
+          </video>
+          <div class="video-play-icon">
+            <i class="fas fa-play-circle"></i>
+          </div>
+        </div>
+        
+        <div class="media-container">
+          <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Reception Area" data-info="Welcoming reception area for our visitors and clients.">
+        </div>
+        
+        <div class="media-container">
+          <img src="https://images.unsplash.com/photo-1568992687947-868a62a9f521?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1332&q=80" alt="Workstations" data-info="Ergonomic workstations for our dedicated employees.">
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Board of Directors Section - Now a Carousel -->
+  <section id="gallery">
+    <h2>Projects</h2>
+    <div class="carousel-wrapper">
+      <div class="machine-title">Our Key Projects</div>
+      <div class="carousel" id="galleryCarousel">
+        <div class="media-container">
+          <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1173&q=80" alt="Large Scale Construction Project" data-info="Supplying critical components for a major infrastructure project.">
+        </div>
+        
+        <div class="media-container" data-type="video">
+          <video>
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-a-construction-site-22131-large.mp4" type="video/mp4">
+          </video>
+          <div class="video-play-icon">
+            <i class="fas fa-play-circle"></i>
+          </div>
+        </div>
+        
+        <div class="media-container">
+          <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Mining Site Installation" data-info="On-site installation and maintenance at a mining operation.">
+        </div>
+        
+        <div class="media-container" data-type="video">
+          <video>
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-a-construction-site-22131-large.mp4" type="video/mp4">
+          </video>
+          <div class="video-play-icon">
+            <i class="fas fa-play-circle"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="board-of-directors">
     <h2>Board of Directors</h2>
     <div class="carousel-wrapper">
@@ -692,7 +1031,7 @@
         <!-- Managing Director -->
         <div class="person-card">
           <div class="person-image-container">
-            <img src="images/md_uttam_jadhav.jpg" alt="Mr. Uttam Jadhav">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" alt="Mr. Uttam Jadhav">
           </div>
           <h3>Mr. Uttam Jadhav</h3>
           <p class="person-post">Managing Director</p>
@@ -702,7 +1041,7 @@
         <!-- Director -->
         <div class="person-card">
           <div class="person-image-container">
-            <img src="images/dir_kulkarni.jpg" alt="Mr. Kulkarni">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" alt="Mr. Kulkarni">
           </div>
           <h3>Mr. Kulkarni</h3>
           <p class="person-post">Director</p>
@@ -712,7 +1051,7 @@
         <!-- Finance and Accounting -->
         <div class="person-card">
           <div class="person-image-container">
-            <img src="images/finance_prakash.jpg" alt="Mr. Prakash">
+            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" alt="Mr. Prakash">
           </div>
           <h3>Mr. Prakash</h3>
           <p class="person-post">Head of Finance & Accounting</p>
@@ -722,7 +1061,7 @@
         <!-- Mrs. Vijayalaxmi Jadhav -->
         <div class="person-card">
           <div class="person-image-container">
-            <img src="images/v_jadhav.jpg" alt="Mrs. Vijayalaxmi Jadhav">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80" alt="Mrs. Vijayalaxmi Jadhav">
           </div>
           <h3>Mrs. Vijayalaxmi Jadhav</h3>
           <p class="person-post">Board Member</p>
@@ -731,22 +1070,24 @@
       </div>
     </div>
   </section>
-  
+
   <section id="contact">
-    <div style="text-align: center; margin-top: 2rem;">
-      <h3 style="margin-bottom: 1rem; color: #3f51b5;">Visit Us</h3> <!-- Original color -->
+    <h2>Contact Us</h2>
+    <div class="contact-info">
+      <h3 style="margin-bottom: 1rem; color: #3f51b5; text-align: center;">Visit Us</h3>
       <p><i class="fas fa-map-marker-alt"></i> Plot No. 12, Shiroli MIDC, Kolhapur, Maharashtra - 416122</p>
-      <p style="margin-top: 0.5rem;"><i class="fas fa-phone"></i> +91 9876543210</p>
-      <p style="margin-top: 0.5rem;"><i class="fas fa-envelope"></i> info@vrudhiengineers.com</p>
+      <p><i class="fas fa-phone"></i> +91 9876543210</p>
+      <p><i class="fas fa-envelope"></i> info@vrudhiengineers.com</p>
     </div>
   </section>
 
   <footer>
     <p>&copy; 2004-2025 Vrudhi Heavy Engineers Pvt. Ltd. | All Rights Reserved</p>
-    <div style="margin-top: 1rem;">
-      <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-facebook-f"></i></a>
-      <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-linkedin-in"></i></a>
-      <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-instagram"></i></a>
+    <div class="social-links">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
     </div>
   </footer>
 
@@ -801,7 +1142,7 @@
     const closeBtn = document.querySelector('.close-btn');
 
     // Select all images that should open the modal
-    const clickableImages = document.querySelectorAll('.carousel img, #certification-image-container img, .person-card img');
+    const clickableImages = document.querySelectorAll('.media-container img, #certification-image-container img, .person-card img');
 
     clickableImages.forEach(img => {
       img.addEventListener('click', () => {
@@ -854,61 +1195,40 @@
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
           window.scrollTo({
-            top: target.offsetTop - 70, // Adjust for fixed header
+            top: target.offsetTop - 70,
             behavior: 'smooth'
           });
         }
       });
     });
 
-    // --- Horizontal Slideshow Functionality ---
-    // Function to initialize auto-scroll for a carousel
-    function setupCarouselAutoScroll(carouselId, scrollAmount = 370, intervalTime = 3000) {
-      const carousel = document.getElementById(carouselId);
-      if (!carousel) return; // Exit if carousel doesn't exist
+    // Video Play Functionality
+    document.querySelectorAll('.media-container[data-type="video"]').forEach(videoContainer => {
+      const video = videoContainer.querySelector('video');
+      const playIcon = videoContainer.querySelector('.video-play-icon');
+      
+      videoContainer.addEventListener('click', () => {
+        if (video.paused) {
+          video.play();
+          playIcon.style.display = 'none';
+        } else {
+          video.pause();
+          playIcon.style.display = 'block';
+        }
+      });
+      
+      video.addEventListener('ended', () => {
+        playIcon.style.display = 'block';
+      });
+    });
 
-      let scrollDirection = 1; // 1 for right, -1 for left
-      let currentScrollPosition = 0;
-      let scrollInterval;
-
-      const startScroll = () => {
-        scrollInterval = setInterval(() => {
-          currentScrollPosition += scrollDirection * scrollAmount;
-          carousel.scrollTo({
-            left: currentScrollPosition,
-            behavior: 'smooth'
-          });
-
-          // Reverse direction if at end or beginning
-          if (carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 10) { // -10 for buffer
-            scrollDirection = -1; // Go left
-          } else if (carousel.scrollLeft <= 10) { // +10 for buffer
-            scrollDirection = 1; // Go right
-          }
-        }, intervalTime);
-      };
-
-      const stopScroll = () => {
-        clearInterval(scrollInterval);
-      };
-
-      // Pause on hover
-      carousel.addEventListener('mouseenter', stopScroll);
-      carousel.addEventListener('mouseleave', startScroll);
-
-      // Start scrolling initially
-      startScroll();
-    }
-
-    // Initialize auto-scroll for all carousels
-   // document.addEventListener('DOMContentLoaded', () => {
-  //    setupCarouselAutoScroll('machineCarousel1');
-    //  setupCarouselAutoScroll('machineCarousel2');
-   //   setupCarouselAutoScroll('machineCarousel3');
-  //    setupCarouselAutoScroll('productCarousel');
-    //  setupCarouselAutoScroll('galleryCarousel');
-   //   setupCarouselAutoScroll('bodCarousel', 300); // Initialize the new BOD carousel with a slightly smaller scroll amount
-   // });
+    // Pause videos when modal opens
+    modal.addEventListener('show', () => {
+      document.querySelectorAll('video').forEach(video => {
+        video.pause();
+      });
+    });
+    
   </script>
 </body>
 </html>
