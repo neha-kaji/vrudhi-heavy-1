@@ -723,7 +723,19 @@
   <section id="about">
     <h2>About Us</h2>
     <div class="content-section">
-      <p> Established in 2004, Vrudhi Heavy Engineers is a trusted name in the field of machining and assembly for heavy job work. With over two decades of industry experience, we have built a reputation for precision, reliability, and excellence.Spread across a sprawling 30,000 square feet facility, our operations are powered by a team of over 60 skilled professionals dedicated to delivering high-quality machining solutions. Our infrastructure includes a comprehensive range of advanced equipment such as boring machines, milling machines, drilling machines, Vertical Turning Lathes (VTLs), and Vertical Machining Centers (VMCs)—enabling us to handle complex and large-scale components with utmost accuracy.We take pride in being ISO 9001 certified, which reflects our strong commitment to quality management and continuous improvement. At Vrudhi Heavy Engineers, we combine technological capability with deep industry knowledge to meet the rigorous demands of heavy engineering sectors, delivering solutions that exceed expectations.Whether its precision machining or complete assembly, Vrudhi Heavy Engineers stands as your reliable partner for heavy job work—ensuring durability, performance, and engineering excellence.
+      <p> Established in 2004, Vrudhi Heavy Engineers is a trusted name in the field of machining and assembly for heavy job work. With over two decades of industry experience, we have built a reputation for precision, reliability, and excellence.
+      </p>
+      
+      <p>
+        Spread across a sprawling 30,000 square feet facility, our operations are powered by a team of over 60 skilled professionals dedicated to delivering high-quality machining solutions. Our infrastructure includes a comprehensive range of advanced equipment such as boring machines, milling machines, drilling machines, Vertical Turning Lathes (VTLs), and Vertical Machining Centers (VMCs)—enabling us to handle complex and large-scale components with utmost accuracy.
+      </p>
+      
+      <p>
+        We take pride in being ISO 9001 certified, which reflects our strong commitment to quality management and continuous improvement. At Vrudhi Heavy Engineers, we combine technological capability with deep industry knowledge to meet the rigorous demands of heavy engineering sectors, delivering solutions that exceed expectations.
+      </p>
+      
+      <p>
+        Whether its precision machining or complete assembly, Vrudhi Heavy Engineers stands as your reliable partner for heavy job work—ensuring durability, performance, and engineering excellence.
       </p>
     </div>
   </section>
@@ -756,7 +768,7 @@
         
         <!-- Videos -->
         <div class="media-container" data-type="video">
-          <video>
+          <video playsinline>
             <source src="images/unit-1/unit-1-3.MOV" type="video/mp4">
           </video>
           <div class="video-play-icon">
@@ -773,7 +785,7 @@
         </div>
         
         <div class="media-container" data-type="video">
-          <video>
+          <video playsinline>
             <source src="images/unit-1/unit-1-6.MOV" type="video/mp4">
           </video>
           <div class="video-play-icon">
@@ -794,7 +806,7 @@
         </div>
 
         <div class="media-container" data-type="video">
-          <video>
+          <video playsinline>
             <source src="images/unit-1/unit-1-10.MOV" type="video/mp4">
           </video>
           <div class="video-play-icon">
@@ -826,7 +838,7 @@
         </div>
 
         <div class="media-container" data-type="video">
-          <video>
+          <video playsinline>
             <source src="images/unit-2/unit-2-5.MOV" type="video/mp4">
           </video>
           <div class="video-play-icon">
@@ -876,7 +888,7 @@
         </div>
 
         <div class="media-container" data-type="video">
-          <video>
+          <video playsinline>
             <source src="images/unit-2/unit-2-5.MOV" type="video/mp4">
           </video>
           <div class="video-play-icon">
@@ -914,7 +926,7 @@
         </div>
         
         <div class="media-container" data-type="video">
-          <video>
+          <video playsinline>
             <source src="https://assets.mixkit.co/videos/preview/mixkit-manager-walking-in-an-office-4109-large.mp4" type="video/mp4">
           </video>
           <div class="video-play-icon">
@@ -1164,6 +1176,11 @@
       video.addEventListener('ended', () => {
         playIcon.style.display = 'block';
       });
+    });
+
+    document.querySelectorAll('video').forEach(video => {
+      video.setAttribute('playsinline', '');
+      video.setAttribute('webkit-playsinline', ''); // For older iOS versions
     });
 
     // Pause videos when modal opens
