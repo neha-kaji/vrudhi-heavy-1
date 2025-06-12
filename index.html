@@ -96,7 +96,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: url('https://images.unsplash.com/photo-1581093458791-2a6d1d5d24b9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80') center/cover no-repeat;
+      background: url('images/header-background.jpg') center/cover no-repeat;
       z-index: -2;
     }
 
@@ -691,11 +691,10 @@
     }
   </style>
 </head>
-<body>
-  <nav>
+ <nav>
     <div class="logo-container">
-      <!-- Logo image from local images folder -->
-      <img src="images/logo.png" alt="Vrudhi Heavy Engineers Logo" class="logo">
+      <img src="images/logo.png" 
+           alt="Vrudhi Heavy Engineers Logo" class="logo">
     </div>
     <div class="menu-toggle" id="menuToggle">
       <i class="fas fa-bars"></i>
@@ -712,7 +711,6 @@
   </nav>
 
   <header>
-    <!-- NEW: Background image container -->
     <div class="header-background"></div>
     <div class="header-overlay"></div>
     
@@ -723,18 +721,19 @@
   <section id="about">
     <h2>About Us</h2>
     <div class="content-section">
-      <p> Established in 2004, Vrudhi Heavy Engineers is a trusted name in the field of machining and assembly for heavy job work. With over two decades of industry experience, we have built a reputation for precision, reliability, and excellence.
+      <p style="text-align: justify;"> 
+        Established in 2004, Vrudhi Heavy Engineers is a trusted name in the field of machining and assembly for heavy job work. With over two decades of industry experience, we have built a reputation for precision, reliability, and excellence.
       </p>
       
-      <p>
+      <p style="text-align: justify;">
         Spread across a sprawling 30,000 square feet facility, our operations are powered by a team of over 60 skilled professionals dedicated to delivering high-quality machining solutions. Our infrastructure includes a comprehensive range of advanced equipment such as boring machines, milling machines, drilling machines, Vertical Turning Lathes (VTLs), and Vertical Machining Centers (VMCs)—enabling us to handle complex and large-scale components with utmost accuracy.
       </p>
       
-      <p>
+      <p style="text-align: justify;">
         We take pride in being ISO 9001 certified, which reflects our strong commitment to quality management and continuous improvement. At Vrudhi Heavy Engineers, we combine technological capability with deep industry knowledge to meet the rigorous demands of heavy engineering sectors, delivering solutions that exceed expectations.
       </p>
       
-      <p>
+      <p style="text-align: justify;">
         Whether its precision machining or complete assembly, Vrudhi Heavy Engineers stands as your reliable partner for heavy job work—ensuring durability, performance, and engineering excellence.
       </p>
     </div>
@@ -746,7 +745,7 @@
         <img src="images/iso.jpg" alt="ISO 1990 Certification" data-info="Official ISO 1990 certification for our quality management systems.">
     </div>
     <div class="content-section">
-      <p>
+      <p style="text-align: justify;">
         At Vrudhi Heavy Engineers, our adherence to ISO 1990 demonstrates our unwavering commitment to producing components that meet stringent international benchmarks for offshore applications. This certification assures our clients of our capability to deliver products that withstand the harsh marine environment, maintain structural integrity under extreme conditions, and contribute to the overall safety and efficiency of offshore operations. It reflects our dedication to continuous improvement and our expertise in specialized heavy engineering for critical infrastructure.
       </p>
     </div>
@@ -1057,6 +1056,46 @@
   </div>
 
   <script>
+
+  window.addEventListener('DOMContentLoaded', () => {
+      // Lazy loading for images and videos
+    const lazyMedia = document.querySelectorAll('img, video');
+    const lazyObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const media = entry.target;
+            
+            if (media.tagName === 'IMG' && !media.src) {
+              media.src = media.dataset.src;
+              media.removeAttribute('data-src');
+            }
+            
+            if (media.tagName === 'VIDEO' && !media.src) {
+              const source = document.createElement('source');
+              source.src = media.dataset.src;
+              source.type = 'video/mp4';
+              media.appendChild(source);
+              media.removeAttribute('data-src');
+            }
+            
+            observer.unobserve(media);
+          }
+        });
+      }, { rootMargin: '100px 0px' });
+      
+      lazyMedia.forEach(media => {
+        if (media.tagName === 'IMG') {
+          media.dataset.src = media.src;
+          media.removeAttribute('src');
+        } else if (media.tagName === 'VIDEO') {
+          media.dataset.src = media.querySelector('source').src;
+          media.innerHTML = '';
+        }
+        lazyObserver.observe(media);
+      });
+  });
+
+
     // Mobile menu toggle
     const menuToggle = document.getElementById('menuToggle');
     const navMenu = document.getElementById('navMenu');
