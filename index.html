@@ -245,7 +245,7 @@
     }
 
     .media-container:hover {
-      transform: scale(1.05) rotate(1deg);
+      transform: scale(1.05);
       box-shadow: 0 8px 25px rgba(63, 142, 252, 0.8);
     }
 
@@ -547,6 +547,15 @@
       margin-bottom: 1rem;
       box-shadow: 0 4px 15px rgba(63, 142, 252, 0.6);
     }
+    
+    #modalVideoDisplay {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 15px rgba(63, 142, 252, 0.6);
+      display: none;
+    }
 
     #imageModal .modal-info {
       font-size: 1.1rem;
@@ -691,7 +700,8 @@
     }
   </style>
 </head>
- <nav>
+<body>
+  <nav>
     <div class="logo-container">
       <img src="images/logo.png" 
            alt="Vrudhi Heavy Engineers Logo" class="logo">
@@ -767,7 +777,7 @@
         </div>
         
         <!-- Videos -->
-        <div class="media-container" data-type="video">
+        <div class="media-container" data-type="video" data-info="Heavy machinery in operation">
           <video playsinline muted preload="metadata">
             <source src="images/unit-1/unit-1-3.mov" type="video/mp4">
           </video>
@@ -784,7 +794,7 @@
           <img src="images/unit-1/unit-1-5.JPG" alt="Excavator Arm Model E450" data-info="Heavy-duty E450 with 8m reach capacity">
         </div>
         
-        <div class="media-container" data-type="video">
+        <div class="media-container" data-type="video" data-info="Precision machining process">
           <video playsinline muted preload="metadata">
             <source src="images/unit-1/unit-1-6.mov" type="video/mp4">
           </video>
@@ -803,15 +813,6 @@
 
          <div class="media-container">
           <img src="images/unit-1/unit-1-9.jpg" alt="Excavator Arm in mining operation" data-info="Operating in extreme mining conditions">
-        </div>
-
-        <div class="media-container" data-type="video">
-          <video playsinline muted preload="metadata">
-            <source src="images/unit-1/unit-1-10.mov" type="video/mp4">
-          </video>
-          <div class="video-play-icon">
-            <i class="fas fa-play-circle"></i>
-          </div>
         </div>
 
       </div>
@@ -837,9 +838,9 @@
           <img src="images/unit-2/unit-2-4.jpg" alt="Crane Pulley System - Industrial Grade" data-info="Industrial-grade pulleys for robust and reliable performance.">
         </div>
 
-        <div class="media-container" data-type="video">
+        <div class="media-container" data-type="video" data-info="Industrial crane in operation">
           <video playsinline muted preload="metadata">
-            <source src="images/unit-2/unit-2-5.MOV" type="video/mp4">
+            <source src="images/unit-2/unit-2-5.mov" type="video/mp4">
           </video>
           <div class="video-play-icon">
             <i class="fas fa-play-circle"></i>
@@ -863,12 +864,9 @@
         </div>
 
       </div>
-    </div>
-  
 
-
- <div class="carousel-wrapper">
-      <div class="machine-title">Unit 2</div>
+          <div class="carousel-wrapper">
+      <div class="machine-title">Unit 3</div>
       <div class="carousel" id="machineCarousel2">
 
         <div class="media-container">
@@ -887,9 +885,9 @@
           <img src="images/unit-2/unit-2-4.jpg" alt="Crane Pulley System - Industrial Grade" data-info="Industrial-grade pulleys for robust and reliable performance.">
         </div>
 
-        <div class="media-container" data-type="video">
+        <div class="media-container" data-type="video" data-info="Industrial crane in operation">
           <video playsinline muted preload="metadata">
-            <source src="images/unit-2/unit-2-5.MOV" type="video/mp4">
+            <source src="images/unit-2/unit-2-5.mov" type="video/mp4">
           </video>
           <div class="video-play-icon">
             <i class="fas fa-play-circle"></i>
@@ -914,6 +912,10 @@
 
       </div>
     </div>
+
+
+
+
   </section>
 
   <section id="products">
@@ -925,7 +927,7 @@
           <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Modern Office Interior" data-info="Our spacious and well-lit office environment.">
         </div>
         
-        <div class="media-container" data-type="video">
+        <div class="media-container" data-type="video" data-info="Office tour">
           <video playsinline muted preload="metadata">
             <source src="https://assets.mixkit.co/videos/preview/mixkit-manager-walking-in-an-office-4109-large.mp4" type="video/mp4">
           </video>
@@ -954,7 +956,7 @@
           <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1173&q=80" alt="Large Scale Construction Project" data-info="Supplying critical components for a major infrastructure project.">
         </div>
         
-        <div class="media-container" data-type="video">
+        <div class="media-container" data-type="video" data-info="Construction site progress">
           <video playsinline muted preload="metadata">
             <source src="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-a-construction-site-22131-large.mp4" type="video/mp4">
           </video>
@@ -967,9 +969,9 @@
           <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Mining Site Installation" data-info="On-site installation and maintenance at a mining operation.">
         </div>
         
-        <div class="media-container" data-type="video">
+        <div class="media-container" data-type="video" data-info="Mining equipment installation">
           <video playsinline muted preload="metadata">
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-a-construction-site-22131-large.mp4" type="video/mp4">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-excavator-working-on-a-construction-site-43806-large.mp4" type="video/mp4">
           </video>
           <div class="video-play-icon">
             <i class="fas fa-play-circle"></i>
@@ -1051,51 +1053,15 @@
     <div class="modal-content">
       <span class="close-btn" title="Close">&times;</span>
       <img id="modalImageDisplay" src="" alt="Expanded Image">
-      <div class="modal-info" id="modalInfo">Additional information about the image</div>
+      <video id="modalVideoDisplay" controls>
+        <source src="" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="modal-info" id="modalInfo">Additional information about the media</div>
     </div>
   </div>
 
   <script>
-
-  window.addEventListener('DOMContentLoaded', () => {
-      // Lazy loading for images and videos
-    const lazyMedia = document.querySelectorAll('img, video');
-    const lazyObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const media = entry.target;
-            
-            if (media.tagName === 'IMG' && !media.src) {
-              media.src = media.dataset.src;
-              media.removeAttribute('data-src');
-            }
-            
-            if (media.tagName === 'VIDEO' && !media.src) {
-              const source = document.createElement('source');
-              source.src = media.dataset.src;
-              source.type = 'video/mp4';
-              media.appendChild(source);
-              media.removeAttribute('data-src');
-            }
-            
-            observer.unobserve(media);
-          }
-        });
-      }, { rootMargin: '100px 0px' });
-      
-      lazyMedia.forEach(media => {
-        if (media.tagName === 'IMG') {
-          media.dataset.src = media.src;
-          media.removeAttribute('src');
-        } else if (media.tagName === 'VIDEO') {
-          media.dataset.src = media.querySelector('source').src;
-          media.innerHTML = '';
-        }
-        lazyObserver.observe(media);
-      });
-  });
-
-
     // Mobile menu toggle
     const menuToggle = document.getElementById('menuToggle');
     const navMenu = document.getElementById('navMenu');
@@ -1131,32 +1097,58 @@
       observer.observe(section);
     });
 
-    // Modal popup for images
+    // Modal popup for images and videos
     const modal = document.getElementById('imageModal');
     const modalImageDisplay = document.getElementById('modalImageDisplay');
+    const modalVideoDisplay = document.getElementById('modalVideoDisplay');
     const modalInfo = document.getElementById('modalInfo');
     const closeBtn = document.querySelector('.close-btn');
+    const modalVideoSource = modalVideoDisplay.querySelector('source');
 
-    // Select all images that should open the modal
-    const clickableImages = document.querySelectorAll('.media-container img, #certification-image-container img, .person-card img');
+    // Select all media that should open the modal
+    const clickableElements = document.querySelectorAll(
+      '.media-container img, .media-container[data-type="video"], #certification-image-container img, .person-card img'
+    );
 
-    clickableImages.forEach(img => {
-      img.addEventListener('click', () => {
-        modal.style.display = 'block';
-        modalImageDisplay.src = img.src;
-        modalImageDisplay.alt = img.alt;
-        
-        // For person cards, combine name, post, and experience for data-info
-        if (img.closest('.person-card')) {
-          const card = img.closest('.person-card');
-          const name = card.querySelector('h3').textContent;
-          const post = card.querySelector('.person-post').textContent;
-          const experience = card.querySelector('.person-experience').textContent;
-          modalInfo.textContent = `${name}, ${post}, ${experience}`;
-        } else {
-          modalInfo.textContent = img.dataset.info || img.alt; 
+    clickableElements.forEach(element => {
+      element.addEventListener('click', () => {
+        // Handle video containers
+        if (element.matches('.media-container[data-type="video"]')) {
+          const video = element.querySelector('video');
+          const source = video.querySelector('source').src;
+          const info = element.dataset.info || "Video content";
+          
+          modalVideoSource.src = source;
+          modalVideoDisplay.load();
+          modalVideoDisplay.style.display = 'block';
+          modalImageDisplay.style.display = 'none';
+          modalInfo.textContent = info;
+          
+          // Play the video in the modal
+          setTimeout(() => {
+            modalVideoDisplay.play().catch(e => console.log('Video play error:', e));
+          }, 300);
+        } 
+        // Handle images
+        else {
+          modalImageDisplay.src = element.src;
+          modalImageDisplay.alt = element.alt;
+          modalImageDisplay.style.display = 'block';
+          modalVideoDisplay.style.display = 'none';
+          
+          // For person cards, combine name, post, and experience for data-info
+          if (element.closest('.person-card')) {
+            const card = element.closest('.person-card');
+            const name = card.querySelector('h3').textContent;
+            const post = card.querySelector('.person-post').textContent;
+            const experience = card.querySelector('.person-experience').textContent;
+            modalInfo.textContent = `${name}, ${post}, ${experience}`;
+          } else {
+            modalInfo.textContent = element.dataset.info || element.alt; 
+          }
         }
 
+        modal.style.display = 'block';
         document.body.style.overflow = 'hidden';
       });
     });
@@ -1165,6 +1157,10 @@
     const closeModal = () => {
       modal.style.display = 'none';
       document.body.style.overflow = 'auto';
+      
+      // Pause and reset the video
+      modalVideoDisplay.pause();
+      modalVideoDisplay.currentTime = 0;
     };
 
     closeBtn.addEventListener('click', closeModal);
@@ -1198,54 +1194,6 @@
       });
     });
 
-    // Video Play Functionality
-    document.querySelectorAll('.media-container[data-type="video"]').forEach(videoContainer => {
-      const video = videoContainer.querySelector('video');
-      const playIcon = videoContainer.querySelector('.video-play-icon');
-      
-      // Mobile-specific touch event
-      videoContainer.addEventListener('touchend', function(e) {
-        // Only handle if the touch is on the container itself
-        if (e.target === videoContainer) {
-          e.preventDefault();
-          toggleVideoPlay(video, playIcon);
-        }
-      });
-      
-      // Desktop click event
-      videoContainer.addEventListener('click', function() {
-        toggleVideoPlay(video, playIcon);
-      });
-      
-      video.addEventListener('ended', () => {
-        playIcon.style.display = 'block';
-      });
-    });
-
-    function toggleVideoPlay(video, playIcon) {
-      if (video.paused) {
-        video.play()
-          .then(() => {
-            playIcon.style.display = 'none';
-          })
-          .catch(error => {
-            console.error('Video playback failed:', error);
-            // Show the play icon if playback fails
-            playIcon.style.display = 'block';
-          });
-      } else {
-        video.pause();
-        playIcon.style.display = 'block';
-      }
-    }
-
-    // Pause videos when modal opens
-    modal.addEventListener('show', () => {
-      document.querySelectorAll('video').forEach(video => {
-        video.pause();
-      });
-    });
-    
     // Initialize all videos for mobile compatibility
     document.querySelectorAll('video').forEach(video => {
       // Required for iOS
@@ -1258,7 +1206,6 @@
       // Mute videos by default for better mobile compatibility
       video.muted = true;
     });
-    
   </script>
 </body>
 </html>
