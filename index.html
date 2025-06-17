@@ -89,7 +89,7 @@
       align-items: center;
     }
 
-    /* NEW: Background image with overlay */
+    /* Background image with overlay */
     .header-background {
       position: absolute;
       top: 0;
@@ -454,12 +454,11 @@
       }
     }
 
-    /* Modal styles */
+    /* Modal styles - Centered without border */
     #imageModal {
       display: none;
       position: fixed;
       z-index: 200;
-      padding-top: 60px;
       left: 0;
       top: 0;
       width: 100%;
@@ -476,54 +475,83 @@
 
     #imageModal .modal-content {
       background-color: #f4f8ff;
-      margin: auto;
-      padding: 20px;
+      margin: 5vh auto;
+      padding: 30px;
       border-radius: 12px;
       max-width: 90%;
-      width: 95%;
+      width: 90%;
+      max-width: 800px;
       box-shadow: 0 8px 25px rgba(63, 142, 252, 0.7);
       text-align: center;
       position: relative;
       color: #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 80vh;
+      justify-content: center;
     }
 
     #modalImageDisplay {
       max-width: 100%;
-      height: auto;
+      max-height: 60vh;
       border-radius: 10px;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
       box-shadow: 0 4px 15px rgba(63, 142, 252, 0.6);
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
     }
     
     #modalVideoDisplay {
       max-width: 100%;
-      height: auto;
+      max-height: 60vh;
       border-radius: 10px;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
       box-shadow: 0 4px 15px rgba(63, 142, 252, 0.6);
       display: none;
+      margin: 0 auto;
     }
 
     #imageModal .modal-info {
       font-size: 1.1rem;
       color: #283593;
-      padding: 0 10px;
+      padding: 10px 20px;
+      text-align: center;
+      white-space: pre-line;
+      line-height: 1.6;
+      max-height: 200px;
+      overflow-y: auto;
+      margin-top: 15px;
+      width: 100%;
+      font-weight: 500;
     }
 
     #imageModal .close-btn {
       position: absolute;
-      top: -12px;
-      right: 5px;
+      top: 15px;
+      right: 20px;
       color: #253488;
-      font-size: 30px;
+      font-size: 40px;
       font-weight: bold;
       cursor: pointer;
       user-select: none;
       transition: color 0.2s ease;
+      z-index: 10;
     }
 
     #imageModal .close-btn:hover {
-      color: #000;
+      color: #ff0000;
+      text-shadow: 0 0 5px rgba(255, 0, 0, 0.3);
+    }
+
+    .modal-media-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 60vh;
+      margin-bottom: 20px;
     }
 
     /* Mobile Navigation */
@@ -630,6 +658,21 @@
       .person-card .person-experience {
         font-size: 0.9rem;
       }
+
+      #imageModal .modal-content {
+        padding: 20px;
+        width: 95%;
+        min-height: 70vh;
+      }
+      
+      #imageModal .modal-info {
+        font-size: 1rem;
+        padding: 8px 15px;
+      }
+      
+      .modal-media-container {
+        height: 40vh;
+      }
     }
 
     @media (max-width: 480px) {
@@ -643,6 +686,10 @@
 
       .logo-container {
         margin-left: 20px;
+      }
+      
+      header h1 {
+        font-size: 2.2rem;
       }
     }
   </style>
@@ -720,7 +767,12 @@
         </div>
 
         <div class="media-container">
-          <img src="images/unit-1/unit-1-2.JPG" alt="Excavator Arm in mining operation" data-info="WMW Union Horizontal Floor Boring Machine Spindle size : Ø 160 Table size : 2000 x 6000 MM Longitudinal Travel : X-Axis - 7000 MM Vertical Travel : Y-Axis - 2500 MM Z-Axis : Head - 500 MM">
+          <img src="images/unit-1/unit-1-2.JPG" alt="Excavator Arm in mining operation" data-info="WMW Union Horizontal Floor Boring Machine 
+Spindle size : Ø 160
+Table size : 2000 x 6000 MM
+Longitudinal Travel : X-Axis - 7000 MM
+Vertical Travel : Y-Axis - 2500 MM
+Z-Axis : Head - 500 MM">
         </div>
         
         <!-- Videos -->
@@ -732,9 +784,9 @@
             <i class="fas fa-play-circle"></i>
           </div>
         </div>
-        
+
         <div class="media-container">
-          <img src="images/unit-1/unit-1-4.JPG" alt="Excavator Arm Model E450" data-info="WMW Union Horizontal Floor Boring Machine 
+          <img src="images/unit-1/unit-1-4.JPG" alt="Excavator Arm in mining operation" data-info="WMW Union Horizontal Floor Boring Machine 
 Spindle size : Ø 160
 Table size : 3500 x 6000 MM
 Longitudinal Travel : X-Axis - 7000 MM
@@ -745,9 +797,9 @@ Rotary Table : 2500 x 3000 MM">
         </div>
 
         <div class="media-container">
-          <img src="images/unit-1/unit-1-5.JPG" alt="Excavator Arm Model E450" >
+          <img src="images/unit-1/unit-1-5.JPG" alt="Excavator Arm in mining operation" data-info="">
         </div>
-        
+
         <div class="media-container" data-type="video" data-info="Milling Operation">
           <video playsinline muted preload="metadata">
             <source src="images/unit-1/unit-1-6.mov" type="video/mp4">
@@ -756,7 +808,7 @@ Rotary Table : 2500 x 3000 MM">
             <i class="fas fa-play-circle"></i>
           </div>
         </div>
-        
+
         <div class="media-container">
           <img src="images/unit-1/unit-1-7.JPG" alt="Excavator Arm in mining operation" data-info="SKODA Horizontal Floor Boring Machine 
 Spindle size : Ø 160
@@ -767,8 +819,8 @@ Z-Axis : Ram Travel - 1200 MM
               Spindle Travel - 1200 MM
 Rotary Table : 2000 x 2000 MM">
         </div>
-        
-         <div class="media-container">
+
+        <div class="media-container">
           <img src="images/unit-1/unit-1-8.JPG" alt="Excavator Arm in mining operation" data-info="SKODA Horizontal Floor Boring Machine 
 Spindle size : Ø 160
 Table size : 4000 x 6000 MM
@@ -779,18 +831,17 @@ Z-Axis : Ram Travel - 1200 MM
 Rotary Table : 2000 x 2000 MM">
         </div>
 
-         <div class="media-container">
+        <div class="media-container">
           <img src="images/unit-1/unit-1-9.jpg" alt="Excavator Arm in mining operation" data-info="HMT Radial Drill Machine
 Model - RM65">
         </div>
-
+        
       </div>
     </div>
     
     <div class="carousel-wrapper">
       <div class="machine-title">Unit 2</div>
       <div class="carousel" id="machineCarousel2">
-
         <div class="media-container">
           <img src="images/unit-2/unit-2-1.JPG" alt="Crane Pulley System - Heavy Lift" data-info="Machine Shop 2">
         </div>
@@ -801,17 +852,17 @@ Model - RM65">
         </div>
 
         <div class="media-container">
-          <img src="images/unit-2/unit-2-3.JPG" alt="Crane Pulley System - Industrial Grade" data-info="Mitsubishi Double Column VMC
+          <img src="images/unit-2/unit-2-3.jpg" alt="Crane Pulley System - Industrial Grade" data-info="Mitsubishi Double Column VMC
 Table Travel - 3200 MM
 Between Column - 2000 MM
 Height - 1200 MM">
         </div>
-        
+
         <div class="media-container">
           <img src="images/unit-2/unit-2-4.jpg" alt="Crane Pulley System - Industrial Grade" data-info="">
         </div>
-
-        <div class="media-container" data-type="video" data-info="Bore machining">
+        
+        <div class="media-container" data-type="video" data-info="Bore machining ">
           <video playsinline muted preload="metadata">
             <source src="images/unit-2/unit-2-5.mov" type="video/mp4">
           </video>
@@ -845,11 +896,11 @@ Rotary Table : 2500 x 3000 MM">
         </div>
 
       </div>
+    </div>
 
     <div class="carousel-wrapper">
       <div class="machine-title">Unit 3</div>
-      <div class="carousel" id="machineCarousel2">
-
+      <div class="carousel" id="machineCarousel3">
         <div class="media-container">
           <img src="images/unit-3/unit-3-1.JPG" alt="Crane Pulley System - Heavy Lift" data-info="Machine Shop 3">
         </div>
@@ -869,7 +920,6 @@ Height - 1200 MM">
           </div>
         </div>
 
-
         <div class="media-container" data-type="video" data-info="TOSS Horizontal Boring Machine 
 Spindle Size : Ø 100
 Table Size : 100 x 600 MM
@@ -883,8 +933,7 @@ Z-Axis : 1200 MM">
             <i class="fas fa-play-circle"></i>
           </div>
         </div>
-        
-        
+
         <div class="media-container">
           <img src="images/unit-3/unit-3-5.JPG" alt="Crane Pulley System - Industrial Grade" data-info="Plano Miller Machine
 Table Travel : 2500 MM
@@ -896,7 +945,7 @@ Y-Axis : 800 MM">
           <img src="images/unit-3/unit-3-6.jpg" alt="Crane Pulley System - Industrial Grade" data-info="">
         </div>
 
-        <div class="media-container" data-type="video" data-info="Milling Operation">
+        <div class="media-container" data-type="video" data-info="Milling Operation ">
           <video playsinline muted preload="metadata">
             <source src="images/unit-3/unit-3-7.MP4" type="video/mp4">
           </video>
@@ -928,10 +977,6 @@ Z-Axis : 1000 MM">
 
       </div>
     </div>
-
-
-
-
   </section>
 
   <section id="products">
@@ -946,10 +991,11 @@ Z-Axis : 1000 MM">
         <div class="media-container">
           <img src="images/office/office-2.JPG" alt="Reception Area" data-info="Welcoming reception area for our visitors and clients.">
         </div>
-        
+
         <div class="media-container">
-          <img src="images/office/office-3.JPG" alt="Workstations" data-info="Ergonomic workstations for our dedicated employees.">
+          <img src="images/office/office-3.JPG" alt="Modern Office Interior" data-info="Our spacious and well-lit office environment.">
         </div>
+        
       </div>
     </div>
   </section>
@@ -963,19 +1009,15 @@ Z-Axis : 1000 MM">
           <img src="images/projects/office-1.jpg" alt="Large Scale Construction Project" data-info="Supplying critical components for a major infrastructure project.">
         </div>
         
-       <div class="media-container">
+        <div class="media-container">
           <img src="images/projects/office-2.jpg" alt="Mining Site Installation" data-info="On-site installation and maintenance at a mining operation.">
         </div>
-        
+
         <div class="media-container">
           <img src="images/projects/office-3.jpg" alt="Mining Site Installation" data-info="On-site installation and maintenance at a mining operation.">
         </div>
 
-        <div class="media-container">
-          <img src="images/projects/office-4.jpg" alt="Mining Site Installation" data-info="On-site installation and maintenance at a mining operation.">
-        </div>
-        
-        <div class="media-container" data-type="video" data-info="Mining equipment installation">
+        <div class="media-container" data-type="video" data-info="Boring Operation">
           <video playsinline muted preload="metadata">
             <source src="images/projects/VID-20241126-WA0000.mp4" type="video/mp4">
           </video>
@@ -992,45 +1034,31 @@ Z-Axis : 1000 MM">
     <div class="carousel-wrapper">
       <div class="machine-title">Meet Our Leadership Team</div>
       <div class="carousel" id="bodCarousel">
-        <!-- Managing Director -->
+
         <div class="person-card">
-          <div class="person-image-container">
-            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" alt="Mr. Uttam Jadhav">
-          </div>
           <h3>Mr. Uttam Jadhav</h3>
           <p class="person-post">Managing Director</p>
           <p class="person-experience">25+ years of experience</p>
         </div>
 
-        <!-- Director -->
         <div class="person-card">
-          <div class="person-image-container">
-            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" alt="Mr. Kulkarni">
-          </div>
           <h3>Mr. Kulkarni</h3>
           <p class="person-post">Director</p>
           <p class="person-experience">30+ years of experience</p>
         </div>
-
-        <!-- Finance and Accounting -->
+        
         <div class="person-card">
-          <div class="person-image-container">
-            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" alt="Mr. Prakash">
-          </div>
           <h3>Mr. Prakash</h3>
           <p class="person-post">Head of Finance & Accounting</p>
           <p class="person-experience">20+ years of experience</p>
         </div>
 
-        <!-- Mrs. Vijayalaxmi Jadhav -->
         <div class="person-card">
-          <div class="person-image-container">
-            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80" alt="Mrs. Vijayalaxmi Jadhav">
-          </div>
           <h3>Mrs. Vijayalaxmi Jadhav</h3>
           <p class="person-post">Board Member</p>
-          <p class="person-experience">18+ years of experience</p>
+          <p class="person-experience">20+ years of experience</p>
         </div>
+        
       </div>
     </div>
   </section>
@@ -1058,11 +1086,13 @@ Z-Axis : 1000 MM">
   <div id="imageModal">
     <div class="modal-content">
       <span class="close-btn" title="Close">&times;</span>
-      <img id="modalImageDisplay" src="" alt="Expanded Image">
-      <video id="modalVideoDisplay" controls>
-        <source src="" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
+      <div class="modal-media-container">
+        <img id="modalImageDisplay" src="" alt="Expanded Image">
+        <video id="modalVideoDisplay" controls>
+          <source src="" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
       <div class="modal-info" id="modalInfo">Additional information about the media</div>
     </div>
   </div>
@@ -1148,8 +1178,9 @@ Z-Axis : 1000 MM">
             const name = card.querySelector('h3').textContent;
             const post = card.querySelector('.person-post').textContent;
             const experience = card.querySelector('.person-experience').textContent;
-            modalInfo.textContent = `${name}, ${post}, ${experience}`;
+            modalInfo.textContent = `${name}\n${post}\n${experience}`;
           } else {
+            // Preserve existing line breaks in data-info
             modalInfo.textContent = element.dataset.info || element.alt; 
           }
         }
