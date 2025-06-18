@@ -4,8 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Vrudhi Heavy Engineers</title>
+  
+  <!-- Optimized font loading -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Font Awesome with integrity check -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
   <style>
     /* Reset & base styles */
     * {
@@ -832,13 +839,76 @@
       0% { transform: translate(-50%, -50%) rotate(0deg); }
       100% { transform: translate(-50%, -50%) rotate(360deg); }
     }
+    /* Optimizations */
+    .media-container img,
+    .media-container video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .lazy {
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    
+    .lazy.loaded {
+      opacity: 1;
+    }
+
+    /* Loading skeleton */
+    .skeleton {
+      background: linear-gradient(90deg, #e0e7ff 25%, #d1d9ff 50%, #e0e7ff 75%);
+      background-size: 200% 100%;
+      animation: loading 1.5s infinite;
+      border-radius: 10px;
+    }
+    
+    @keyframes loading {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    /* Placeholder for videos */
+    .video-placeholder {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #3f51b5;
+      color: white;
+      font-size: 1.2rem;
+      text-align: center;
+      padding: 20px;
+      border-radius: 10px;
+    }
+    
+    /* Progress indicator */
+    .loading-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      background: #3f8efc;
+      width: 0%;
+      z-index: 1000;
+      transition: width 0.4s ease;
+    }
   </style>
 </head>
 <body>
+  <div class="loading-bar" id="loadingBar"></div>
+  
   <nav>
     <div class="logo-container">
-      <img src="images/logo.png" 
-           alt="Vrudhi Heavy Engineers Logo" class="logo">
+      <!-- Optimized logo with explicit dimensions -->
+      <img src="images/logo.png" alt="Vrudhi Heavy Engineers Logo" class="logo" 
+           width="200" height="60" loading="eager">
     </div>
     <div class="menu-toggle" id="menuToggle">
       <i class="fas fa-bars"></i>
@@ -1238,6 +1308,130 @@ Z-Axis : 1000 MM">
   </div>
 
   <script>
+    // Performance optimizations
+    document.addEventListener('DOMContentLoaded', function() {
+      // Progress bar
+      const loadingBar = document.getElementById('loadingBar');
+      let progress = 0;
+      const progressInterval = setInterval(() => {
+        progress += 5;
+        loadingBar.style.width = `${progress}%`;
+        if (progress >= 100) clearInterval(progressInterval);
+      }, 200);
+      
+      // Lazy loading implementation
+      const lazyLoad = () => {
+        const lazyItems = document.querySelectorAll('.lazy');
+        
+        lazyItems.forEach(item => {
+          if (item.getBoundingClientRect().top <= window.innerHeight * 1.5 && 
+              item.getBoundingClientRect().bottom >= 0 &&
+              getComputedStyle(item).display !== "none") {
+            
+            if (item.tagName === 'IMG') {
+              item.src = item.dataset.src;
+              item.onload = () => {
+                item.classList.add('loaded');
+                if (item.parentNode.querySelector('.skeleton')) {
+                  item.parentNode.querySelector('.skeleton').style.display = 'none';
+                }
+              };
+            }
+            else if (item.tagName === 'VIDEO') {
+              const source = item.querySelector('source');
+              source.src = source.dataset.src;
+              item.load();
+            }
+            
+            item.classList.add('loaded');
+          }
+        });
+      };
+      
+      // Initialize lazy loading
+      lazyLoad();
+      window.addEventListener('scroll', lazyLoad);
+      window.addEventListener('resize', lazyLoad);
+      window.addEventListener('orientationchange', lazyLoad);
+      
+      // Video lazy loading
+      const videoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const video = entry.target;
+            const source = video.querySelector('source');
+            if (source && !source.src) {
+              source.src = source.dataset.src;
+              video.load();
+              
+              // Hide placeholder
+              const placeholder = video.parentNode.querySelector('.video-placeholder');
+              if (placeholder) placeholder.style.display = 'none';
+            }
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      document.querySelectorAll('video').forEach(video => {
+        videoObserver.observe(video);
+      });
+      
+      // Clear progress bar when page fully loaded
+      window.addEventListener('load', () => {
+        clearInterval(progressInterval);
+        loadingBar.style.width = '100%';
+        setTimeout(() => {
+          loadingBar.style.opacity = '0';
+          setTimeout(() => loadingBar.style.display = 'none', 500);
+        }, 300);
+      });
+      
+      // Existing functionality (mobile menu, modals, etc.)
+      // ... (rest of existing JavaScript) ...
+      
+      // Optimized media loading for carousels
+      const carousels = document.querySelectorAll('.carousel');
+      carousels.forEach(carousel => {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              // Load first 2 items immediately
+              const items = carousel.querySelectorAll('.media-container');
+              for (let i = 0; i < Math.min(2, items.length); i++) {
+                const img = items[i].querySelector('img');
+                if (img && img.dataset.src) {
+                  img.src = img.dataset.src;
+                  img.classList.add('loaded');
+                }
+              }
+              
+              // Load remaining items as needed
+              const lazyObserver = new IntersectionObserver((lazyEntries) => {
+                lazyEntries.forEach(lazyEntry => {
+                  if (lazyEntry.isIntersecting) {
+                    const lazyImg = lazyEntry.target.querySelector('img');
+                    if (lazyImg && lazyImg.dataset.src) {
+                      lazyImg.src = lazyImg.dataset.src;
+                      lazyImg.classList.add('loaded');
+                      lazyObserver.unobserve(lazyEntry.target);
+                    }
+                  }
+                });
+              }, { threshold: 0.1 });
+              
+              // Observe all items beyond the first 2
+              for (let i = 2; i < items.length; i++) {
+                lazyObserver.observe(items[i]);
+              }
+              
+              observer.unobserve(carousel);
+            }
+          });
+        }, { threshold: 0.01 });
+        
+        observer.observe(carousel);
+      });
+    });
     // Mobile menu toggle
     const menuToggle = document.getElementById('menuToggle');
     const navMenu = document.getElementById('navMenu');
