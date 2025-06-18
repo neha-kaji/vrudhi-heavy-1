@@ -790,6 +790,48 @@
         -webkit-user-select: none;
       }
     }
+
+    /* New styles for video thumbnails */
+    .video-thumbnail-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+    
+    .video-thumbnail {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+    }
+    
+    .video-thumbnail.hidden {
+      display: none;
+    }
+    
+    /* Loading spinner for video generation */
+    .thumbnail-loader {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 40px;
+      height: 40px;
+      border: 4px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top: 4px solid #3f51b5;
+      animation: spin 1s linear infinite;
+      z-index: 2;
+      display: none;
+    }
+    
+    @keyframes spin {
+      0% { transform: translate(-50%, -50%) rotate(0deg); }
+      100% { transform: translate(-50%, -50%) rotate(360deg); }
+    }
   </style>
 </head>
 <body>
@@ -1471,6 +1513,137 @@ Z-Axis : 1000 MM">
         this.controls = true;
       });
     });
+    });
+
+    // iOS detection function
+    const isIOS = () => {
+      return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    };
+
+    // Generate video thumbnails for iOS devices
+    const generateVideoThumbnails = () => {
+      if (!isIOS()) return;
+      
+      document.querySelectorAll('.media-container[data-type="video"]').forEach(container => {
+        const video = container.querySelector('video');
+        const videoSource = video.querySelector('source').src;
+        
+        // Create thumbnail container
+        const thumbnailContainer = document.createElement('div');
+        thumbnailContainer.className = 'video-thumbnail-container';
+        
+        // Create thumbnail image element
+        const thumbnail = document.createElement('img');
+        thumbnail.className = 'video-thumbnail';
+        thumbnail.alt = "Video thumbnail";
+        
+        // Create loader
+        const loader = document.createElement('div');
+        loader.className = 'thumbnail-loader';
+        
+        thumbnailContainer.appendChild(thumbnail);
+        thumbnailContainer.appendChild(loader);
+        container.insertBefore(thumbnailContainer, video);
+        
+        // Generate thumbnail
+        const tempVideo = document.createElement('video');
+        tempVideo.src = videoSource;
+        tempVideo.muted = true;
+        tempVideo.playsInline = true;
+        
+        tempVideo.addEventListener('loadeddata', () => {
+          // Seek to a good point for thumbnail
+          try {
+            tempVideo.currentTime = Math.min(1, tempVideo.duration * 0.1);
+          } catch (e) {
+            console.error('Error setting video time:', e);
+            tempVideo.currentTime = 0;
+          }
+        });
+        
+        tempVideo.addEventListener('seeked', () => {
+          loader.style.display = 'block';
+          
+          // Create canvas to capture frame
+          const canvas = document.createElement('canvas');
+          canvas.width = tempVideo.videoWidth;
+          canvas.height = tempVideo.videoHeight;
+          
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(tempVideo, 0, 0, canvas.width, canvas.height);
+          
+          // Convert to data URL and set as thumbnail source
+          try {
+            thumbnail.src = canvas.toDataURL('image/jpeg', 0.8);
+            loader.style.display = 'none';
+          } catch (e) {
+            console.error('Error generating thumbnail:', e);
+            loader.style.display = 'none';
+          }
+        });
+        
+        // Play the video to ensure it loads
+        tempVideo.play().then(() => {
+          tempVideo.pause();
+        }).catch(e => {
+          console.error('Error playing video for thumbnail:', e);
+        });
+      });
+    };
+
+    // Enhanced video click handler
+    const setupVideoHandlers = () => {
+      document.querySelectorAll('.media-container[data-type="video"]').forEach(container => {
+        const video = container.querySelector('video');
+        
+        container.addEventListener('click', () => {
+          // Hide thumbnail if present
+          const thumbnail = container.querySelector('.video-thumbnail');
+          if (thumbnail) {
+            thumbnail.classList.add('hidden');
+          }
+          
+          // Show video in modal
+          const source = video.querySelector('source').src;
+          const info = container.dataset.info || "Video content";
+          
+          modalVideoSource.src = source;
+          modalVideoDisplay.load();
+          modalVideoDisplay.style.display = 'block';
+          modalImageDisplay.style.display = 'none';
+          modalInfo.textContent = info;
+          
+          // Play the video in the modal
+          setTimeout(() => {
+            modalVideoDisplay.play().catch(e => {
+              console.log('Video play error:', e);
+              // Show play button in modal if autoplay fails
+              modalVideoDisplay.controls = true;
+            });
+          }, 300);
+          
+          modal.style.display = 'block';
+          document.body.style.overflow = 'hidden';
+        });
+      });
+    };
+
+    // Initialize after DOM loads
+    document.addEventListener('DOMContentLoaded', () => {
+      // Existing initialization code...
+      
+      // Generate thumbnails on iOS
+      if (isIOS()) {
+        generateVideoThumbnails();
+      }
+      
+      // Set up video handlers
+      setupVideoHandlers();
+      
+      // Add event listener for modal video to show controls
+      modalVideoDisplay.addEventListener('play', function() {
+        this.controls = true;
+      });
     });
   </script>
 </body>
