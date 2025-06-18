@@ -563,7 +563,7 @@
       z-index: 10;
     }
 
-    /* Responsive styles */
+    /* Responsive styles - Updated for better modal display on mobile */
     @media (max-width: 992px) {
       header h1 {
         font-size: 2.8rem;
@@ -659,19 +659,39 @@
         font-size: 0.9rem;
       }
 
+      /* IMPORTANT: Enhanced mobile modal styles */
       #imageModal .modal-content {
-        padding: 20px;
+        padding: 15px;
         width: 95%;
-        min-height: 70vh;
+        min-height: auto;
+        max-height: 95vh;
+        overflow-y: auto;
+        justify-content: flex-start;
+      }
+      
+      .modal-media-container {
+        height: auto;
+        max-height: 50vh;
+        margin-bottom: 15px;
+      }
+      
+      #modalImageDisplay,
+      #modalVideoDisplay {
+        max-height: 50vh;
+        max-width: 100%;
       }
       
       #imageModal .modal-info {
         font-size: 1rem;
         padding: 8px 15px;
+        max-height: 30vh;
+        overflow-y: auto;
       }
       
-      .modal-media-container {
-        height: 40vh;
+      #imageModal .close-btn {
+        font-size: 30px;
+        top: 5px;
+        right: 10px;
       }
     }
 
@@ -690,6 +710,26 @@
       
       header h1 {
         font-size: 2.2rem;
+      }
+      
+      /* Additional mobile-specific modal adjustments */
+      #imageModal .modal-content {
+        padding: 10px;
+        width: 98%;
+      }
+      
+      .modal-media-container {
+        max-height: 45vh;
+      }
+      
+      #modalImageDisplay,
+      #modalVideoDisplay {
+        max-height: 45vh;
+      }
+      
+      #imageModal .modal-info {
+        font-size: 0.95rem;
+        padding: 6px 10px;
       }
     }
   </style>
