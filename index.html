@@ -36,7 +36,7 @@
       align-items: center;
       justify-content: flex-start;
       padding: 15px 10px;
-      position: relative; /* Added for close button positioning */
+      position: relative;
     }
     
     .modal-media-container {
@@ -77,24 +77,31 @@
       background: rgba(200,0,0,0.7);
     }
 
-    /* PERSON CARD BORDER ENHANCEMENT */
+    /* REFINED PERSON CARD STYLING */
     .person-card {
       position: relative;
-      border-top: 4px solid #3f51b5;
-      box-shadow: 0 5px 15px rgba(63, 142, 252, 0.3);
+      border-top: 2px solid #90caf9; /* Lighter, thinner border */
+      box-shadow: 0 5px 15px rgba(63, 142, 252, 0.2);
+      background: linear-gradient(to bottom, #ffffff 0%, #f0f7ff 100%);
     }
     
     .person-card::before {
       content: "";
       position: absolute;
-      top: -4px;
-      left: 0;
-      width: 100%;
-      height: 4px;
-      background: linear-gradient(90deg, #3f51b5, #283593);
-      border-radius: 4px 4px 0 0;
+      top: -2px; /* Adjusted to match new border thickness */
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 2px;
+      background: #3f51b5;
+      border-radius: 1px;
+      transition: width 0.3s ease;
     }
     
+    .person-card:hover::before {
+      width: 100%;
+    }
+
     /* Mobile optimizations for modal */
     @media (max-width: 768px) {
       #imageModal .modal-content {
@@ -118,20 +125,20 @@
     .logo-container {
       display: flex;
       align-items: center;
-      margin-left: 20px;
-      max-width: 200px; /* Prevent stretching */
+      margin-left: 10px;
+      max-width: 200px;
     }
 
     .logo {
       height: 60px;
       opacity: 0.85;
       transition: all 0.3s ease;
-      object-fit: contain; /* Maintain aspect ratio */
+      object-fit: contain;
     }
     
     @media (max-width: 480px) {
       .logo-container {
-        max-width: 150px; /* Smaller on mobile */
+        max-width: 150px;
         margin-left: 10px;
       }
       
@@ -140,7 +147,7 @@
       }
       
       header h1 {
-        font-size: 2rem; /* Slightly smaller header */
+        font-size: 2rem;
       }
     }
 
@@ -409,7 +416,6 @@
         padding: 1.5rem;
         background-color: #f4f8ff;
         border-radius: 12px;
-        box-shadow: 0 5px 20px rgba(63, 142, 252, 0.2);
         text-align: center;
         display: flex;
         flex-direction: column;
@@ -423,7 +429,7 @@
 
     .person-card:hover {
         transform: translateY(-8px);
-        box-shadow: 0 8px 25px rgba(63, 142, 252, 0.4);
+        box-shadow: 0 8px 25px rgba(63, 142, 252, 0.15);
     }
 
     .person-image-container {
@@ -432,7 +438,7 @@
         border-radius: 50%;
         overflow: hidden;
         margin-bottom: 1rem;
-        border: 4px solid #90caf9;
+        border: 3px solid #90caf9; /* Thinner border */
         box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
     }
 
@@ -764,7 +770,7 @@
       }
       
       #imageModal .close-btn {
-        position: absolute; /* Changed to absolute */
+        position: absolute;
         top: 5px;
         right: 10px;
         font-size: 30px;
@@ -998,7 +1004,7 @@
         </div>
 
         <div class="media-container">
-          <img src="images/unit-1/unit-1-2.JPG" alt="Excavator Arm in mining operation" data-info="WMW Union Horizontal Floor Boring Machine 
+          <img src="images/unit-1/unit-1-2.JPG" alt="" data-info="WMW Union Horizontal Floor Boring Machine 
 Spindle size : Ø 160
 Table size : 2000 x 6000 MM
 Longitudinal Travel : X-Axis - 7000 MM
@@ -1017,7 +1023,7 @@ Z-Axis : Head - 500 MM">
         </div>
 
         <div class="media-container">
-          <img src="images/unit-1/unit-1-4.JPG" alt="Excavator Arm in mining operation" data-info="WMW Union Horizontal Floor Boring Machine 
+          <img src="images/unit-1/unit-1-4.JPG" alt="" data-info="WMW Union Horizontal Floor Boring Machine 
 Spindle size : Ø 160
 Table size : 3500 x 6000 MM
 Longitudinal Travel : X-Axis - 7000 MM
@@ -1028,7 +1034,7 @@ Rotary Table : 2500 x 3000 MM">
         </div>
 
         <div class="media-container">
-          <img src="images/unit-1/unit-1-5.JPG" alt="Excavator Arm in mining operation" data-info="">
+          <img src="images/unit-1/unit-1-5.JPG" alt="" data-info="">
         </div>
 
         <div class="media-container" data-type="video" data-info="Milling Operation">
@@ -1041,7 +1047,7 @@ Rotary Table : 2500 x 3000 MM">
         </div>
 
         <div class="media-container">
-          <img src="images/unit-1/unit-1-7.JPG" alt="Excavator Arm in mining operation" data-info="SKODA Horizontal Floor Boring Machine 
+          <img src="images/unit-1/unit-1-7.JPG" alt="" data-info="SKODA Horizontal Floor Boring Machine 
 Spindle size : Ø 160
 Table size : 3500 x 6000 MM
 Longitudinal Travel : X-Axis - 4000 MM
@@ -1052,7 +1058,7 @@ Rotary Table : 2000 x 2000 MM">
         </div>
 
         <div class="media-container">
-          <img src="images/unit-1/unit-1-8.JPG" alt="Excavator Arm in mining operation" data-info="SKODA Horizontal Floor Boring Machine 
+          <img src="images/unit-1/unit-1-8.JPG" alt="" data-info="SKODA Horizontal Floor Boring Machine 
 Spindle size : Ø 160
 Table size : 4000 x 6000 MM
 Longitudinal Travel : X-Axis - 5000 MM
@@ -1063,7 +1069,7 @@ Rotary Table : 2000 x 2000 MM">
         </div>
 
         <div class="media-container">
-          <img src="images/unit-1/unit-1-9.jpg" alt="Excavator Arm in mining operation" data-info="HMT Radial Drill Machine
+          <img src="images/unit-1/unit-1-9.jpg" alt="" data-info="HMT Radial Drill Machine
 Model - RM65">
         </div>
         
@@ -1074,23 +1080,23 @@ Model - RM65">
       <div class="machine-title">Unit 2</div>
       <div class="carousel" id="machineCarousel2">
         <div class="media-container">
-          <img src="images/unit-2/unit-2-1.JPG" alt="Crane Pulley System - Heavy Lift" data-info="Machine Shop 2">
+          <img src="images/unit-2/unit-2-1.JPG" alt="" data-info="Machine Shop 2">
         </div>
         
         <div class="media-container">
-          <img src="images/unit-2/unit-2-2.jpg" alt="Crane Pulley System - Industrial Grade" data-info="KOLB Radial Drill Machine 
+          <img src="images/unit-2/unit-2-2.jpg" alt="" data-info="KOLB Radial Drill Machine 
 100 MM Capacity ">
         </div>
 
         <div class="media-container">
-          <img src="images/unit-2/unit-2-3.JPG" alt="Crane Pulley System - Industrial Grade" data-info="Mitsubishi Double Column VMC
+          <img src="images/unit-2/unit-2-3.JPG" alt="" data-info="Mitsubishi Double Column VMC
 Table Travel - 3200 MM
 Between Column - 2000 MM
 Height - 1200 MM">
         </div>
 
         <div class="media-container">
-          <img src="images/unit-2/unit-2-4.jpg" alt="Crane Pulley System - Industrial Grade" data-info="">
+          <img src="images/unit-2/unit-2-4.jpg" alt="" data-info="">
         </div>
         
         <div class="media-container" data-type="video" data-info="Bore machining ">
@@ -1103,17 +1109,17 @@ Height - 1200 MM">
         </div>
 
         <div class="media-container">
-          <img src="images/unit-2/unit-2-6.jpg" alt="Crane Pulley System - Industrial Grade" data-info="TOSS Double Column VTL
+          <img src="images/unit-2/unit-2-6.jpg" alt="" data-info="TOSS Double Column VTL
 Swing - 4000 MM
 Height - 2500 MM">
         </div>
 
         <div class="media-container">
-          <img src="images/unit-2/unit-2-7.jpg" alt="Crane Pulley System - Industrial Grade" data-info="">
+          <img src="images/unit-2/unit-2-7.jpg" alt="" data-info="">
         </div>
 
         <div class="media-container">
-          <img src="images/unit-2/unit-2-8.jpg" alt="Crane Pulley System - Industrial Grade" data-info="SKODA Horizontal Floor Boring Machine 
+          <img src="images/unit-2/unit-2-8.jpg" alt="" data-info="SKODA Horizontal Floor Boring Machine 
 Spindle size : Ø 160
 Longitudinal Travel : X-Axis - 6000 MM
 Vertical Travel : Y-Axis - 2500 MM
@@ -1123,7 +1129,7 @@ Rotary Table : 2500 x 3000 MM">
         </div>
 
         <div class="media-container">
-          <img src="images/unit-2/unit-2-9.jpg" alt="Crane Pulley System - Industrial Grade" data-info="">
+          <img src="images/unit-2/unit-2-9.jpg" alt="" data-info="">
         </div>
 
       </div>
@@ -1133,11 +1139,11 @@ Rotary Table : 2500 x 3000 MM">
       <div class="machine-title">Unit 3</div>
       <div class="carousel" id="machineCarousel3">
         <div class="media-container">
-          <img src="images/unit-3/unit-3-1.JPG" alt="Crane Pulley System - Heavy Lift" data-info="Machine Shop 3">
+          <img src="images/unit-3/unit-3-1.JPG" alt="" data-info="Machine Shop 3">
         </div>
         
         <div class="media-container">
-          <img src="images/unit-3/unit-3-2.jpg" alt="Crane Pulley System - Industrial Grade" data-info="Cooper VTL
+          <img src="images/unit-3/unit-3-2.jpg" alt="" data-info="Cooper VTL
 Swing - 1600 MM
 Height - 1200 MM">
         </div>
@@ -1166,14 +1172,14 @@ Z-Axis : 1200 MM">
         </div>
 
         <div class="media-container">
-          <img src="images/unit-3/unit-3-5.JPG" alt="Crane Pulley System - Industrial Grade" data-info="Plano Miller Machine
+          <img src="images/unit-3/unit-3-5.JPG" alt="" data-info="Plano Miller Machine
 Table Travel : 2500 MM
 Between Column : 1100 MM
 Y-Axis : 800 MM">
         </div>
 
         <div class="media-container">
-          <img src="images/unit-3/unit-3-6.jpg" alt="Crane Pulley System - Industrial Grade" data-info="">
+          <img src="images/unit-3/unit-3-6.jpg" alt="" data-info="">
         </div>
 
         <div class="media-container" data-type="video" data-info="Milling Operation ">
@@ -1186,7 +1192,7 @@ Y-Axis : 800 MM">
         </div>
 
         <div class="media-container">
-          <img src="images/unit-3/unit-3-8.JPG" alt="Crane Pulley System - Industrial Grade" data-info="Horizontal Boring Machine 
+          <img src="images/unit-3/unit-3-8.JPG" alt="" data-info="Horizontal Boring Machine 
 Spindle Size : Ø 80
 Longitudinal Travel : X-Axis - 800 MM
 Vertical Travel : Y-Axis - 900 MM
@@ -1194,7 +1200,7 @@ Z-Axis : 1000 MM">
         </div>
 
         <div class="media-container">
-          <img src="images/unit-3/unit-3-9.jpg" alt="Crane Pulley System - Industrial Grade" data-info="">
+          <img src="images/unit-3/unit-3-9.jpg" alt="" data-info="">
         </div>
 
         <div class="media-container" data-type="video" data-info="Boring Operation">
@@ -1216,15 +1222,15 @@ Z-Axis : 1000 MM">
       <div class="machine-title">Office Showcase</div>
       <div class="carousel" id="productCarousel">
         <div class="media-container">
-          <img src="images/office/office-1.JPG" alt="Modern Office Interior" data-info="Our spacious and well-lit office environment.">
+          <img src="images/office/office-1.JPG" alt="" data-info="">
         </div>
         
         <div class="media-container">
-          <img src="images/office/office-2.JPG" alt="Reception Area" data-info="Welcoming reception area for our visitors and clients.">
+          <img src="images/office/office-2.JPG" alt="" data-info="">
         </div>
 
         <div class="media-container">
-          <img src="images/office/office-3.JPG" alt="Modern Office Interior" data-info="Our spacious and well-lit office environment.">
+          <img src="images/office/office-3.JPG" alt="" data-info="">
         </div>
         
       </div>
@@ -1237,15 +1243,15 @@ Z-Axis : 1000 MM">
       <div class="machine-title">Our Key Projects</div>
       <div class="carousel" id="galleryCarousel">
         <div class="media-container">
-          <img src="images/projects/office-1.jpg" alt="Large Scale Construction Project" data-info="Supplying critical components for a major infrastructure project.">
+          <img src="images/projects/office-1.jpg" alt="" data-info="">
         </div>
         
         <div class="media-container">
-          <img src="images/projects/office-2.jpg" alt="Mining Site Installation" data-info="On-site installation and maintenance at a mining operation.">
+          <img src="images/projects/office-2.jpg" alt="" data-info="">
         </div>
 
         <div class="media-container">
-          <img src="images/projects/office-3.jpg" alt="Mining Site Installation" data-info="On-site installation and maintenance at a mining operation.">
+          <img src="images/projects/office-3.jpg" alt="" data-info="">
         </div>
 
         <div class="media-container" data-type="video" data-info="Boring Operation">
