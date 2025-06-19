@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   
   <style>
-    /* Reset & base styles */
+    /* RESET & BASE STYLES */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -29,6 +29,91 @@
       overflow-x: hidden;
     }
 
+    /* MODAL FIXES FOR PORTRAIT/LANDSCAPE IMAGES */
+    #imageModal .modal-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start; /* Changed for better mobile alignment */
+      padding: 15px 10px; /* Added horizontal padding */
+    }
+    
+    .modal-media-container {
+      max-height: 65vh; /* More flexible height */
+      overflow: auto; /* Enable scrolling for tall images */
+      margin-bottom: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start; /* Align to top for portrait images */
+      width: 100%;
+    }
+    
+    #modalImageDisplay {
+      max-width: 100%;
+      max-height: 100%; /* Take full container height */
+      object-fit: contain; /* Maintain aspect ratio */
+    }
+    
+    /* Position close button absolutely relative to modal */
+    #imageModal .close-btn {
+      position: fixed;
+      top: 15px;
+      right: 20px;
+      z-index: 300;
+      color: white;
+      background: rgba(0,0,0,0.5);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 30px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
+    
+    #imageModal .close-btn:hover {
+      background: rgba(200,0,0,0.7);
+    }
+
+    /* PERSON CARD BORDER ENHANCEMENT */
+    .person-card {
+      position: relative;
+      border-top: 4px solid #3f51b5; /* More visible border */
+      box-shadow: 0 5px 15px rgba(63, 142, 252, 0.3); /* Enhanced shadow */
+    }
+    
+    .person-card::before {
+      content: "";
+      position: absolute;
+      top: -4px;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #3f51b5, #283593);
+      border-radius: 4px 4px 0 0;
+    }
+    
+    /* Mobile optimizations for modal */
+    @media (max-width: 768px) {
+      #imageModal .modal-content {
+        padding: 10px 5px;
+      }
+      
+      .modal-media-container {
+        max-height: 55vh;
+      }
+      
+      #imageModal .close-btn {
+        top: 10px;
+        right: 10px;
+        width: 35px;
+        height: 35px;
+        font-size: 25px;
+      }
+    }
+
+    /* Existing styles below... */
     nav {
       background: linear-gradient(135deg, #a8c0ff 0%, #3f8efc 100%);
       padding: 0.8rem 2rem;
@@ -534,33 +619,6 @@
       font-weight: 500;
     }
 
-    #imageModal .close-btn {
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      color: #253488;
-      font-size: 40px;
-      font-weight: bold;
-      cursor: pointer;
-      user-select: none;
-      transition: color 0.2s ease;
-      z-index: 10;
-    }
-
-    #imageModal .close-btn:hover {
-      color: #ff0000;
-      text-shadow: 0 0 5px rgba(255, 0, 0, 0.3);
-    }
-
-    .modal-media-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      height: 60vh;
-      margin-bottom: 20px;
-    }
-
     /* Mobile Navigation */
     .menu-toggle {
       display: none;
@@ -665,41 +723,6 @@
       .person-card .person-experience {
         font-size: 0.9rem;
       }
-
-      /* IMPORTANT: Enhanced mobile modal styles */
-      #imageModal .modal-content {
-        padding: 15px;
-        width: 95%;
-        min-height: auto;
-        max-height: 95vh;
-        overflow-y: auto;
-        justify-content: flex-start;
-      }
-      
-      .modal-media-container {
-        height: auto;
-        max-height: 50vh;
-        margin-bottom: 15px;
-      }
-      
-      #modalImageDisplay,
-      #modalVideoDisplay {
-        max-height: 50vh;
-        max-width: 100%;
-      }
-      
-      #imageModal .modal-info {
-        font-size: 1rem;
-        padding: 8px 15px;
-        max-height: 30vh;
-        overflow-y: auto;
-      }
-      
-      #imageModal .close-btn {
-        font-size: 30px;
-        top: 5px;
-        right: 10px;
-      }
     }
 
     @media (max-width: 480px) {
@@ -717,26 +740,6 @@
       
       header h1 {
         font-size: 2.2rem;
-      }
-      
-      /* Additional mobile-specific modal adjustments */
-      #imageModal .modal-content {
-        padding: 10px;
-        width: 98%;
-      }
-      
-      .modal-media-container {
-        max-height: 45vh;
-      }
-      
-      #modalImageDisplay,
-      #modalVideoDisplay {
-        max-height: 45vh;
-      }
-      
-      #imageModal .modal-info {
-        font-size: 0.95rem;
-        padding: 6px 10px;
       }
     }
 
@@ -798,47 +801,6 @@
       }
     }
 
-    /* New styles for video thumbnails */
-    .video-thumbnail-container {
-      position: relative;
-      width: 100%;
-      height: 100%;
-    }
-    
-    .video-thumbnail {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: 1;
-    }
-    
-    .video-thumbnail.hidden {
-      display: none;
-    }
-    
-    /* Loading spinner for video generation */
-    .thumbnail-loader {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 40px;
-      height: 40px;
-      border: 4px solid rgba(255, 255, 255, 0.3);
-      border-radius: 50%;
-      border-top: 4px solid #3f51b5;
-      animation: spin 1s linear infinite;
-      z-index: 2;
-      display: none;
-    }
-    
-    @keyframes spin {
-      0% { transform: translate(-50%, -50%) rotate(0deg); }
-      100% { transform: translate(-50%, -50%) rotate(360deg); }
-    }
     /* Optimizations */
     .media-container img,
     .media-container video {
@@ -906,7 +868,6 @@
   
   <nav>
     <div class="logo-container">
-      <!-- Optimized logo with explicit dimensions -->
       <img src="images/logo.png" alt="Vrudhi Heavy Engineers Logo" class="logo" 
            width="200" height="60" loading="eager">
     </div>
@@ -977,7 +938,7 @@
         </div>
 
         <div class="media-container">
-          <img src="images/unit-1/unit-1-2.JPG" alt="Excavator Arm in mining operation" data-info="WMW Union Horizontal Floor Boring Machine 
+          <img src="images/unit-1/unit-1-2.JPG" alt="" data-info="WMW Union Horizontal Floor Boring Machine 
 Spindle size : Ø 160
 Table size : 2000 x 6000 MM
 Longitudinal Travel : X-Axis - 7000 MM
@@ -996,7 +957,7 @@ Z-Axis : Head - 500 MM">
         </div>
 
         <div class="media-container">
-          <img src="images/unit-1/unit-1-4.JPG" alt="Excavator Arm in mining operation" data-info="WMW Union Horizontal Floor Boring Machine 
+          <img src="images/unit-1/unit-1-4.JPG" alt="" data-info="WMW Union Horizontal Floor Boring Machine 
 Spindle size : Ø 160
 Table size : 3500 x 6000 MM
 Longitudinal Travel : X-Axis - 7000 MM
@@ -1007,7 +968,7 @@ Rotary Table : 2500 x 3000 MM">
         </div>
 
         <div class="media-container">
-          <img src="images/unit-1/unit-1-5.JPG" alt="Excavator Arm in mining operation" data-info="">
+          <img src="images/unit-1/unit-1-5.JPG" alt="" data-info="">
         </div>
 
         <div class="media-container" data-type="video" data-info="Milling Operation">
@@ -1020,7 +981,7 @@ Rotary Table : 2500 x 3000 MM">
         </div>
 
         <div class="media-container">
-          <img src="images/unit-1/unit-1-7.JPG" alt="Excavator Arm in mining operation" data-info="SKODA Horizontal Floor Boring Machine 
+          <img src="images/unit-1/unit-1-7.JPG" alt="" data-info="SKODA Horizontal Floor Boring Machine 
 Spindle size : Ø 160
 Table size : 3500 x 6000 MM
 Longitudinal Travel : X-Axis - 4000 MM
@@ -1031,7 +992,7 @@ Rotary Table : 2000 x 2000 MM">
         </div>
 
         <div class="media-container">
-          <img src="images/unit-1/unit-1-8.JPG" alt="Excavator Arm in mining operation" data-info="SKODA Horizontal Floor Boring Machine 
+          <img src="images/unit-1/unit-1-8.JPG" alt="" data-info="SKODA Horizontal Floor Boring Machine 
 Spindle size : Ø 160
 Table size : 4000 x 6000 MM
 Longitudinal Travel : X-Axis - 5000 MM
@@ -1042,7 +1003,7 @@ Rotary Table : 2000 x 2000 MM">
         </div>
 
         <div class="media-container">
-          <img src="images/unit-1/unit-1-9.jpg" alt="Excavator Arm in mining operation" data-info="HMT Radial Drill Machine
+          <img src="images/unit-1/unit-1-9.jpg" alt="" data-info="HMT Radial Drill Machine
 Model - RM65">
         </div>
         
@@ -1053,23 +1014,23 @@ Model - RM65">
       <div class="machine-title">Unit 2</div>
       <div class="carousel" id="machineCarousel2">
         <div class="media-container">
-          <img src="images/unit-2/unit-2-1.JPG" alt="Crane Pulley System - Heavy Lift" data-info="Machine Shop 2">
+          <img src="images/unit-2/unit-2-1.JPG" alt="" data-info="Machine Shop 2">
         </div>
         
         <div class="media-container">
-          <img src="images/unit-2/unit-2-2.jpg" alt="Crane Pulley System - Industrial Grade" data-info="KOLB Radial Drill Machine 
+          <img src="images/unit-2/unit-2-2.jpg" alt="" data-info="KOLB Radial Drill Machine 
 100 MM Capacity ">
         </div>
 
         <div class="media-container">
-          <img src="images/unit-2/unit-2-3.JPG" alt="Crane Pulley System - Industrial Grade" data-info="Mitsubishi Double Column VMC
+          <img src="images/unit-2/unit-2-3.JPG" alt="" data-info="Mitsubishi Double Column VMC
 Table Travel - 3200 MM
 Between Column - 2000 MM
 Height - 1200 MM">
         </div>
 
         <div class="media-container">
-          <img src="images/unit-2/unit-2-4.jpg" alt="Crane Pulley System - Industrial Grade" data-info="">
+          <img src="images/unit-2/unit-2-4.jpg" alt="" data-info="">
         </div>
         
         <div class="media-container" data-type="video" data-info="Bore machining ">
@@ -1082,17 +1043,17 @@ Height - 1200 MM">
         </div>
 
         <div class="media-container">
-          <img src="images/unit-2/unit-2-6.jpg" alt="Crane Pulley System - Industrial Grade" data-info="TOSS Double Column VTL
+          <img src="images/unit-2/unit-2-6.jpg" alt="" data-info="TOSS Double Column VTL
 Swing - 4000 MM
 Height - 2500 MM">
         </div>
 
         <div class="media-container">
-          <img src="images/unit-2/unit-2-7.jpg" alt="Crane Pulley System - Industrial Grade" data-info="">
+          <img src="images/unit-2/unit-2-7.jpg" alt="" data-info="">
         </div>
 
         <div class="media-container">
-          <img src="images/unit-2/unit-2-8.jpg" alt="Crane Pulley System - Industrial Grade" data-info="SKODA Horizontal Floor Boring Machine 
+          <img src="images/unit-2/unit-2-8.jpg" alt="" data-info="SKODA Horizontal Floor Boring Machine 
 Spindle size : Ø 160
 Longitudinal Travel : X-Axis - 6000 MM
 Vertical Travel : Y-Axis - 2500 MM
@@ -1102,7 +1063,7 @@ Rotary Table : 2500 x 3000 MM">
         </div>
 
         <div class="media-container">
-          <img src="images/unit-2/unit-2-9.jpg" alt="Crane Pulley System - Industrial Grade" data-info="">
+          <img src="images/unit-2/unit-2-9.jpg" alt="" data-info="">
         </div>
 
       </div>
@@ -1112,11 +1073,11 @@ Rotary Table : 2500 x 3000 MM">
       <div class="machine-title">Unit 3</div>
       <div class="carousel" id="machineCarousel3">
         <div class="media-container">
-          <img src="images/unit-3/unit-3-1.JPG" alt="Crane Pulley System - Heavy Lift" data-info="Machine Shop 3">
+          <img src="images/unit-3/unit-3-1.JPG" alt="" data-info="Machine Shop 3">
         </div>
         
         <div class="media-container">
-          <img src="images/unit-3/unit-3-2.jpg" alt="Crane Pulley System - Industrial Grade" data-info="Cooper VTL
+          <img src="images/unit-3/unit-3-2.jpg" alt="" data-info="Cooper VTL
 Swing - 1600 MM
 Height - 1200 MM">
         </div>
@@ -1145,14 +1106,14 @@ Z-Axis : 1200 MM">
         </div>
 
         <div class="media-container">
-          <img src="images/unit-3/unit-3-5.JPG" alt="Crane Pulley System - Industrial Grade" data-info="Plano Miller Machine
+          <img src="images/unit-3/unit-3-5.JPG" alt="" data-info="Plano Miller Machine
 Table Travel : 2500 MM
 Between Column : 1100 MM
 Y-Axis : 800 MM">
         </div>
 
         <div class="media-container">
-          <img src="images/unit-3/unit-3-6.jpg" alt="Crane Pulley System - Industrial Grade" data-info="">
+          <img src="images/unit-3/unit-3-6.jpg" alt="" data-info="">
         </div>
 
         <div class="media-container" data-type="video" data-info="Milling Operation ">
@@ -1165,7 +1126,7 @@ Y-Axis : 800 MM">
         </div>
 
         <div class="media-container">
-          <img src="images/unit-3/unit-3-8.JPG" alt="Crane Pulley System - Industrial Grade" data-info="Horizontal Boring Machine 
+          <img src="images/unit-3/unit-3-8.JPG" alt="" data-info="Horizontal Boring Machine 
 Spindle Size : Ø 80
 Longitudinal Travel : X-Axis - 800 MM
 Vertical Travel : Y-Axis - 900 MM
@@ -1173,7 +1134,7 @@ Z-Axis : 1000 MM">
         </div>
 
         <div class="media-container">
-          <img src="images/unit-3/unit-3-9.jpg" alt="Crane Pulley System - Industrial Grade" data-info="">
+          <img src="images/unit-3/unit-3-9.jpg" alt="" data-info="">
         </div>
 
         <div class="media-container" data-type="video" data-info="Boring Operation">
@@ -1195,15 +1156,15 @@ Z-Axis : 1000 MM">
       <div class="machine-title">Office Showcase</div>
       <div class="carousel" id="productCarousel">
         <div class="media-container">
-          <img src="images/office/office-1.JPG" alt="Modern Office Interior" data-info="Our spacious and well-lit office environment.">
+          <img src="images/office/office-1.JPG" alt="" data-info="">
         </div>
         
         <div class="media-container">
-          <img src="images/office/office-2.JPG" alt="Reception Area" data-info="Welcoming reception area for our visitors and clients.">
+          <img src="images/office/office-2.JPG" alt="" data-info="">
         </div>
 
         <div class="media-container">
-          <img src="images/office/office-3.JPG" alt="Modern Office Interior" data-info="Our spacious and well-lit office environment.">
+          <img src="images/office/office-3.JPG" alt="" data-info="">
         </div>
         
       </div>
@@ -1216,15 +1177,15 @@ Z-Axis : 1000 MM">
       <div class="machine-title">Our Key Projects</div>
       <div class="carousel" id="galleryCarousel">
         <div class="media-container">
-          <img src="images/projects/office-1.jpg" alt="Large Scale Construction Project" data-info="Supplying critical components for a major infrastructure project.">
+          <img src="images/projects/office-1.jpg" alt="" data-info="">
         </div>
         
         <div class="media-container">
-          <img src="images/projects/office-2.jpg" alt="Mining Site Installation" data-info="On-site installation and maintenance at a mining operation.">
+          <img src="images/projects/office-2.jpg" alt="" data-info="">
         </div>
 
         <div class="media-container">
-          <img src="images/projects/office-3.jpg" alt="Mining Site Installation" data-info="On-site installation and maintenance at a mining operation.">
+          <img src="images/projects/office-3.jpg" alt="" data-info="">
         </div>
 
         <div class="media-container" data-type="video" data-info="Boring Operation">
@@ -1386,9 +1347,138 @@ Z-Axis : 1000 MM">
         }, 300);
       });
       
-      // Existing functionality (mobile menu, modals, etc.)
-      // ... (rest of existing JavaScript) ...
+      // Mobile menu toggle
+      const menuToggle = document.getElementById('menuToggle');
+      const navMenu = document.getElementById('navMenu');
       
+      menuToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+      });
+      
+      // Close menu when clicking on a link
+      document.querySelectorAll('#navMenu a').forEach(link => {
+        link.addEventListener('click', () => {
+          navMenu.classList.remove('active');
+        });
+      });
+
+      // Animate sections on scroll
+      const sections = document.querySelectorAll("section");
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = 1;
+              entry.target.style.transform = "translateY(0)";
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+
+      sections.forEach((section) => {
+        observer.observe(section);
+      });
+
+      // Modal popup for images and videos
+      const modal = document.getElementById('imageModal');
+      const modalImageDisplay = document.getElementById('modalImageDisplay');
+      const modalVideoDisplay = document.getElementById('modalVideoDisplay');
+      const modalInfo = document.getElementById('modalInfo');
+      const closeBtn = document.querySelector('.close-btn');
+      const modalVideoSource = modalVideoDisplay.querySelector('source');
+
+      // Select all media that should open the modal
+      const clickableElements = document.querySelectorAll(
+        '.media-container img, .media-container[data-type="video"], #certification-image-container img, .person-card'
+      );
+
+      clickableElements.forEach(element => {
+        element.addEventListener('click', () => {
+          // Handle video containers
+          if (element.matches('.media-container[data-type="video"]')) {
+            const video = element.querySelector('video');
+            const source = video.querySelector('source').src;
+            const info = element.dataset.info || "Video content";
+            
+            modalVideoSource.src = source;
+            modalVideoDisplay.load();
+            modalVideoDisplay.style.display = 'block';
+            modalImageDisplay.style.display = 'none';
+            modalInfo.textContent = info;
+            
+            // Play the video in the modal
+            setTimeout(() => {
+              modalVideoDisplay.play().catch(e => console.log('Video play error:', e));
+            }, 300);
+          } 
+          // Handle images
+          else if (element.matches('img')) {
+            modalImageDisplay.src = element.src;
+            modalImageDisplay.alt = element.alt;
+            modalImageDisplay.style.display = 'block';
+            modalVideoDisplay.style.display = 'none';
+            modalInfo.textContent = element.dataset.info || element.alt; 
+          }
+          // Handle person cards
+          else if (element.matches('.person-card')) {
+            const name = element.querySelector('h3').textContent;
+            const post = element.querySelector('.person-post').textContent;
+            const experience = element.querySelector('.person-experience').textContent;
+            
+            modalImageDisplay.style.display = 'none';
+            modalVideoDisplay.style.display = 'none';
+            modalInfo.textContent = `${name}\n${post}\n${experience}`;
+          }
+
+          modal.style.display = 'block';
+          document.body.style.overflow = 'hidden';
+        });
+      });
+
+      // Close modal function
+      const closeModal = () => {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+        
+        // Pause and reset the video
+        modalVideoDisplay.pause();
+        modalVideoDisplay.currentTime = 0;
+      };
+
+      closeBtn.addEventListener('click', closeModal);
+
+      // Close modal on clicking outside the modal-content
+      window.addEventListener('click', (event) => {
+        if (event.target === modal) {
+          closeModal();
+        }
+      });
+
+      // Close modal on Escape key
+      window.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && modal.style.display === 'block') {
+          closeModal();
+        }
+      });
+      
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            window.scrollTo({
+              top: target.offsetTop - 70,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+
       // Optimized media loading for carousels
       const carousels = document.querySelectorAll('.carousel');
       carousels.forEach(carousel => {
@@ -1431,401 +1521,120 @@ Z-Axis : 1000 MM">
         
         observer.observe(carousel);
       });
-    });
-    // Mobile menu toggle
-    const menuToggle = document.getElementById('menuToggle');
-    const navMenu = document.getElementById('navMenu');
-    
-    menuToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('active');
-    });
-    
-    // Close menu when clicking on a link
-    document.querySelectorAll('#navMenu a').forEach(link => {
-      link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-      });
-    });
-
-    // Animate sections on scroll
-    const sections = document.querySelectorAll("section");
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.style.opacity = 1;
-            entry.target.style.transform = "translateY(0)";
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    sections.forEach((section) => {
-      observer.observe(section);
-    });
-
-    // Modal popup for images and videos
-    const modal = document.getElementById('imageModal');
-    const modalImageDisplay = document.getElementById('modalImageDisplay');
-    const modalVideoDisplay = document.getElementById('modalVideoDisplay');
-    const modalInfo = document.getElementById('modalInfo');
-    const closeBtn = document.querySelector('.close-btn');
-    const modalVideoSource = modalVideoDisplay.querySelector('source');
-
-    // Select all media that should open the modal
-    const clickableElements = document.querySelectorAll(
-      '.media-container img, .media-container[data-type="video"], #certification-image-container img, .person-card img'
-    );
-
-    clickableElements.forEach(element => {
-      element.addEventListener('click', () => {
-        // Handle video containers
-        if (element.matches('.media-container[data-type="video"]')) {
-          const video = element.querySelector('video');
-          const source = video.querySelector('source').src;
-          const info = element.dataset.info || "Video content";
-          
-          modalVideoSource.src = source;
-          modalVideoDisplay.load();
-          modalVideoDisplay.style.display = 'block';
-          modalImageDisplay.style.display = 'none';
-          modalInfo.textContent = info;
-          
-          // Play the video in the modal
-          setTimeout(() => {
-            modalVideoDisplay.play().catch(e => console.log('Video play error:', e));
-          }, 300);
-        } 
-        // Handle images
-        else {
-          modalImageDisplay.src = element.src;
-          modalImageDisplay.alt = element.alt;
-          modalImageDisplay.style.display = 'block';
-          modalVideoDisplay.style.display = 'none';
-          
-          // For person cards, combine name, post, and experience for data-info
-          if (element.closest('.person-card')) {
-            const card = element.closest('.person-card');
-            const name = card.querySelector('h3').textContent;
-            const post = card.querySelector('.person-post').textContent;
-            const experience = card.querySelector('.person-experience').textContent;
-            modalInfo.textContent = `${name}\n${post}\n${experience}`;
-          } else {
-            // Preserve existing line breaks in data-info
-            modalInfo.textContent = element.dataset.info || element.alt; 
-          }
-        }
-
-        modal.style.display = 'block';
-        document.body.style.overflow = 'hidden';
-      });
-    });
-
-    // Close modal function
-    const closeModal = () => {
-      modal.style.display = 'none';
-      document.body.style.overflow = 'auto';
       
-      // Pause and reset the video
-      modalVideoDisplay.pause();
-      modalVideoDisplay.currentTime = 0;
-    };
+      // iOS detection function
+      const isIOS = () => {
+        return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+      };
 
-    closeBtn.addEventListener('click', closeModal);
-
-    // Close modal on clicking outside the modal-content
-    window.addEventListener('click', (event) => {
-      if (event.target === modal) {
-        closeModal();
-      }
-    });
-
-    // Close modal on Escape key
-    window.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && modal.style.display === 'block') {
-        closeModal();
-      }
-    });
-    
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
+      // Generate video thumbnails for iOS devices
+      const generateVideoThumbnails = () => {
+        if (!isIOS()) return;
         
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          window.scrollTo({
-            top: target.offsetTop - 70,
-            behavior: 'smooth'
+        document.querySelectorAll('.media-container[data-type="video"]').forEach(container => {
+          const video = container.querySelector('video');
+          const videoSource = video.querySelector('source').src;
+          
+          // Create thumbnail container
+          const thumbnailContainer = document.createElement('div');
+          thumbnailContainer.className = 'video-thumbnail-container';
+          
+          // Create thumbnail image element
+          const thumbnail = document.createElement('img');
+          thumbnail.className = 'video-thumbnail';
+          thumbnail.alt = "Video thumbnail";
+          
+          // Create loader
+          const loader = document.createElement('div');
+          loader.className = 'thumbnail-loader';
+          
+          thumbnailContainer.appendChild(thumbnail);
+          thumbnailContainer.appendChild(loader);
+          container.insertBefore(thumbnailContainer, video);
+          
+          // Generate thumbnail
+          const tempVideo = document.createElement('video');
+          tempVideo.src = videoSource;
+          tempVideo.muted = true;
+          tempVideo.playsInline = true;
+          
+          tempVideo.addEventListener('loadeddata', () => {
+            // Seek to a good point for thumbnail
+            try {
+              tempVideo.currentTime = Math.min(1, tempVideo.duration * 0.1);
+            } catch (e) {
+              console.error('Error setting video time:', e);
+              tempVideo.currentTime = 0;
+            }
           });
-        }
-      });
-    });
-
-    // Initialize all videos for mobile compatibility
-    document.querySelectorAll('video').forEach(video => {
-      // Required for iOS
-      video.setAttribute('playsinline', '');
-      video.setAttribute('webkit-playsinline', '');
-      
-      // Preload metadata to help with mobile playback
-      video.preload = 'metadata';
-      
-      // Mute videos by default for better mobile compatibility
-      video.muted = true;
-
-      // Detect iOS devices
-    const isIOS = () => {
-      return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-    };
-
-    // Generate thumbnails for videos on iOS
-    const generateVideoThumbnails = () => {
-      if (!isIOS()) return;
-      
-      document.querySelectorAll('.media-container[data-type="video"]').forEach(container => {
-        const video = container.querySelector('video');
-        const videoSource = video.querySelector('source').src;
-        
-        // Create thumbnail container
-        const thumbnailContainer = document.createElement('div');
-        thumbnailContainer.className = 'video-thumbnail-container';
-        
-        // Create thumbnail image element
-        const thumbnail = document.createElement('img');
-        thumbnail.className = 'video-thumbnail';
-        thumbnail.alt = "Video thumbnail";
-        
-        // Create loader
-        const loader = document.createElement('div');
-        loader.className = 'thumbnail-loader';
-        
-        thumbnailContainer.appendChild(thumbnail);
-        thumbnailContainer.appendChild(loader);
-        container.insertBefore(thumbnailContainer, video);
-        
-        // Generate thumbnail
-        const tempVideo = document.createElement('video');
-        tempVideo.src = videoSource;
-        tempVideo.muted = true;
-        tempVideo.playsInline = true;
-        
-        tempVideo.addEventListener('loadeddata', () => {
-          // Seek to a good point for thumbnail
-          try {
-            tempVideo.currentTime = Math.min(1, tempVideo.duration * 0.1);
-          } catch (e) {
-            console.error('Error setting video time:', e);
-            tempVideo.currentTime = 0;
-          }
+          
+          tempVideo.addEventListener('seeked', () => {
+            loader.style.display = 'block';
+            
+            // Create canvas to capture frame
+            const canvas = document.createElement('canvas');
+            canvas.width = tempVideo.videoWidth;
+            canvas.height = tempVideo.videoHeight;
+            
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(tempVideo, 0, 0, canvas.width, canvas.height);
+            
+            // Convert to data URL and set as thumbnail source
+            try {
+              thumbnail.src = canvas.toDataURL('image/jpeg', 0.8);
+              loader.style.display = 'none';
+            } catch (e) {
+              console.error('Error generating thumbnail:', e);
+              loader.style.display = 'none';
+            }
+          });
+          
+          // Play the video to ensure it loads
+          tempVideo.play().then(() => {
+            tempVideo.pause();
+          }).catch(e => {
+            console.error('Error playing video for thumbnail:', e);
+          });
         });
-        
-        tempVideo.addEventListener('seeked', () => {
-          loader.style.display = 'block';
-          
-          // Create canvas to capture frame
-          const canvas = document.createElement('canvas');
-          canvas.width = tempVideo.videoWidth;
-          canvas.height = tempVideo.videoHeight;
-          
-          const ctx = canvas.getContext('2d');
-          ctx.drawImage(tempVideo, 0, 0, canvas.width, canvas.height);
-          
-          // Convert to data URL and set as thumbnail source
-          try {
-            thumbnail.src = canvas.toDataURL('image/jpeg', 0.8);
-            loader.style.display = 'none';
-          } catch (e) {
-            console.error('Error generating thumbnail:', e);
-            loader.style.display = 'none';
-          }
-        });
-        
-        // Play the video to ensure it loads
-        tempVideo.play().then(() => {
-          tempVideo.pause();
-        }).catch(e => {
-          console.error('Error playing video for thumbnail:', e);
-        });
-      });
-    };
+      };
 
-    // Enhanced video click handler
-    const setupVideoHandlers = () => {
-      document.querySelectorAll('.media-container[data-type="video"]').forEach(container => {
-        const video = container.querySelector('video');
-        
-        container.addEventListener('click', () => {
-          // Hide thumbnail if present
-          const thumbnail = container.querySelector('.video-thumbnail');
-          if (thumbnail) {
-            thumbnail.classList.add('hidden');
-          }
+      // Enhanced video click handler
+      const setupVideoHandlers = () => {
+        document.querySelectorAll('.media-container[data-type="video"]').forEach(container => {
+          const video = container.querySelector('video');
           
-          // Show video in modal
-          const source = video.querySelector('source').src;
-          const info = container.dataset.info || "Video content";
-          
-          modalVideoSource.src = source;
-          modalVideoDisplay.load();
-          modalVideoDisplay.style.display = 'block';
-          modalImageDisplay.style.display = 'none';
-          modalInfo.textContent = info;
-          
-          // Play the video in the modal
-          setTimeout(() => {
-            modalVideoDisplay.play().catch(e => {
-              console.log('Video play error:', e);
-              // Show play button in modal if autoplay fails
-              modalVideoDisplay.controls = true;
-            });
-          }, 300);
-          
-          modal.style.display = 'block';
-          document.body.style.overflow = 'hidden';
+          container.addEventListener('click', () => {
+            // Hide thumbnail if present
+            const thumbnail = container.querySelector('.video-thumbnail');
+            if (thumbnail) {
+              thumbnail.classList.add('hidden');
+            }
+            
+            // Show video in modal
+            const source = video.querySelector('source').src;
+            const info = container.dataset.info || "Video content";
+            
+            modalVideoSource.src = source;
+            modalVideoDisplay.load();
+            modalVideoDisplay.style.display = 'block';
+            modalImageDisplay.style.display = 'none';
+            modalInfo.textContent = info;
+            
+            // Play the video in the modal
+            setTimeout(() => {
+              modalVideoDisplay.play().catch(e => {
+                console.log('Video play error:', e);
+                // Show play button in modal if autoplay fails
+                modalVideoDisplay.controls = true;
+              });
+            }, 300);
+            
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+          });
         });
-      });
-    };
+      };
 
-    // Initialize after DOM loads
-    document.addEventListener('DOMContentLoaded', () => {
-      // Existing initialization code...
-      
-      // Generate thumbnails on iOS
-      if (isIOS()) {
-        generateVideoThumbnails();
-      }
-      
-      // Set up video handlers
-      setupVideoHandlers();
-      
-      // Add event listener for modal video to show controls
-      modalVideoDisplay.addEventListener('play', function() {
-        this.controls = true;
-      });
-    });
-    });
-
-    // iOS detection function
-    const isIOS = () => {
-      return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-    };
-
-    // Generate video thumbnails for iOS devices
-    const generateVideoThumbnails = () => {
-      if (!isIOS()) return;
-      
-      document.querySelectorAll('.media-container[data-type="video"]').forEach(container => {
-        const video = container.querySelector('video');
-        const videoSource = video.querySelector('source').src;
-        
-        // Create thumbnail container
-        const thumbnailContainer = document.createElement('div');
-        thumbnailContainer.className = 'video-thumbnail-container';
-        
-        // Create thumbnail image element
-        const thumbnail = document.createElement('img');
-        thumbnail.className = 'video-thumbnail';
-        thumbnail.alt = "Video thumbnail";
-        
-        // Create loader
-        const loader = document.createElement('div');
-        loader.className = 'thumbnail-loader';
-        
-        thumbnailContainer.appendChild(thumbnail);
-        thumbnailContainer.appendChild(loader);
-        container.insertBefore(thumbnailContainer, video);
-        
-        // Generate thumbnail
-        const tempVideo = document.createElement('video');
-        tempVideo.src = videoSource;
-        tempVideo.muted = true;
-        tempVideo.playsInline = true;
-        
-        tempVideo.addEventListener('loadeddata', () => {
-          // Seek to a good point for thumbnail
-          try {
-            tempVideo.currentTime = Math.min(1, tempVideo.duration * 0.1);
-          } catch (e) {
-            console.error('Error setting video time:', e);
-            tempVideo.currentTime = 0;
-          }
-        });
-        
-        tempVideo.addEventListener('seeked', () => {
-          loader.style.display = 'block';
-          
-          // Create canvas to capture frame
-          const canvas = document.createElement('canvas');
-          canvas.width = tempVideo.videoWidth;
-          canvas.height = tempVideo.videoHeight;
-          
-          const ctx = canvas.getContext('2d');
-          ctx.drawImage(tempVideo, 0, 0, canvas.width, canvas.height);
-          
-          // Convert to data URL and set as thumbnail source
-          try {
-            thumbnail.src = canvas.toDataURL('image/jpeg', 0.8);
-            loader.style.display = 'none';
-          } catch (e) {
-            console.error('Error generating thumbnail:', e);
-            loader.style.display = 'none';
-          }
-        });
-        
-        // Play the video to ensure it loads
-        tempVideo.play().then(() => {
-          tempVideo.pause();
-        }).catch(e => {
-          console.error('Error playing video for thumbnail:', e);
-        });
-      });
-    };
-
-    // Enhanced video click handler
-    const setupVideoHandlers = () => {
-      document.querySelectorAll('.media-container[data-type="video"]').forEach(container => {
-        const video = container.querySelector('video');
-        
-        container.addEventListener('click', () => {
-          // Hide thumbnail if present
-          const thumbnail = container.querySelector('.video-thumbnail');
-          if (thumbnail) {
-            thumbnail.classList.add('hidden');
-          }
-          
-          // Show video in modal
-          const source = video.querySelector('source').src;
-          const info = container.dataset.info || "Video content";
-          
-          modalVideoSource.src = source;
-          modalVideoDisplay.load();
-          modalVideoDisplay.style.display = 'block';
-          modalImageDisplay.style.display = 'none';
-          modalInfo.textContent = info;
-          
-          // Play the video in the modal
-          setTimeout(() => {
-            modalVideoDisplay.play().catch(e => {
-              console.log('Video play error:', e);
-              // Show play button in modal if autoplay fails
-              modalVideoDisplay.controls = true;
-            });
-          }, 300);
-          
-          modal.style.display = 'block';
-          document.body.style.overflow = 'hidden';
-        });
-      });
-    };
-
-    // Initialize after DOM loads
-    document.addEventListener('DOMContentLoaded', () => {
-      // Existing initialization code...
-      
       // Generate thumbnails on iOS
       if (isIOS()) {
         generateVideoThumbnails();
