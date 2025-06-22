@@ -136,10 +136,17 @@
       object-fit: contain;
     }
     
+    @media (max-width: 768px) {
+      .logo-container {
+        max-width: 150px;
+        margin-left: 0; /* Changed from 5px to 0 for mobile alignment */
+      }
+    }
+    
     @media (max-width: 480px) {
       .logo-container {
         max-width: 150px;
-        margin-left: 5px;
+        margin-left: 0; /* Changed from 5px to 0 for mobile alignment */
       }
       
       .logo {
@@ -1237,26 +1244,34 @@ Z-Axis : 1000 MM">
     </div>
   </section>
 
-  <section id="gallery">
+  <section id="project">
     <h2>Projects</h2>
     <div class="carousel-wrapper">
       <div class="machine-title">Our Key Projects</div>
       <div class="carousel" id="galleryCarousel">
         <div class="media-container">
-          <img src="images/projects/office-1.jpg" alt="" data-info="">
+          <img src="images/projects/project-1.jpg" alt="" data-info="GRPF Assembly">
+        </div>
+
+        <div class="media-container">
+          <img src="images/projects/project-2.jpg" alt="" data-info="Headstock Assembly">
         </div>
         
         <div class="media-container">
-          <img src="images/projects/office-2.jpg" alt="" data-info="">
+          <img src="images/projects/project-3.jpg" alt="" data-info="">
         </div>
 
         <div class="media-container">
-          <img src="images/projects/office-3.jpg" alt="" data-info="">
+          <img src="images/projects/project-4.jpg" alt="" data-info="">
         </div>
 
-        <div class="media-container" data-type="video" data-info="Boring Operation">
+        <div class="media-container">
+          <img src="images/projects/project-5.jpg" alt="" data-info="">
+        </div>
+
+        <div class="media-container" data-type="video" data-info="Sugar Mill Assembly">
           <video playsinline muted preload="metadata">
-            <source src="images/projects/VID-20241126-WA0000.mp4" type="video/mp4">
+            <source src="images/projects/project-6.mp4" type="video/mp4">
           </video>
           <div class="video-play-icon">
             <i class="fas fa-play-circle"></i>
@@ -1279,21 +1294,20 @@ Z-Axis : 1000 MM">
         </div>
 
         <div class="person-card">
-          <h3>Mr. Kulkarni</h3>
+          <h3>Mr. A.D Kulkarni</h3>
           <p class="person-post">Director</p>
           <p class="person-experience">30+ years of experience</p>
         </div>
         
         <div class="person-card">
-          <h3>Mr. Prakash</h3>
+          <h3>Mr. Prakash Dadde</h3>
           <p class="person-post">Head of Finance & Accounting</p>
-          <p class="person-experience">20+ years of experience</p>
+          <p class="person-experience">25+ years of experience</p>
         </div>
 
         <div class="person-card">
           <h3>Mrs. Vijayalaxmi Jadhav</h3>
           <p class="person-post">Board Member</p>
-          <p class="person-experience">20+ years of experience</p>
         </div>
         
       </div>
@@ -1312,12 +1326,6 @@ Z-Axis : 1000 MM">
 
   <footer>
     <p>&copy; 2004-2025 Vrudhi Heavy Engineers Pvt. Ltd. | All Rights Reserved</p>
-    <div class="social-links">
-      <a href="#"><i class="fab fa-facebook-f"></i></a>
-      <a href="#"><i class="fab fa-linkedin-in"></i></a>
-      <a href="#"><i class="fab fa-instagram"></i></a>
-      <a href="#"><i class="fab fa-twitter"></i></a>
-    </div>
   </footer>
 
   <div id="imageModal">
