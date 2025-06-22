@@ -121,17 +121,22 @@
       }
     }
 
-    /* LOGO FIXES FOR MOBILE - FOCUS OF THIS FIX */
+    /* LOGO FIXES - MAIN FOCUS OF THIS UPDATE */
     .logo-container {
       display: flex;
       align-items: center;
       margin-left: 20px;
+      max-width: 200px;
+      height: 60px; /* Fixed height for container */
     }
 
     .logo {
-      height: 60px;
+      height: 100%; /* Use container height */
+      width: auto; /* Maintain aspect ratio */
+      max-height: 60px; /* Set maximum height */
       opacity: 0.85;
       transition: all 0.3s ease;
+      object-fit: contain; /* Ensure proper containment */
     }
 
     .logo:hover {
@@ -142,18 +147,24 @@
     @media (max-width: 768px) {
       .logo-container {
         max-width: 150px;
-        margin-left: 0; /* Changed to 0 for better left alignment */
-        padding-left: 10px; /* Added padding to prevent touching edge */
+        margin-left: 0;
+        padding-left: 10px;
+        height: 50px; /* Reduced height for mobile */
+      }
+      
+      .logo {
+        max-height: 50px; /* Reduced max height for mobile */
       }
     }
     
     @media (max-width: 480px) {
-      .logo {
-        height: 50px;
-      }
-
       .logo-container {
-        margin-left: 20px;
+        max-width: 130px;
+        height: 45px; /* Further reduced for small screens */
+      }
+      
+      .logo {
+        max-height: 45px; /* Further reduced for small screens */
       }
       
       header h1 {
@@ -161,7 +172,7 @@
       }
     }
 
-    /* NAVIGATION BAR ADJUSTMENTS FOR LOGO ALIGNMENT */
+    /* NAVIGATION BAR ADJUSTMENTS */
     nav {
       background: linear-gradient(135deg, #a8c0ff 0%, #3f8efc 100%);
       padding: 0.8rem 2rem;
@@ -176,7 +187,7 @@
 
     @media (max-width: 768px) {
       nav {
-        padding: 0.8rem 0.5rem; /* Reduced padding for mobile */
+        padding: 0.8rem 0.5rem;
       }
     }
 
@@ -796,17 +807,17 @@
 
     @media (max-width: 480px) {
       nav {
-        padding: 0.8rem 0.5rem; /* Reduced padding for better logo alignment */
+        padding: 0.8rem 0.5rem;
+      }
+      
+      .logo-container {
+        max-width: 130px;
+        height: 45px;
+        padding-left: 5px;
       }
       
       .logo {
-        height: 50px;
-      }
-
-      .logo-container {
-        max-width: 150px;
-        margin-left: 0;
-        padding-left: 10px; /* Added padding to prevent touching edge */
+        max-height: 45px;
       }
       
       header h1 {
@@ -952,7 +963,7 @@
   <nav>
     <div class="logo-container">
       <img src="images/logo.png" alt="Vrudhi Heavy Engineers Logo" class="logo" 
-           width="200" height="60" loading="eager">
+           loading="eager">
     </div>
     <div class="menu-toggle" id="menuToggle">
       <i class="fas fa-bars"></i>
@@ -1000,7 +1011,7 @@
   <section id="certification-iso">
     <h2>ISO 9001:2015 Certification</h2>
     <div id="certification-image-container">
-        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=500" alt="ISO 9001:2015 Certification" data-info="Official ISO 9001:2015 certification for our quality management systems.">
+        <img src="images/iso.jpg" alt="ISO 9001:2015 Certification" data-info="Official ISO 9001:2015 certification for our quality management systems.">
     </div>
     <div class="content-section">
       <p style="text-align: justify;">
@@ -1017,17 +1028,22 @@
       <div class="carousel" id="machineCarousel1">
         <!-- Images -->
         <div class="media-container">
-          <img src="https://images.unsplash.com/photo-1550009158-9ebf69173e03?w=350" alt="Machine Shop 1" data-info="Machine Shop 1">
+          <img src="images/unit-1/unit-1-1.jpg" alt="Machine Shop 1" data-info="Machine Shop 1">
         </div>
 
         <div class="media-container">
-          <img src="https://images.unsplash.com/photo-1611095567216-9d4e6b1e0b1d?w=350" alt="" data-info="WMW Union Horizontal Floor Boring Machine">
+          <img src="images/unit-1/unit-1-2.JPG" alt="" data-info="WMW Union Horizontal Floor Boring Machine 
+Spindle size : Ø 160
+Table size : 2000 x 6000 MM
+Longitudinal Travel : X-Axis - 7000 MM
+Vertical Travel : Y-Axis - 2500 MM
+Z-Axis : Head - 500 MM">
         </div>
         
         <!-- Videos -->
         <div class="media-container" data-type="video" data-info="Boring Operation">
           <video playsinline muted preload="metadata">
-            <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4" type="video/mp4">
+            <source src="images/unit-1/unit-1-3.mov" type="video/mp4">
           </video>
           <div class="video-play-icon">
             <i class="fas fa-play-circle"></i>
@@ -1035,16 +1051,23 @@
         </div>
 
         <div class="media-container">
-          <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=350" alt="" data-info="WMW Union Horizontal Floor Boring Machine">
+          <img src="images/unit-1/unit-1-4.JPG" alt="" data-info="WMW Union Horizontal Floor Boring Machine 
+Spindle size : Ø 160
+Table size : 3500 x 6000 MM
+Longitudinal Travel : X-Axis - 7000 MM
+Vertical Travel : Y-Axis - 3000 MM
+Z-Axis : Head - 500 MM
+              Spindle Travel - 1500 MM
+Rotary Table : 2500 x 3000 MM">
         </div>
 
         <div class="media-container">
-          <img src="https://images.unsplash.com/photo-1511376777868-611b54f68947?w=350" alt="" data-info="">
+          <img src="images/unit-1/unit-1-5.JPG" alt="" data-info="">
         </div>
 
         <div class="media-container" data-type="video" data-info="Milling Operation">
           <video playsinline muted preload="metadata">
-            <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4" type="video/mp4">
+            <source src="images/unit-1/unit-1-6.mov" type="video/mp4">
           </video>
           <div class="video-play-icon">
             <i class="fas fa-play-circle"></i>
@@ -1052,15 +1075,30 @@
         </div>
 
         <div class="media-container">
-          <img src="https://images.unsplash.com/photo-1518640467707-6811f4a6ab73?w=350" alt="" data-info="SKODA Horizontal Floor Boring Machine">
+          <img src="images/unit-1/unit-1-7.JPG" alt="" data-info="SKODA Horizontal Floor Boring Machine 
+Spindle size : Ø 160
+Table size : 3500 x 6000 MM
+Longitudinal Travel : X-Axis - 4000 MM
+Vertical Travel : Y-Axis - 2500 MM
+Z-Axis : Ram Travel - 1200 MM
+              Spindle Travel - 1200 MM
+Rotary Table : 2000 x 2000 MM">
         </div>
 
         <div class="media-container">
-          <img src="https://images.unsplash.com/photo-1597852074816-d933c7d2b988?w=350" alt="" data-info="SKODA Horizontal Floor Boring Machine">
+          <img src="images/unit-1/unit-1-8.JPG" alt="" data-info="SKODA Horizontal Floor Boring Machine 
+Spindle size : Ø 160
+Table size : 4000 x 6000 MM
+Longitudinal Travel : X-Axis - 5000 MM
+Vertical Travel : Y-Axis - 3250 MM
+Z-Axis : Ram Travel - 1200 MM
+              Spindle Travel - 1200 MM
+Rotary Table : 2000 x 2000 MM">
         </div>
 
         <div class="media-container">
-          <img src="https://images.unsplash.com/photo-1576671411191-8c6e1e0a0a0e?w=350" alt="" data-info="HMT Radial Drill Machine">
+          <img src="images/unit-1/unit-1-9.jpg" alt="" data-info="HMT Radial Drill Machine
+Model - RM65">
         </div>
         
       </div>
@@ -1070,24 +1108,28 @@
       <div class="machine-title">Unit 2</div>
       <div class="carousel" id="machineCarousel2">
         <div class="media-container">
-          <img src="https://images.unsplash.com/photo-1581093458791-8a1a5cbd71e9?w=350" alt="" data-info="Machine Shop 2">
+          <img src="images/unit-2/unit-2-1.JPG" alt="" data-info="Machine Shop 2">
         </div>
         
         <div class="media-container">
-          <img src="https://images.unsplash.com/photo-1538681105587-85640961bf8b?w=350" alt="" data-info="KOLB Radial Drill Machine">
+          <img src="images/unit-2/unit-2-2.jpg" alt="" data-info="KOLB Radial Drill Machine 
+100 MM Capacity ">
         </div>
 
         <div class="media-container">
-          <img src="https://images.unsplash.com/photo-1597852074816-d933c7d2b988?w=350" alt="" data-info="Mitsubishi Double Column VMC">
+          <img src="images/unit-2/unit-2-3.JPG" alt="" data-info="Mitsubishi Double Column VMC
+Table Travel - 3200 MM
+Between Column - 2000 MM
+Height - 1200 MM">
         </div>
 
         <div class="media-container">
-          <img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?w=350" alt="" data-info="">
+          <img src="images/unit-2/unit-2-4.jpg" alt="" data-info="">
         </div>
         
         <div class="media-container" data-type="video" data-info="Bore machining ">
           <video playsinline muted preload="metadata">
-            <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4" type="video/mp4">
+            <source src="images/unit-2/unit-2-5.mov" type="video/mp4">
           </video>
           <div class="video-play-icon">
             <i class="fas fa-play-circle"></i>
@@ -1095,19 +1137,27 @@
         </div>
 
         <div class="media-container">
-          <img src="https://images.unsplash.com/photo-1511376777868-611b54f68947?w=350" alt="" data-info="TOSS Double Column VTL">
+          <img src="images/unit-2/unit-2-6.jpg" alt="" data-info="TOSS Double Column VTL
+Swing - 4000 MM
+Height - 2500 MM">
         </div>
 
         <div class="media-container">
-          <img src="https://images.unsplash.com/photo-1518640467707-6811f4a6ab73?w=350" alt="" data-info="">
+          <img src="images/unit-2/unit-2-7.jpg" alt="" data-info="">
         </div>
 
         <div class="media-container">
-          <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=350" alt="" data-info="SKODA Horizontal Floor Boring Machine">
+          <img src="images/unit-2/unit-2-8.jpg" alt="" data-info="SKODA Horizontal Floor Boring Machine 
+Spindle size : Ø 160
+Longitudinal Travel : X-Axis - 6000 MM
+Vertical Travel : Y-Axis - 2500 MM
+Z-Axis : Ram Travel - 1200 MM
+              Spindle Travel - 1200 MM
+Rotary Table : 2500 x 3000 MM">
         </div>
 
         <div class="media-container">
-          <img src="https://images.unsplash.com/photo-1550009158-9ebf69173e03?w=350" alt="" data-info="">
+          <img src="images/unit-2/unit-2-9.jpg" alt="" data-info="">
         </div>
 
       </div>
@@ -1117,25 +1167,32 @@
       <div class="machine-title">Unit 3</div>
       <div class="carousel" id="machineCarousel3">
         <div class="media-container">
-          <img src="https://images.unsplash.com/photo-1538681105587-85640961bf8b?w=350" alt="" data-info="Machine Shop 3">
+          <img src="images/unit-3/unit-3-1.JPG" alt="" data-info="Machine Shop 3">
         </div>
         
         <div class="media-container">
-          <img src="https://images.unsplash.com/photo-1581093458791-8a1a5cbd71e9?w=350" alt="" data-info="Cooper VTL">
+          <img src="images/unit-3/unit-3-2.jpg" alt="" data-info="Cooper VTL
+Swing - 1600 MM
+Height - 1200 MM">
         </div>
 
         <div class="media-container" data-type="video" data-info="Job ID Machining">
           <video playsinline muted preload="metadata">
-            <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4" type="video/mp4">
+            <source src="images/unit-3/unit-3-3.mp4" type="video/mp4">
           </video>
           <div class="video-play-icon">
             <i class="fas fa-play-circle"></i>
           </div>
         </div>
 
-        <div class="media-container" data-type="video" data-info="TOSS Horizontal Boring Machine">
+        <div class="media-container" data-type="video" data-info="TOSS Horizontal Boring Machine 
+Spindle Size : Ø 100
+Table Size : 100 x 600 MM
+Longitudinal Travel : X-Axis - 1250 MM
+Vertical Travel : Y-Axis - 1100 MM
+Z-Axis : 1200 MM">
           <video playsinline muted preload="metadata">
-            <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4" type="video/mp4">
+            <source src="images/unit-3/unit-3-4.MP4" type="video/mp4">
           </video>
           <div class="video-play-icon">
             <i class="fas fa-play-circle"></i>
@@ -1143,16 +1200,19 @@
         </div>
 
         <div class="media-container">
-          <img src="https://images.unsplash.com/photo-1576671411191-8c6e1e0a0a0e?w=350" alt="" data-info="Plano Miller Machine">
+          <img src="images/unit-3/unit-3-5.JPG" alt="" data-info="Plano Miller Machine
+Table Travel : 2500 MM
+Between Column : 1100 MM
+Y-Axis : 800 MM">
         </div>
 
         <div class="media-container">
-          <img src="https://images.unsplash.com/photo-1611095567216-9d4e6b1e0b1d?w=350" alt="" data-info="">
+          <img src="images/unit-3/unit-3-6.jpg" alt="" data-info="">
         </div>
 
         <div class="media-container" data-type="video" data-info="Milling Operation ">
           <video playsinline muted preload="metadata">
-            <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4" type="video/mp4">
+            <source src="images/unit-3/unit-3-7.MP4" type="video/mp4">
           </video>
           <div class="video-play-icon">
             <i class="fas fa-play-circle"></i>
@@ -1160,16 +1220,20 @@
         </div>
 
         <div class="media-container">
-          <img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?w=350" alt="" data-info="Horizontal Boring Machine">
+          <img src="images/unit-3/unit-3-8.JPG" alt="" data-info="Horizontal Boring Machine 
+Spindle Size : Ø 80
+Longitudinal Travel : X-Axis - 800 MM
+Vertical Travel : Y-Axis - 900 MM
+Z-Axis : 1000 MM">
         </div>
 
         <div class="media-container">
-          <img src="https://images.unsplash.com/photo-1511376777868-611b54f68947?w=350" alt="" data-info="">
+          <img src="images/unit-3/unit-3-9.jpg" alt="" data-info="">
         </div>
 
         <div class="media-container" data-type="video" data-info="Boring Operation">
           <video playsinline muted preload="metadata">
-            <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4" type="video/mp4">
+            <source src="images/unit-3/unit-3-10.MP4" type="video/mp4">
           </video>
           <div class="video-play-icon">
             <i class="fas fa-play-circle"></i>
@@ -1186,15 +1250,15 @@
       <div class="machine-title">Office Showcase</div>
       <div class="carousel" id="productCarousel">
         <div class="media-container">
-          <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=350" alt="" data-info="">
+          <img src="images/office/office-1.JPG" alt="" data-info="">
         </div>
         
         <div class="media-container">
-          <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=350" alt="" data-info="">
+          <img src="images/office/office-2.JPG" alt="" data-info="">
         </div>
 
         <div class="media-container">
-          <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=350" alt="" data-info="">
+          <img src="images/office/office-3.JPG" alt="" data-info="">
         </div>
         
       </div>
@@ -1207,28 +1271,28 @@
       <div class="machine-title">Our Key Projects</div>
       <div class="carousel" id="galleryCarousel">
         <div class="media-container">
-          <img src="https://images.unsplash.com/photo-1538681105587-85640961bf8b?w=350" alt="" data-info="GRPF Assembly">
+          <img src="images/projects/project-1.jpg" alt="" data-info="GRPF Assembly">
         </div>
 
         <div class="media-container">
-          <img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?w=350" alt="" data-info="Headstock Assembly">
+          <img src="images/projects/project-2.jpg" alt="" data-info="Headstock Assembly">
         </div>
         
         <div class="media-container">
-          <img src="https://images.unsplash.com/photo-1597852074816-d933c7d2b988?w=350" alt="" data-info="">
+          <img src="images/projects/project-3.jpg" alt="" data-info="">
         </div>
 
         <div class="media-container">
-          <img src="https://images.unsplash.com/photo-1511376777868-611b54f68947?w=350" alt="" data-info="">
+          <img src="images/projects/project-4.jpg" alt="" data-info="">
         </div>
 
         <div class="media-container">
-          <img src="https://images.unsplash.com/photo-1518640467707-6811f4a6ab73?w=350" alt="" data-info="">
+          <img src="images/projects/project-5.jpg" alt="" data-info="">
         </div>
 
         <div class="media-container" data-type="video" data-info="Sugar Mill Assembly">
           <video playsinline muted preload="metadata">
-            <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4" type="video/mp4">
+            <source src="images/projects/project-6.mp4" type="video/mp4">
           </video>
           <div class="video-play-icon">
             <i class="fas fa-play-circle"></i>
