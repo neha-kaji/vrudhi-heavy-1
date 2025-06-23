@@ -708,13 +708,25 @@
         left: 0;
       }
       
+      /* HEADER ADJUSTMENTS FOR MOBILE */
       header {
-        padding: 5rem 1.5rem 2rem;
+        padding: 4rem 1.5rem 1.5rem; /* Reduced top padding */
+        min-height: 55vh; /* Reduced min-height */
+        justify-content: flex-start; /* Align content to top */
+        padding-top: 25%; /* Percentage-based top padding */
       }
       
       header h1 {
         font-size: 2.3rem;
         padding: 0.8rem 1.5rem;
+        margin-top: 1rem; /* Added top margin */
+        margin-bottom: 0.5rem; /* Reduced bottom margin */
+      }
+      
+      header p {
+        font-size: 1.1rem;
+        padding: 0.6rem 1.2rem;
+        margin-top: 0.5rem; /* Reduced top margin */
       }
       
       section {
@@ -820,8 +832,22 @@
         max-height: 45px;
       }
       
+      /* Further adjustments for very small screens */
+      header {
+        padding-top: 20%; /* Higher percentage for smaller screens */
+        min-height: 50vh; /* Smaller min-height */
+      }
+      
       header h1 {
-        font-size: 2rem;
+        font-size: 1.8rem; /* Slightly smaller font */
+        padding: 0.7rem 1.2rem; /* Reduced padding */
+        margin-top: 0.5rem; /* Reduced top margin */
+      }
+      
+      header p {
+        font-size: 1rem; /* Smaller font */
+        padding: 0.5rem 1rem; /* Reduced padding */
+        margin-top: 0.5rem; /* Reduced top margin */
       }
       
       /* Additional mobile-specific modal adjustments */
@@ -1244,7 +1270,7 @@ Z-Axis : 1000 MM">
     </div>
   </section>
 
-  <section id="products">
+  <section id="office">
     <h2>Office</h2>
     <div class="carousel-wrapper">
       <div class="machine-title">Office Showcase</div>
@@ -1275,11 +1301,11 @@ Z-Axis : 1000 MM">
         </div>
 
         <div class="media-container">
-          <img src="images/projects/project-2.jpg" alt="" data-info="Headstock Assembly">
+          <img src="images/projects/project-2.jpg" alt="" data-info="">
         </div>
         
         <div class="media-container">
-          <img src="images/projects/project-3.jpg" alt="" data-info="">
+          <img src="images/projects/project-3.jpg" alt="" data-info="Headstock Assembly">
         </div>
 
         <div class="media-container">
