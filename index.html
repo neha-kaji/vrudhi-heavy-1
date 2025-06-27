@@ -236,7 +236,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: url('images/header-background.jpg') center/cover no-repeat;
+      background: url('images/header-back.jpg') center/cover no-repeat;
       z-index: -2;
     }
 
@@ -981,6 +981,90 @@
       z-index: 1000;
       transition: width 0.4s ease;
     }
+
+    /* New styles for job work section */
+    #job-work .job-categories {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    
+    .job-card {
+      background: white;
+      border-radius: 10px;
+      padding: 1.8rem;
+      box-shadow: 0 5px 20px rgba(63, 142, 252, 0.15);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      border-left: 4px solid #3f51b5;
+    }
+    
+    .job-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(63, 142, 252, 0.25);
+    }
+    
+    .job-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(63, 81, 181, 0.05) 0%, rgba(168, 184, 255, 0.05) 100%);
+      z-index: 0;
+    }
+    
+    .job-card h3 {
+      color: #3f51b5;
+      margin-bottom: 1rem;
+      font-size: 1.4rem;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .job-card ul {
+      list-style: none;
+      padding-left: 0;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .job-card li {
+      padding: 0.5rem 0;
+      display: flex;
+      align-items: flex-start;
+    }
+    
+    .job-card li::before {
+      content: "•";
+      color: #3f51b5;
+      font-weight: bold;
+      font-size: 1.4rem;
+      margin-right: 10px;
+      line-height: 1;
+    }
+    
+    .job-card .job-icon {
+      position: absolute;
+      right: 1rem;
+      top: 1rem;
+      font-size: 2.5rem;
+      color: rgba(63, 81, 181, 0.1);
+      z-index: 0;
+    }
+    
+    @media (max-width: 768px) {
+      .job-card {
+        padding: 1.5rem;
+      }
+      
+      .job-card h3 {
+        font-size: 1.3rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1033,6 +1117,24 @@
       </p>
     </div>
   </section>
+
+   <section id="job-work">
+    <h2>Range of Job Work</h2>
+    <div class="content-section">      
+      <div class="job-categories">
+        <div class="job-card">
+          <i class="fas fa-cogs job-icon"></i>
+          <ul>
+            <li>Sugar Mill Headstock Machining & Assembly. Size - 18 x 36 to 50 x 100</li>
+            <li>Sugar Mill GRPF & TRPF Headstock Machining & Assembly</li>
+            <li>Sugar Mill GRPF & TRPF Headstock Machining & Assembly</li>
+            <li>SPM Heavy Job Work upto 20 Tonns</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
 
   <section id="certification-iso">
     <h2>ISO 9001:2015 Certification</h2>
