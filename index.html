@@ -1032,22 +1032,25 @@
       z-index: 1;
     }
     
+    /* ===== BULLET POINT FIX ===== */
     .job-card li {
       padding: 0.5rem 0;
       display: flex;
       align-items: flex-start;
       position: relative;
+      padding-left: 1.5rem;
     }
     
     .job-card li::before {
       content: "•";
       color: #3f51b5;
-      font-weight: 900; /* Make bullet dots bolder */
-      font-size: 1.6rem; /* Slightly larger */
-      margin-right: 10px;
+      font-weight: 900;
+      font-size: 1.8rem;
+      position: absolute;
+      left: 0;
+      top: 0.5rem; /* Adjusted to center with first line */
       line-height: 1;
-      position: relative;
-      top: -1px; /* Fine-tune vertical alignment */
+      transform: none;
     }
     
     .job-card .job-icon {
@@ -1068,8 +1071,13 @@
         font-size: 1.3rem;
       }
       
+      .job-card li {
+        padding-left: 1.5rem;
+      }
+      
       .job-card li::before {
-        font-size: 1.4rem;
+        font-size: 1.6rem;
+        top: 0.4rem; /* Adjusted for mobile */
       }
     }
 
@@ -1093,17 +1101,6 @@
       #job-work h2 {
         margin-bottom: 1rem;
       }
-    }
-    
-    /* FIXED BULLET ALIGNMENT */
-    .job-card li {
-      align-items: center; /* Vertically center align content */
-    }
-    
-    .job-card li::before {
-      top: 0; /* Reset vertical positioning */
-      align-self: flex-start; /* Align bullet to top of line */
-      margin-top: 0.15rem; /* Fine-tune vertical position */
     }
   </style>
 </head>
