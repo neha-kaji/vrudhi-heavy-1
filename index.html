@@ -987,7 +987,6 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 1.5rem;
-      /* Reduced top margin */
       margin-top: 0.5rem;
     }
     
@@ -1037,15 +1036,18 @@
       padding: 0.5rem 0;
       display: flex;
       align-items: flex-start;
+      position: relative;
     }
     
     .job-card li::before {
       content: "•";
       color: #3f51b5;
-      font-weight: bold;
-      font-size: 1.4rem;
+      font-weight: 900; /* Make bullet dots bolder */
+      font-size: 1.6rem; /* Slightly larger */
       margin-right: 10px;
       line-height: 1;
+      position: relative;
+      top: -1px; /* Fine-tune vertical alignment */
     }
     
     .job-card .job-icon {
@@ -1064,6 +1066,10 @@
       
       .job-card h3 {
         font-size: 1.3rem;
+      }
+      
+      .job-card li::before {
+        font-size: 1.4rem;
       }
     }
 
@@ -1087,6 +1093,17 @@
       #job-work h2 {
         margin-bottom: 1rem;
       }
+    }
+    
+    /* FIXED BULLET ALIGNMENT */
+    .job-card li {
+      align-items: center; /* Vertically center align content */
+    }
+    
+    .job-card li::before {
+      top: 0; /* Reset vertical positioning */
+      align-self: flex-start; /* Align bullet to top of line */
+      margin-top: 0.15rem; /* Fine-tune vertical position */
     }
   </style>
 </head>
