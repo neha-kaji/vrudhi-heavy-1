@@ -530,8 +530,13 @@
       margin-top: 1rem;
     }
 
+    /* ===== CONTACT ICON SPACING FIX ===== */
     .contact-info p {
       margin: 0.5rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px; /* Space between icon and text */
     }
 
     .social-links {
@@ -1077,7 +1082,7 @@
       
       .job-card li::before {
         font-size: 1.6rem;
-        top: 0.4rem; /* Adjusted for mobile */
+        top: 0.3rem; /* Better alignment for mobile */
       }
     }
 
