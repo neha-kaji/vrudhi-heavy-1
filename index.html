@@ -987,7 +987,8 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 1.5rem;
-      margin-top: 2rem;
+      /* Reduced top margin */
+      margin-top: 0.5rem;
     }
     
     .job-card {
@@ -1063,6 +1064,28 @@
       
       .job-card h3 {
         font-size: 1.3rem;
+      }
+    }
+
+    /* ================== NEW CHANGES ================== */
+    /* Reduced space between title and job card */
+    #job-work h2 {
+      margin-bottom: 1rem; /* Reduced from 2rem */
+    }
+    
+    #job-work .content-section {
+      padding-top: 0.5rem; /* Reduced top padding */
+      padding-bottom: 1rem; /* Reduced bottom padding */
+    }
+    
+    @media (max-width: 768px) {
+      #job-work .content-section {
+        padding-top: 0.25rem;
+        padding-bottom: 0.75rem;
+      }
+      
+      #job-work h2 {
+        margin-bottom: 0.75rem;
       }
     }
   </style>
