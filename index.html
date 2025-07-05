@@ -1,1107 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Vrudhi Heavy Engineers</title>
   
-  <!-- Optimized font loading -->
+  <!-- Preload critical resources -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
-  
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <style>
-    /* RESET & BASE STYLES */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: 'Roboto', sans-serif;
-      background: linear-gradient(135deg, #e6f0fa 0%, #d4e4fa 100%);
-      color: #000;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    /* MODAL FIXES FOR PORTRAIT/LANDSCAPE IMAGES */
-    #imageModal .modal-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      padding: 15px 10px;
-      position: relative;
-    }
-    
-    .modal-media-container {
-      max-height: 65vh;
-      overflow: auto;
-      margin-bottom: 15px;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      width: 100%;
-    }
-    
-    #modalImageDisplay {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-    }
-    
-    /* Position close button absolutely relative to modal */
-    #imageModal .close-btn {
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      z-index: 300;
-      color: white;
-      background: rgba(0,0,0,0.5);
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 30px;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-    }
-    
-    #imageModal .close-btn:hover {
-      background: rgba(200,0,0,0.7);
-    }
-
-    /* REFINED PERSON CARD STYLING */
-    .person-card {
-      position: relative;
-      border-top: 2px solid #90caf9; /* Lighter, thinner border */
-      box-shadow: 0 5px 15px rgba(63, 142, 252, 0.2);
-      background: linear-gradient(to bottom, #ffffff 0%, #f0f7ff 100%);
-    }
-    
-    .person-card::before {
-      content: "";
-      position: absolute;
-      top: -2px; /* Adjusted to match new border thickness */
-      left: 50%;
-      transform: translateX(-50%);
-      width: 50px;
-      height: 2px;
-      background: #3f51b5;
-      border-radius: 1px;
-      transition: width 0.3s ease;
-    }
-    
-    .person-card:hover::before {
-      width: 100%;
-    }
-
-    /* Mobile optimizations for modal */
-    @media (max-width: 768px) {
-      #imageModal .modal-content {
-        padding: 10px 5px;
-      }
-      
-      .modal-media-container {
-        max-height: 55vh;
-      }
-      
-      #imageModal .close-btn {
-        top: 10px;
-        right: 10px;
-        width: 35px;
-        height: 35px;
-        font-size: 25px;
-      }
-    }
-
-    /* LOGO FIXES - MAIN FOCUS OF THIS UPDATE */
-    .logo-container {
-      display: flex;
-      align-items: center;
-      margin-left: 20px;
-      max-width: 200px;
-      height: 60px; /* Fixed height for container */
-    }
-
-    .logo {
-      height: 100%; /* Use container height */
-      width: auto; /* Maintain aspect ratio */
-      max-height: 60px; /* Set maximum height */
-      opacity: 0.85;
-      transition: all 0.3s ease;
-      object-fit: contain; /* Ensure proper containment */
-    }
-
-    .logo:hover {
-      opacity: 1;
-      transform: scale(1.05);
-    }
-    
-    @media (max-width: 768px) {
-      .logo-container {
-        max-width: 150px;
-        margin-left: 0;
-        padding-left: 10px;
-        height: 50px; /* Reduced height for mobile */
-      }
-      
-      .logo {
-        max-height: 50px; /* Reduced max height for mobile */
-      }
-    }
-    
-    @media (max-width: 480px) {
-      .logo-container {
-        max-width: 130px;
-        height: 45px; /* Further reduced for small screens */
-      }
-      
-      .logo {
-        max-height: 45px; /* Further reduced for small screens */
-      }
-      
-      header h1 {
-        font-size: 2rem;
-      }
-    }
-
-    /* NAVIGATION BAR ADJUSTMENTS */
-    nav {
-      background: linear-gradient(135deg, #a8c0ff 0%, #3f8efc 100%);
-      padding: 0.8rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 4px 15px rgba(63, 142, 252, 0.4);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    @media (max-width: 768px) {
-      nav {
-        padding: 0.8rem 0.5rem;
-      }
-    }
-
-    nav ul {
-      display: flex;
-      gap: 1.8rem;
-      list-style: none;
-    }
-
-    nav ul li a {
-      color: #e0e7ff;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 1rem;
-      transition: color 0.3s ease;
-      cursor: pointer;
-      padding: 0.5rem 0.8rem;
-      border-radius: 5px;
-    }
-
-    nav ul li a:hover {
-      color: #ffd369;
-      text-shadow: 0 0 5px #ffd369;
-      background: rgba(255, 255, 255, 0.1);
-    }
-
-    header {
-      padding: 6rem 2rem 3rem 2rem;
-      text-align: center;
-      animation: fadeInDown 1s ease forwards;
-      opacity: 0;
-      color: #000;
-      position: relative;
-      overflow: hidden;
-      min-height: 70vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-
-    /* Background image with overlay */
-    .header-background {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('images/header-back.jpg') center/cover no-repeat;
-      z-index: -2;
-    }
-
-    .header-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, rgba(195, 204, 248, 0.39) 0%, rgba(168, 184, 255, 0.8) 100%); 
-      z-index: -1;
-    }
-
-    header h1 {
-      font-size: 3.5rem;
-      color: white;
-      margin-bottom: 0.5rem;
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-      position: relative;
-      z-index: 2;
-      background: rgba(40, 53, 147, 0.7);
-      padding: 1rem 2rem;
-      border-radius: 10px;
-      max-width: 80%;
-      margin: 0 auto;
-      backdrop-filter: blur(5px);
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
-    }
-
-    header p {
-      font-size: 1.3rem;
-      color: white;
-      font-weight: 500;
-      letter-spacing: 1px;
-      max-width: 800px;
-      margin: 1.5rem auto 0;
-      position: relative;
-      z-index: 2;
-      background: rgba(63, 81, 181, 0.7);
-      padding: 0.8rem 1.5rem;
-      border-radius: 8px;
-      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-    }
-
-    section {
-      padding: 4rem 2rem;
-      background-color: #f4f8ff;
-      border-radius: 12px;
-      margin: 2rem auto;
-      max-width: 1200px;
-      box-shadow: 0 10px 30px rgba(63, 142, 252, 0.1);
-      opacity: 0;
-      transform: translateY(50px);
-      animation: fadeInUp 1s ease forwards;
-      animation-delay: 0.3s;
-      color: #000;
-      position: relative;
-      overflow: hidden;
-    }
-
-    section::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80"><rect width="80" height="80" fill="none" stroke="%233f8efc" stroke-width="1" stroke-opacity="0.05" stroke-dasharray="4,4"/></svg>') center/cover;
-      z-index: 0;
-    }
-
-    h2 {
-      text-align: center;
-      color: #3f51b5;
-      margin-bottom: 2rem;
-      font-size: 2rem;
-      font-weight: 700;
-      position: relative;
-      z-index: 1;
-    }
-
-    .content-section {
-      max-width: 900px;
-      margin: 0 auto;
-      font-size: 1.1rem;
-      color: #000;
-      padding: 2rem 0;
-      line-height: 1.8;
-      position: relative;
-      z-index: 1;
-    }
-
-    .content-section p {
-      margin-bottom: 1.5rem;
-    }
-
-    .carousel-wrapper {
-      margin-bottom: 3rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    .machine-title {
-      text-align: center;
-      font-size: 1.5rem;
-      margin: 1rem 0;
-      color: #283593;
-      font-weight: 600;
-      position: relative;
-    }
-
-    .carousel {
-      display: flex;
-      overflow-x: auto;
-      gap: 1rem;
-      padding-bottom: 1rem;
-      scroll-behavior: smooth;
-      scrollbar-width: thin;
-      scrollbar-color: #90caf9 transparent;
-    }
-    
-    .carousel::-webkit-scrollbar {
-      height: 8px;
-    }
-    
-    .carousel::-webkit-scrollbar-thumb {
-      background-color: #90caf9;
-      border-radius: 10px;
-    }
-    
-    .carousel::-webkit-scrollbar-track {
-      background: transparent;
-    }
-
-    .media-container {
-      width: 350px;
-      height: 250px;
-      border-radius: 10px;
-      flex-shrink: 0;
-      box-shadow: 0 4px 15px rgba(63, 142, 252, 0.4);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: pointer;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .media-container:hover {
-      transform: scale(1.05);
-      box-shadow: 0 8px 25px rgba(63, 142, 252, 0.8);
-    }
-
-    .media-container img,
-    .media-container video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .video-play-icon {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: white;
-      font-size: 3rem;
-      text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-      opacity: 0.8;
-      transition: opacity 0.3s ease;
-      pointer-events: none;
-    }
-    .media-container:hover .video-play-icon {
-      opacity: 1;
-      text-shadow: 0 0 15px rgba(255, 211, 105, 0.7);
-    }
-
-    /* Styling for the single certification image */
-    #certification-image-container {
-        text-align: center;
-        margin-bottom: 2rem;
-        position: relative;
-        z-index: 1;
-    }
-
-    #certification-image-container img {
-        width: clamp(250px, 70%, 500px);
-        height: auto;
-        object-fit: contain;
-        border-radius: 10px;
-        box-shadow: 0 8px 25px rgba(63, 142, 252, 0.5);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        cursor: pointer;
-    }
-
-    #certification-image-container img:hover {
-        transform: scale(1.03);
-        box-shadow: 0 12px 30px rgba(63, 142, 252, 0.8);
-    }
-
-    /* Styling for BOD carousel and individual cards */
-    .person-card {
-        flex-shrink: 0;
-        width: 280px;
-        padding: 1.5rem;
-        background-color: #f4f8ff;
-        border-radius: 12px;
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        cursor: pointer;
-        position: relative;
-        z-index: 1;
-    }
-
-    .person-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 8px 25px rgba(63, 142, 252, 0.15);
-    }
-
-    .person-image-container {
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
-        overflow: hidden;
-        margin-bottom: 1rem;
-        border: 2px solid #90caf9; /* Thinner border */
-        box-shadow: 0 3px 10px rgba(75, 77, 170, 0.1);
-    }
-
-    .person-image-container img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
-        transition: transform 0.3s ease;
-    }
-
-    .person-image-container img:hover {
-      transform: scale(1.05);
-    }
-
-    .person-card h3 {
-        font-size: 1.5rem;
-        color: #3f51b5;
-        margin-bottom: 0.5rem;
-        font-weight: 700;
-    }
-
-    .person-card .person-post {
-        font-size: 1rem;
-        color: #283593;
-        margin-bottom: 0.3rem;
-        font-weight: 500;
-    }
-
-    .person-card .person-experience {
-        font-size: 0.9rem;
-        color: #283593;
-        font-style: italic;
-    }
-
-    footer {
-      background: #a8c0ff;
-      color: #fff;
-      text-align: center;
-      padding: 2rem;
-      margin-top: 3rem;
-      font-weight: 600;
-      letter-spacing: 1px;
-      box-shadow: inset 0 0 30px #3f8efc;
-      position: relative;
-    }
-
-    footer::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, rgba(168, 192, 255, 0.4) 0%, rgba(63, 142, 252, 0.4) 100%);
-      z-index: 0;
-    }
-
-    .contact-info {
-      position: relative;
-      z-index: 1;
-      margin-top: 1rem;
-    }
-
-    /* ===== CONTACT ICON SPACING FIX ===== */
-    .contact-info p {
-      margin: 0.5rem 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px; /* Space between icon and text */
-    }
-
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-top: 1rem;
-    }
-
-    .social-links a {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 40px;
-      height: 40px;
-      background: #3f51b5;
-      color: white;
-      border-radius: 50%;
-      transition: all 0.3s ease;
-    }
-
-    .social-links a:hover {
-      background: #283593;
-      transform: translateY(-3px);
-    }
-
-    /* Animations */
-    @keyframes fadeInDown {
-      from {
-        opacity: 0;
-        transform: translateY(-30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(50px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes float {
-      0% {
-        transform: translateY(0px);
-      }
-      50% {
-        transform: translateY(-10px);
-      }
-      100% {
-        transform: translateY(0px);
-      }
-    }
-
-    /* Modal styles - Centered without border */
-    #imageModal {
-      display: none;
-      position: fixed;
-      z-index: 200;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.8);
-      animation: fadeInModal 0.3s ease forwards;
-    }
-
-    @keyframes fadeInModal {
-      from {opacity: 0;}
-      to {opacity: 1;}
-    }
-
-    #imageModal .modal-content {
-      background-color: #f4f8ff;
-      margin: 5vh auto;
-      padding: 30px;
-      border-radius: 12px;
-      max-width: 90%;
-      width: 90%;
-      max-width: 800px;
-      box-shadow: 0 8px 25px rgba(63, 142, 252, 0.7);
-      text-align: center;
-      position: relative;
-      color: #000;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 80vh;
-      justify-content: center;
-    }
-
-    #modalImageDisplay {
-      max-width: 100%;
-      max-height: 60vh;
-      border-radius: 10px;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 4px 15px rgba(63, 142, 252, 0.6);
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
-    
-    #modalVideoDisplay {
-      max-width: 100%;
-      max-height: 60vh;
-      border-radius: 10px;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 4px 15px rgba(63, 142, 252, 0.6);
-      display: none;
-      margin: 0 auto;
-    }
-
-    #imageModal .modal-info {
-      font-size: 1.1rem;
-      color: #283593;
-      padding: 10px 20px;
-      text-align: center;
-      white-space: pre-line;
-      line-height: 1.6;
-      max-height: 200px;
-      overflow-y: auto;
-      margin-top: 15px;
-      width: 100%;
-      font-weight: 500;
-    }
-
-    /* Mobile Navigation */
-    .menu-toggle {
-      display: none;
-      cursor: pointer;
-      color: white;
-      font-size: 1.8rem;
-      z-index: 10;
-    }
-
-    /* Responsive styles - Updated for better modal display on mobile */
-    @media (max-width: 992px) {
-      header h1 {
-        font-size: 2.8rem;
-      }
-      header p {
-        font-size: 1.1rem;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .menu-toggle {
-        display: block;
-      }
-      
-      nav ul {
-        position: fixed;
-        top: 70px;
-        left: -100%;
-        width: 100%;
-        height: calc(100vh - 70px);
-        background: linear-gradient(135deg, #a8c0ff 0%, #3f8efc 100%);
-        flex-direction: column;
-        align-items: center;
-        padding-top: 2rem;
-        transition: 0.5s;
-        gap: 2rem;
-      }
-      
-      nav ul.active {
-        left: 0;
-      }
-      
-      /* HEADER ADJUSTMENTS FOR MOBILE */
-      header {
-        padding: 4rem 1.5rem 1.5rem; /* Reduced top padding */
-        min-height: 55vh; /* Reduced min-height */
-        justify-content: flex-start; /* Align content to top */
-        padding-top: 25%; /* Percentage-based top padding */
-      }
-      
-      header h1 {
-        font-size: 2.3rem;
-        padding: 0.8rem 1.5rem;
-        margin-top: 1rem; /* Added top margin */
-        margin-bottom: 0.5rem; /* Reduced bottom margin */
-      }
-      
-      header p {
-        font-size: 1.1rem;
-        padding: 0.6rem 1.2rem;
-        margin-top: 0.5rem; /* Reduced top margin */
-      }
-      
-      section {
-        padding: 3rem 1.5rem;
-        margin: 1.5rem auto;
-      }
-      
-      h2 {
-        font-size: 1.8rem;
-      }
-      
-      .media-container {
-        width: 280px;
-        height: 200px;
-      }
-      
-      .machine-title {
-        font-size: 1.3rem;
-      }
-      
-      footer {
-        padding: 1.5rem;
-      }
-      
-      .content-section {
-        font-size: 1rem;
-        padding: 1.5rem 0;
-      }
-
-      #certification-image-container img {
-          width: 90%;
-      }
-      
-      .person-card {
-        width: 240px;
-        padding: 1rem;
-      }
-      
-      .person-image-container {
-        width: 120px;
-        height: 120px;
-      }
-      
-      .person-card h3 {
-        font-size: 1.3rem;
-      }
-      
-      .person-card .person-post, 
-      .person-card .person-experience {
-        font-size: 0.9rem;
-      }
-
-      /* IMPORTANT: Enhanced mobile modal styles */
-      #imageModal .modal-content {
-        padding: 15px;
-        width: 95%;
-        min-height: auto;
-        max-height: 95vh;
-        overflow-y: auto;
-        justify-content: flex-start;
-      }
-      
-      .modal-media-container {
-        height: auto;
-        max-height: 50vh;
-        margin-bottom: 15px;
-      }
-      
-      #modalImageDisplay,
-      #modalVideoDisplay {
-        max-height: 50vh;
-        max-width: 100%;
-      }
-      
-      #imageModal .modal-info {
-        font-size: 1rem;
-        padding: 8px 15px;
-        max-height: 30vh;
-        overflow-y: auto;
-      }
-      
-      #imageModal .close-btn {
-        position: absolute;
-        top: 5px;
-        right: 10px;
-        font-size: 30px;
-        background: rgba(0,0,0,0.7);
-      }
-    }
-
-    @media (max-width: 480px) {
-      nav {
-        padding: 0.8rem 0.5rem;
-      }
-      
-      .logo-container {
-        max-width: 130px;
-        height: 45px;
-        padding-left: 5px;
-      }
-      
-      .logo {
-        max-height: 45px;
-      }
-      
-      /* Further adjustments for very small screens */
-      header {
-        padding-top: 20%; /* Higher percentage for smaller screens */
-        min-height: 50vh; /* Smaller min-height */
-      }
-      
-      header h1 {
-        font-size: 1.8rem; /* Slightly smaller font */
-        padding: 0.7rem 1.2rem; /* Reduced padding */
-        margin-top: 0.5rem; /* Reduced top margin */
-      }
-      
-      header p {
-        font-size: 1rem; /* Smaller font */
-        padding: 0.5rem 1rem; /* Reduced padding */
-        margin-top: 0.5rem; /* Reduced top margin */
-      }
-      
-      /* Additional mobile-specific modal adjustments */
-      #imageModal .modal-content {
-        padding: 10px;
-        width: 98%;
-      }
-      
-      .modal-media-container {
-        max-height: 45vh;
-      }
-      
-      #modalImageDisplay,
-      #modalVideoDisplay {
-        max-height: 45vh;
-      }
-      
-      #imageModal .modal-info {
-        font-size: 0.95rem;
-        padding: 6px 10px;
-      }
-    }
-
-    /* New styles for video thumbnails */
-    .video-thumbnail-container {
-      position: relative;
-      width: 100%;
-      height: 100%;
-    }
-    
-    .video-thumbnail {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: 1;
-    }
-    
-    .video-thumbnail.hidden {
-      display: none;
-    }
-    
-    /* Loading spinner for video generation */
-    .thumbnail-loader {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 40px;
-      height: 40px;
-      border: 4px solid rgba(255, 255, 255, 0.3);
-      border-radius: 50%;
-      border-top: 4px solid #3f51b5;
-      animation: spin 1s linear infinite;
-      z-index: 2;
-      display: none;
-    }
-    
-    @keyframes spin {
-      0% { transform: translate(-50%, -50%) rotate(0deg); }
-      100% { transform: translate(-50%, -50%) rotate(360deg); }
-    }
-    
-    /* iOS specific optimizations */
-    @media (max-width: 768px) {
-      .media-container video {
-        -webkit-touch-callout: none;
-        -webkit-user-select: none;
-      }
-    }
-
-    /* Optimizations */
-    .media-container img,
-    .media-container video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.3s ease;
-    }
-
-    .lazy {
-      opacity: 0;
-      transition: opacity 0.5s ease;
-    }
-    
-    .lazy.loaded {
-      opacity: 1;
-    }
-
-    /* Loading skeleton */
-    .skeleton {
-      background: linear-gradient(90deg, #e0e7ff 25%, #d1d9ff 50%, #e0e7ff 75%);
-      background-size: 200% 100%;
-      animation: loading 1.5s infinite;
-      border-radius: 10px;
-    }
-    
-    @keyframes loading {
-      0% { background-position: 200% 0; }
-      100% { background-position: -200% 0; }
-    }
-
-    /* Placeholder for videos */
-    .video-placeholder {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #3f51b5;
-      color: white;
-      font-size: 1.2rem;
-      text-align: center;
-      padding: 20px;
-      border-radius: 10px;
-    }
-    
-    /* Progress indicator */
-    .loading-bar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 4px;
-      background: #3f8efc;
-      width: 0%;
-      z-index: 1000;
-      transition: width 0.4s ease;
-    }
-
-    
-  /* JOB WORK BULLET FIX */
-  .job-card li {
-    padding: 0.5rem 0;
-    display: flex;
-    align-items: flex-start;
-    padding-left: 0; /* REMOVE LEFT PADDING */
-  }
-  
-  .job-card li::before {
-    content: "•";
-    color: #3f51b5;
-    font-weight: 900;
-    font-size: 1.8rem;
-    line-height: 1;
-    margin-top: 0.1rem; /* PERFECT VERTICAL ALIGNMENT */
-    margin-right: 0.5rem;
-    /* REMOVE ABSOLUTE POSITIONING */
-    position: static;
-    top: auto;
-    left: auto;
-    transform: none;
-  }
-
-  /* CONTACT SECTION LEFT ALIGNMENT */
-  .contact-info {
-    text-align: left; /* LEFT ALIGN CONTENT */
-    padding-left: 20px; /* ADD LEFT PADDING */
-  }
-  
-  .contact-info h3 {
-    text-align: left !important; /* OVERRIDE INLINE STYLE */
-  }
-  
-  .contact-info p {
-    justify-content: flex-start; /* LEFT ALIGN CONTENT */
-    text-align: left; /* ENSURE TEXT LEFT ALIGNED */
-  }
-  
-  .contact-item {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 1.5rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid rgba(63, 81, 181, 0.1);
-  }
-
-  .contact-item:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-    padding-bottom: 0;
-  }
-
-  .contact-icon {
-    font-size: 1.8rem;
-    color: #3f51b5;
-    margin-right: 1rem;
-    min-width: 40px;
-    text-align: center;
-  }
-
-  .contact-item h3 {
-    color: #3f51b5;
-    margin-bottom: 0.5rem;
-    font-size: 1.2rem;
-  }
-
-  .contact-item p {
-    margin: 0;
-    font-size: 1.1rem;
-  }
-
-  /* Mobile responsive adjustments */
-  @media (max-width: 768px) {
-    .contact-icon {
-      font-size: 1.5rem;
-      min-width: 35px;
-    }
-    
-    .contact-item h3 {
-      font-size: 1.1rem;
-    }
-    
-    .contact-item p {
-      font-size: 1rem;
-    }
-  }
-  
-  /* NEW: JOB WORK SECTION ICON PLACEMENT */
-  #job-work {
-    position: relative;
-  }
-  
-  #job-work .job-icon {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    font-size: 1.8rem;
-    color: #3f51b5;
-    transition: all 0.3s ease;
-    z-index: 10;
-  }
-  
-  #job-work .job-icon:hover {
-    transform: rotate(15deg);
-    color: #283593;
-  }
-  
-  @media (max-width: 768px) {
-    #job-work .job-icon {
-      font-size: 1.5rem;
-      top: 10px;
-      right: 10px;
-    }
-  }
+    /* Minified CSS */
+    *{box-sizing:border-box;margin:0;padding:0}body{font-family:'Roboto',sans-serif;background:linear-gradient(135deg,#e6f0fa 0%,#d4e4fa 100%);color:#000;line-height:1.6;overflow-x:hidden}#imageModal .modal-content{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:15px 10px;position:relative}.modal-media-container{max-height:65vh;overflow:auto;margin-bottom:15px;display:flex;justify-content:center;align-items:flex-start;width:100%}#modalImageDisplay{max-width:100%;max-height:100%;object-fit:contain}#imageModal .close-btn{position:absolute;top:15px;right:20px;z-index:300;color:#fff;background:rgba(0,0,0,.5);width:40px;height:40px;border-radius:50%;display:flex;justify-content:center;align-items:center;font-size:30px;text-shadow:0 2px 4px rgba(0,0,0,.5)}#imageModal .close-btn:hover{background:rgba(200,0,0,.7)}.person-card{position:relative;border-top:2px solid #90caf9;box-shadow:0 5px 15px rgba(63,142,252,.2);background:linear-gradient(to bottom,#fff 0%,#f0f7ff 100%)}.person-card::before{content:"";position:absolute;top:-2px;left:50%;transform:translateX(-50%);width:50px;height:2px;background:#3f51b5;border-radius:1px;transition:width .3s ease}.person-card:hover::before{width:100%}@media (max-width:768px){#imageModal .modal-content{padding:10px 5px}.modal-media-container{max-height:55vh}#imageModal .close-btn{top:10px;right:10px;width:35px;height:35px;font-size:25px}}.logo-container{display:flex;align-items:center;margin-left:20px;max-width:200px;height:60px}.logo{height:100%;width:auto;max-height:60px;opacity:.85;transition:all .3s ease;object-fit:contain}.logo:hover{opacity:1;transform:scale(1.05)}@media (max-width:768px){.logo-container{max-width:150px;margin-left:0;padding-left:10px;height:50px}.logo{max-height:50px}}@media (max-width:480px){.logo-container{max-width:130px;height:45px}.logo{max-height:45px}header h1{font-size:2rem}}nav{background:linear-gradient(135deg,#a8c0ff 0%,#3f8efc 100%);padding:.8rem 2rem;display:flex;justify-content:space-between;align-items:center;box-shadow:0 4px 15px rgba(63,142,252,.4);position:sticky;top:0;z-index:100}@media (max-width:768px){nav{padding:.8rem .5rem}}nav ul{display:flex;gap:1.8rem;list-style:none}nav ul li a{color:#e0e7ff;text-decoration:none;font-weight:500;font-size:1rem;transition:color .3s ease;cursor:pointer;padding:.5rem .8rem;border-radius:5px}nav ul li a:hover{color:#ffd369;text-shadow:0 0 5px #ffd369;background:rgba(255,255,255,.1)}header{padding:6rem 2rem 3rem;text-align:center;animation:fadeInDown 1s ease forwards;opacity:0;color:#000;position:relative;overflow:hidden;min-height:70vh;display:flex;flex-direction:column;justify-content:center;align-items:center}.header-background{position:absolute;top:0;left:0;width:100%;height:100%;background:url('images/header-back.jpg') center/cover no-repeat;z-index:-2}.header-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,rgba(195,204,248,.39) 0%,rgba(168,184,255,.8) 100%);z-index:-1}header h1{font-size:3.5rem;color:#fff;margin-bottom:.5rem;text-shadow:0 2px 10px rgba(0,0,0,.5);position:relative;z-index:2;background:rgba(40,53,147,.7);padding:1rem 2rem;border-radius:10px;max-width:80%;margin:0 auto;backdrop-filter:blur(5px);border:2px solid rgba(255,255,255,.3);box-shadow:0 8px 32px rgba(31,38,135,.37)}header p{font-size:1.3rem;color:#fff;font-weight:500;letter-spacing:1px;max-width:800px;margin:1.5rem auto 0;position:relative;z-index:2;background:rgba(63,81,181,.7);padding:.8rem 1.5rem;border-radius:8px;text-shadow:0 1px 3px rgba(0,0,0,.5)}section{padding:4rem 2rem;background-color:#f4f8ff;border-radius:12px;margin:2rem auto;max-width:1200px;box-shadow:0 10px 30px rgba(63,142,252,.1);opacity:0;transform:translateY(50px);animation:fadeInUp 1s ease forwards;animation-delay:.3s;color:#000;position:relative;overflow:hidden}section::before{content:"";position:absolute;top:0;left:0;width:100%;height:100%;background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80"><rect width="80" height="80" fill="none" stroke="%233f8efc" stroke-width="1" stroke-opacity="0.05" stroke-dasharray="4,4"/></svg>') center/cover;z-index:0}h2{text-align:center;color:#3f51b5;margin-bottom:2rem;font-size:2rem;font-weight:700;position:relative;z-index:1}.content-section{max-width:900px;margin:0 auto;font-size:1.1rem;color:#000;padding:2rem 0;line-height:1.8;position:relative;z-index:1}.content-section p{margin-bottom:1.5rem}.carousel-wrapper{margin-bottom:3rem;position:relative;z-index:1}.machine-title{text-align:center;font-size:1.5rem;margin:1rem 0;color:#283593;font-weight:600;position:relative}.carousel{display:flex;overflow-x:auto;gap:1rem;padding-bottom:1rem;scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:#90caf9 transparent}.carousel::-webkit-scrollbar{height:8px}.carousel::-webkit-scrollbar-thumb{background-color:#90caf9;border-radius:10px}.carousel::-webkit-scrollbar-track{background:transparent}.media-container{width:350px;height:250px;border-radius:10px;flex-shrink:0;box-shadow:0 4px 15px rgba(63,142,252,.4);transition:transform .3s ease,box-shadow .3s ease;cursor:pointer;overflow:hidden;position:relative}.media-container:hover{transform:scale(1.05);box-shadow:0 8px 25px rgba(63,142,252,.8)}.media-container img,.media-container video{width:100%;height:100%;object-fit:cover}.video-play-icon{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#fff;font-size:3rem;text-shadow:0 0 10px rgba(0,0,0,.5);opacity:.8;transition:opacity .3s ease;pointer-events:none}.media-container:hover .video-play-icon{opacity:1;text-shadow:0 0 15px rgba(255,211,105,.7)}#certification-image-container{text-align:center;margin-bottom:2rem;position:relative;z-index:1}#certification-image-container img{width:clamp(250px,70%,500px);height:auto;object-fit:contain;border-radius:10px;box-shadow:0 8px 25px rgba(63,142,252,.5);transition:transform .3s ease,box-shadow .3s ease;cursor:pointer}#certification-image-container img:hover{transform:scale(1.03);box-shadow:0 12px 30px rgba(63,142,252,.8)}.person-card{flex-shrink:0;width:280px;padding:1.5rem;background-color:#f4f8ff;border-radius:12px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:transform .3s ease,box-shadow .3s ease;cursor:pointer;position:relative;z-index:1}.person-card:hover{transform:translateY(-8px);box-shadow:0 8px 25px rgba(63,142,252,.15)}.person-image-container{width:150px;height:150px;border-radius:50%;overflow:hidden;margin-bottom:1rem;border:2px solid #90caf9;box-shadow:0 3px 10px rgba(75,77,170,.1)}.person-image-container img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .3s ease}.person-image-container img:hover{transform:scale(1.05)}.person-card h3{font-size:1.5rem;color:#3f51b5;margin-bottom:.5rem;font-weight:700}.person-card .person-post{font-size:1rem;color:#283593;margin-bottom:.3rem;font-weight:500}.person-card .person-experience{font-size:.9rem;color:#283593;font-style:italic}footer{background:#a8c0ff;color:#fff;text-align:center;padding:2rem;margin-top:3rem;font-weight:600;letter-spacing:1px;box-shadow:inset 0 0 30px #3f8efc;position:relative}footer::before{content:"";position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,rgba(168,192,255,.4) 0%,rgba(63,142,252,.4) 100%);z-index:0}.contact-info{position:relative;z-index:1;margin-top:1rem}.contact-info p{margin:.5rem 0;display:flex;align-items:center;justify-content:center;gap:10px}.social-links{display:flex;justify-content:center;gap:1rem;margin-top:1rem}.social-links a{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;background:#3f51b5;color:#fff;border-radius:50%;transition:all .3s ease}.social-links a:hover{background:#283593;transform:translateY(-3px)}@keyframes fadeInDown{from{opacity:0;transform:translateY(-30px)}to{opacity:1;transform:translateY(0)}}@keyframes fadeInUp{from{opacity:0;transform:translateY(50px)}to{opacity:1;transform:translateY(0)}}@keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-10px)}100%{transform:translateY(0)}}#imageModal{display:none;position:fixed;z-index:200;left:0;top:0;width:100%;height:100%;overflow:auto;background-color:rgba(0,0,0,.8);animation:fadeInModal .3s ease forwards}@keyframes fadeInModal{from{opacity:0}to{opacity:1}}#imageModal .modal-content{background-color:#f4f8ff;margin:5vh auto;padding:30px;border-radius:12px;max-width:90%;width:90%;max-width:800px;box-shadow:0 8px 25px rgba(63,142,252,.7);text-align:center;position:relative;color:#000;display:flex;flex-direction:column;align-items:center;min-height:80vh;justify-content:center}#modalImageDisplay{max-width:100%;max-height:60vh;border-radius:10px;margin-bottom:1.5rem;box-shadow:0 4px 15px rgba(63,142,252,.6);object-fit:contain;display:block;margin:0 auto}#modalVideoDisplay{max-width:100%;max-height:60vh;border-radius:10px;margin-bottom:1.5rem;box-shadow:0 4px 15px rgba(63,142,252,.6);display:none;margin:0 auto}#imageModal .modal-info{font-size:1.1rem;color:#283593;padding:10px 20px;text-align:center;white-space:pre-line;line-height:1.6;max-height:200px;overflow-y:auto;margin-top:15px;width:100%;font-weight:500}.menu-toggle{display:none;cursor:pointer;color:#fff;font-size:1.8rem;z-index:10}@media (max-width:992px){header h1{font-size:2.8rem}header p{font-size:1.1rem}}@media (max-width:768px){.menu-toggle{display:block}nav ul{position:fixed;top:70px;left:-100%;width:100%;height:calc(100vh - 70px);background:linear-gradient(135deg,#a8c0ff 0%,#3f8efc 100%);flex-direction:column;align-items:center;padding-top:2rem;transition:.5s;gap:2rem}nav ul.active{left:0}header{padding:4rem 1.5rem 1.5rem;min-height:55vh;justify-content:flex-start;padding-top:25%}header h1{font-size:2.3rem;padding:.8rem 1.5rem;margin-top:1rem;margin-bottom:.5rem}header p{font-size:1.1rem;padding:.6rem 1.2rem;margin-top:.5rem}section{padding:3rem 1.5rem;margin:1.5rem auto}h2{font-size:1.8rem}.media-container{width:280px;height:200px}.machine-title{font-size:1.3rem}footer{padding:1.5rem}.content-section{font-size:1rem;padding:1.5rem 0}#certification-image-container img{width:90%}.person-card{width:240px;padding:1rem}.person-image-container{width:120px;height:120px}.person-card h3{font-size:1.3rem}.person-card .person-post,.person-card .person-experience{font-size:.9rem}#imageModal .modal-content{padding:15px;width:95%;min-height:auto;max-height:95vh;overflow-y:auto;justify-content:flex-start}.modal-media-container{height:auto;max-height:50vh;margin-bottom:15px}#modalImageDisplay,#modalVideoDisplay{max-height:50vh;max-width:100%}#imageModal .modal-info{font-size:1rem;padding:8px 15px;max-height:30vh;overflow-y:auto}#imageModal .close-btn{position:absolute;top:5px;right:10px;font-size:30px;background:rgba(0,0,0,.7)}}@media (max-width:480px){nav{padding:.8rem .5rem}.logo-container{max-width:130px;height:45px;padding-left:5px}.logo{max-height:45px}header{padding-top:20%;min-height:50vh}header h1{font-size:1.8rem;padding:.7rem 1.2rem;margin-top:.5rem}header p{font-size:1rem;padding:.5rem 1rem;margin-top:.5rem}#imageModal .modal-content{padding:10px;width:98%}.modal-media-container{max-height:45vh}#modalImageDisplay,#modalVideoDisplay{max-height:45vh}#imageModal .modal-info{font-size:.95rem;padding:6px 10px}}.video-thumbnail-container{position:relative;width:100%;height:100%}.video-thumbnail{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:1}.video-thumbnail.hidden{display:none}.thumbnail-loader{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:40px;height:40px;border:4px solid rgba(255,255,255,.3);border-radius:50%;border-top:4px solid #3f51b5;animation:spin 1s linear infinite;z-index:2;display:none}@keyframes spin{0%{transform:translate(-50%,-50%) rotate(0)}100%{transform:translate(-50%,-50%) rotate(360deg)}}@media (max-width:768px){.media-container video{-webkit-touch-callout:none;-webkit-user-select:none}}.media-container img,.media-container video{width:100%;height:100%;object-fit:cover;transition:transform .3s ease}.lazy{opacity:0;transition:opacity .5s ease}.lazy.loaded{opacity:1}.skeleton{background:linear-gradient(90deg,#e0e7ff 25%,#d1d9ff 50%,#e0e7ff 75%);background-size:200% 100%;animation:loading 1.5s infinite;border-radius:10px}@keyframes loading{0%{background-position:200% 0}100%{background-position:-200% 0}}.video-placeholder{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#3f51b5;color:#fff;font-size:1.2rem;text-align:center;padding:20px;border-radius:10px}.loading-bar{position:fixed;top:0;left:0;height:4px;background:#3f8efc;width:0%;z-index:1000;transition:width .4s ease}.job-card li{padding:.5rem 0;display:flex;align-items:flex-start;padding-left:0}.job-card li::before{content:"•";color:#3f51b5;font-weight:900;font-size:1.8rem;line-height:1;margin-top:.1rem;margin-right:.5rem;position:static;top:auto;left:auto;transform:none}.contact-info{text-align:left;padding-left:20px}.contact-info h3{text-align:left!important}.contact-info p{justify-content:flex-start;text-align:left}.contact-item{display:flex;align-items:flex-start;margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid rgba(63,81,181,.1)}.contact-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}.contact-icon{font-size:1.8rem;color:#3f51b5;margin-right:1rem;min-width:40px;text-align:center}.contact-item h3{color:#3f51b5;margin-bottom:.5rem;font-size:1.2rem}.contact-item p{margin:0;font-size:1.1rem}@media (max-width:768px){.contact-icon{font-size:1.5rem;min-width:35px}.contact-item h3{font-size:1.1rem}.contact-item p{font-size:1rem}}#job-work{position:relative}#job-work .job-icon{position:absolute;top:20px;right:20px;font-size:1.8rem;color:#3f51b5;transition:all .3s ease;z-index:10}#job-work .job-icon:hover{transform:rotate(15deg);color:#283593}@media (max-width:768px){#job-work .job-icon{font-size:1.5rem;top:10px;right:10px}}
   </style>
 </head>
 <body>
@@ -1109,8 +21,7 @@
   
   <nav>
     <div class="logo-container">
-      <img src="images/logo.png" alt="Vrudhi Heavy Engineers Logo" class="logo" 
-           loading="eager">
+      <img src="images/logo.png" alt="Vrudhi Heavy Engineers Logo" class="logo" loading="eager">
     </div>
     <div class="menu-toggle" id="menuToggle">
       <i class="fas fa-bars"></i>
@@ -1130,35 +41,22 @@
   <header>
     <div class="header-background"></div>
     <div class="header-overlay"></div>
-    
-    <h1>Vrudhi Heavy Engineers Pvt. Ltd. </h1>
+    <h1>Vrudhi Heavy Engineers Pvt. Ltd.</h1>
     <p>Machining & Assembly of Heavy Job Work</p>
   </header>
 
   <section id="about">
     <h2>About Us</h2>
     <div class="content-section">
-      <p style="text-align: justify;"> 
-        Established in 2004, Vrudhi Heavy Engineers is a trusted name in the field of machining and assembly for heavy job work. With over two decades of industry experience, we have built a reputation for precision, reliability, and excellence.
-      </p>
-      
-      <p style="text-align: justify;">
-        Spread across a sprawling 30,000 square feet facility, our operations are powered by a team of over 60 skilled professionals dedicated to delivering high-quality machining solutions. Our infrastructure includes a comprehensive range of advanced equipment such as floor boring machines, milling machines, drilling machines, Vertical Turning Lathes (VTLs), and Vertical Machining Centers (VMCs)—enabling us to handle complex and large-scale components with utmost accuracy.
-      </p>
-      
-      <p style="text-align: justify;">
-        We take pride in being ISO 9001 certified, which reflects our strong commitment to quality management and continuous improvement. At Vrudhi Heavy Engineers, we combine technological capability with deep industry knowledge to meet the rigorous demands of heavy engineering sectors, delivering solutions that exceed expectations.
-      </p>
-      
-      <p style="text-align: justify;">
-        Whether its precision machining or complete assembly, Vrudhi Heavy Engineers stands as your reliable partner for heavy job work—ensuring durability, performance, and engineering excellence.
-      </p>
+      <p>Established in 2004, Vrudhi Heavy Engineers is a trusted name in the field of machining and assembly for heavy job work. With over two decades of industry experience, we have built a reputation for precision, reliability, and excellence.</p>
+      <p>Spread across a sprawling 30,000 square feet facility, our operations are powered by a team of over 60 skilled professionals dedicated to delivering high-quality machining solutions. Our infrastructure includes a comprehensive range of advanced equipment such as floor boring machines, milling machines, drilling machines, Vertical Turning Lathes (VTLs), and Vertical Machining Centers (VMCs)—enabling us to handle complex and large-scale components with utmost accuracy.</p>
+      <p>We take pride in being ISO 9001 certified, which reflects our strong commitment to quality management and continuous improvement. At Vrudhi Heavy Engineers, we combine technological capability with deep industry knowledge to meet the rigorous demands of heavy engineering sectors, delivering solutions that exceed expectations.</p>
+      <p>Whether its precision machining or complete assembly, Vrudhi Heavy Engineers stands as your reliable partner for heavy job work—ensuring durability, performance, and engineering excellence.</p>
     </div>
   </section>
 
-   <section id="job-work">
+  <section id="job-work">
     <h2>Range of Job Work</h2>
-    <!-- Gear icon positioned absolutely at top right -->
     <i class="fas fa-cogs job-icon"></i>
     <div class="content-section">      
       <div class="job-categories">
@@ -1174,239 +72,61 @@
     </div>
   </section>
 
-
   <section id="certification-iso">
     <h2>ISO 9001:2015 Certification</h2>
     <div id="certification-image-container">
-        <img src="images/iso.jpg" alt="ISO 9001:2015 Certification" data-info="Official ISO 9001:2015 certification for our quality management systems.">
+      <img src="images/iso.jpg" alt="ISO 9001:2015 Certification" data-info="Official ISO 9001:2015 certification for our quality management systems.">
     </div>
     <div class="content-section">
-      <p style="text-align: justify;">
-        Vrudhi Heavy Engineers has achieved ISO 9001:2015 certification, demonstrating its commitment to delivering high-quality machining services that consistently meet customer and regulatory requirements. This certification confirms that the unit has implemented a robust Quality Management System (QMS) based on a process-oriented and risk-based approach, ensuring efficient operations, minimized defects, and continuous improvement. With strong leadership involvement and a focus on customer satisfaction, the unit aligns its quality objectives with business strategy and industry best practices. The certification reflects adherence to the seven quality management principles, including customer focus, leadership, engagement of people, and evidence-based decision-making, making the unit a reliable and competitive partner in the precision machining sector.
-      </p>
+      <p>Vrudhi Heavy Engineers has achieved ISO 9001:2015 certification, demonstrating its commitment to delivering high-quality machining services that consistently meet customer and regulatory requirements. This certification confirms that the unit has implemented a robust Quality Management System (QMS) based on a process-oriented and risk-based approach, ensuring efficient operations, minimized defects, and continuous improvement. With strong leadership involvement and a focus on customer satisfaction, the unit aligns its quality objectives with business strategy and industry best practices. The certification reflects adherence to the seven quality management principles, including customer focus, leadership, engagement of people, and evidence-based decision-making, making the unit a reliable and competitive partner in the precision machining sector.</p>
     </div>
   </section>
 
   <section id="machines">
     <h2>Machine Units</h2>
     <div class="carousel-wrapper">
-
       <div class="machine-title">Unit 1</div>
       <div class="carousel" id="machineCarousel1">
-        <!-- Images -->
-        <div class="media-container">
-          <img src="images/unit-1/unit-1-1.jpg" alt="Machine Shop 1" data-info="Machine Shop 1">
-        </div>
-
-        <div class="media-container">
-          <img src="images/unit-1/unit-1-2.JPG" alt="" data-info="WMW Union Horizontal Floor Boring Machine 
-Spindle size : Ø 160
-Table size : 2000 x 6000 MM
-Longitudinal Travel : X-Axis - 7000 MM
-Vertical Travel : Y-Axis - 2500 MM
-Z-Axis : Head - 500 MM">
-        </div>
-        
-        <!-- Videos -->
-        <div class="media-container" data-type="video" data-info="Boring Operation">
-          <video playsinline muted preload="metadata">
-            <source src="images/unit-1/unit-1-3.mov" type="video/mp4">
-          </video>
-          <div class="video-play-icon">
-            <i class="fas fa-play-circle"></i>
-          </div>
-        </div>
-
-        <div class="media-container">
-          <img src="images/unit-1/unit-1-4.JPG" alt="" data-info="WMW Union Horizontal Floor Boring Machine 
-Spindle size : Ø 160
-Table size : 3500 x 6000 MM
-Longitudinal Travel : X-Axis - 7000 MM
-Vertical Travel : Y-Axis - 3000 MM
-Z-Axis : Head - 500 MM
-              Spindle Travel - 1500 MM
-Rotary Table : 2500 x 3000 MM">
-        </div>
-
-        <div class="media-container">
-          <img src="images/unit-1/unit-1-5.JPG" alt="" data-info="">
-        </div>
-
-        <div class="media-container" data-type="video" data-info="Milling Operation">
-          <video playsinline muted preload="metadata">
-            <source src="images/unit-1/unit-1-6.mov" type="video/mp4">
-          </video>
-          <div class="video-play-icon">
-            <i class="fas fa-play-circle"></i>
-          </div>
-        </div>
-
-        <div class="media-container">
-          <img src="images/unit-1/unit-1-7.JPG" alt="" data-info="SKODA Horizontal Floor Boring Machine 
-Spindle size : Ø 160
-Table size : 3500 x 6000 MM
-Longitudinal Travel : X-Axis - 4000 MM
-Vertical Travel : Y-Axis - 2500 MM
-Z-Axis : Ram Travel - 1200 MM
-              Spindle Travel - 1200 MM
-Rotary Table : 2000 x 2000 MM">
-        </div>
-
-        <div class="media-container">
-          <img src="images/unit-1/unit-1-8.JPG" alt="" data-info="SKODA Horizontal Floor Boring Machine 
-Spindle size : Ø 160
-Table size : 4000 x 6000 MM
-Longitudinal Travel : X-Axis - 5000 MM
-Vertical Travel : Y-Axis - 3250 MM
-Z-Axis : Ram Travel - 1200 MM
-              Spindle Travel - 1200 MM
-Rotary Table : 2000 x 2000 MM">
-        </div>
-
-        <div class="media-container">
-          <img src="images/unit-1/unit-1-9.jpg" alt="" data-info="HMT Radial Drill Machine
-Model - RM65">
-        </div>
-        
+        <div class="media-container"><img src="images/unit-1/unit-1-1.jpg" alt="Machine Shop 1" data-info="Machine Shop 1"></div>
+        <div class="media-container"><img src="images/unit-1/unit-1-2.JPG" alt="" data-info="WMW Union Horizontal Floor Boring Machine Spindle size : Ø 160 Table size : 2000 x 6000 MM Longitudinal Travel : X-Axis - 7000 MM Vertical Travel : Y-Axis - 2500 MM Z-Axis : Head - 500 MM"></div>
+        <div class="media-container" data-type="video" data-info="Boring Operation"><video playsinline muted preload="metadata"><source src="images/unit-1/unit-1-3.mov" type="video/mp4"></video><div class="video-play-icon"><i class="fas fa-play-circle"></i></div></div>
+        <div class="media-container"><img src="images/unit-1/unit-1-4.JPG" alt="" data-info="WMW Union Horizontal Floor Boring Machine Spindle size : Ø 160 Table size : 3500 x 6000 MM Longitudinal Travel : X-Axis - 7000 MM Vertical Travel : Y-Axis - 3000 MM Z-Axis : Head - 500 MM Spindle Travel - 1500 MM Rotary Table : 2500 x 3000 MM"></div>
+        <div class="media-container"><img src="images/unit-1/unit-1-5.JPG" alt="" data-info=""></div>
+        <div class="media-container" data-type="video" data-info="Milling Operation"><video playsinline muted preload="metadata"><source src="images/unit-1/unit-1-6.mov" type="video/mp4"></video><div class="video-play-icon"><i class="fas fa-play-circle"></i></div></div>
+        <div class="media-container"><img src="images/unit-1/unit-1-7.JPG" alt="" data-info="SKODA Horizontal Floor Boring Machine Spindle size : Ø 160 Table size : 3500 x 6000 MM Longitudinal Travel : X-Axis - 4000 MM Vertical Travel : Y-Axis - 2500 MM Z-Axis : Ram Travel - 1200 MM Spindle Travel - 1200 MM Rotary Table : 2000 x 2000 MM"></div>
+        <div class="media-container"><img src="images/unit-1/unit-1-8.JPG" alt="" data-info="SKODA Horizontal Floor Boring Machine Spindle size : Ø 160 Table size : 4000 x 6000 MM Longitudinal Travel : X-Axis - 5000 MM Vertical Travel : Y-Axis - 3250 MM Z-Axis : Ram Travel - 1200 MM Spindle Travel - 1200 MM Rotary Table : 2000 x 2000 MM"></div>
+        <div class="media-container"><img src="images/unit-1/unit-1-9.jpg" alt="" data-info="HMT Radial Drill Machine Model - RM65"></div>
       </div>
     </div>
     
     <div class="carousel-wrapper">
       <div class="machine-title">Unit 2</div>
       <div class="carousel" id="machineCarousel2">
-        <div class="media-container">
-          <img src="images/unit-2/unit-2-1.JPG" alt="" data-info="Machine Shop 2">
-        </div>
-        
-        <div class="media-container">
-          <img src="images/unit-2/unit-2-2.jpg" alt="" data-info="KOLB Radial Drill Machine 
-100 MM Capacity ">
-        </div>
-
-        <div class="media-container">
-          <img src="images/unit-2/unit-2-3.JPG" alt="" data-info="Mitsubishi Double Column VMC
-Table Travel - 3200 MM
-Between Column - 2000 MM
-Height - 1200 MM">
-        </div>
-
-        <div class="media-container">
-          <img src="images/unit-2/unit-2-4.jpg" alt="" data-info="">
-        </div>
-        
-        <div class="media-container" data-type="video" data-info="Bore machining ">
-          <video playsinline muted preload="metadata">
-            <source src="images/unit-2/unit-2-5.mov" type="video/mp4">
-          </video>
-          <div class="video-play-icon">
-            <i class="fas fa-play-circle"></i>
-          </div>
-        </div>
-
-        <div class="media-container">
-          <img src="images/unit-2/unit-2-6.jpg" alt="" data-info="TOSS Double Column VTL
-Swing - 4000 MM
-Height - 2500 MM">
-        </div>
-
-        <div class="media-container">
-          <img src="images/unit-2/unit-2-7.jpg" alt="" data-info="">
-        </div>
-
-        <div class="media-container">
-          <img src="images/unit-2/unit-2-8.jpg" alt="" data-info="SKODA Horizontal Floor Boring Machine 
-Spindle size : Ø 160
-Longitudinal Travel : X-Axis - 6000 MM
-Vertical Travel : Y-Axis - 2500 MM
-Z-Axis : Ram Travel - 1200 MM
-              Spindle Travel - 1200 MM
-Rotary Table : 2500 x 3000 MM">
-        </div>
-
-        <div class="media-container">
-          <img src="images/unit-2/unit-2-9.jpg" alt="" data-info="">
-        </div>
-
+        <div class="media-container"><img src="images/unit-2/unit-2-1.JPG" alt="" data-info="Machine Shop 2"></div>
+        <div class="media-container"><img src="images/unit-2/unit-2-2.jpg" alt="" data-info="KOLB Radial Drill Machine 100 MM Capacity"></div>
+        <div class="media-container"><img src="images/unit-2/unit-2-3.JPG" alt="" data-info="Mitsubishi Double Column VMC Table Travel - 3200 MM Between Column - 2000 MM Height - 1200 MM"></div>
+        <div class="media-container"><img src="images/unit-2/unit-2-4.jpg" alt="" data-info=""></div>
+        <div class="media-container" data-type="video" data-info="Bore machining"><video playsinline muted preload="metadata"><source src="images/unit-2/unit-2-5.mov" type="video/mp4"></video><div class="video-play-icon"><i class="fas fa-play-circle"></i></div></div>
+        <div class="media-container"><img src="images/unit-2/unit-2-6.jpg" alt="" data-info="TOSS Double Column VTL Swing - 4000 MM Height - 2500 MM"></div>
+        <div class="media-container"><img src="images/unit-2/unit-2-7.jpg" alt="" data-info=""></div>
+        <div class="media-container"><img src="images/unit-2/unit-2-8.jpg" alt="" data-info="SKODA Horizontal Floor Boring Machine Spindle size : Ø 160 Longitudinal Travel : X-Axis - 6000 MM Vertical Travel : Y-Axis - 2500 MM Z-Axis : Ram Travel - 1200 MM Spindle Travel - 1200 MM Rotary Table : 2500 x 3000 MM"></div>
+        <div class="media-container"><img src="images/unit-2/unit-2-9.jpg" alt="" data-info=""></div>
       </div>
     </div>
 
     <div class="carousel-wrapper">
       <div class="machine-title">Unit 3</div>
       <div class="carousel" id="machineCarousel3">
-        <div class="media-container">
-          <img src="images/unit-3/unit-3-1.JPG" alt="" data-info="Machine Shop 3">
-        </div>
-        
-        <div class="media-container">
-          <img src="images/unit-3/unit-3-2.jpg" alt="" data-info="Cooper VTL
-Swing - 1600 MM
-Height - 1200 MM">
-        </div>
-
-        <div class="media-container" data-type="video" data-info="Job ID Machining">
-          <video playsinline muted preload="metadata">
-            <source src="images/unit-3/unit-3-3.mp4" type="video/mp4">
-          </video>
-          <div class="video-play-icon">
-            <i class="fas fa-play-circle"></i>
-          </div>
-        </div>
-
-        <div class="media-container" data-type="video" data-info="TOSS Horizontal Boring Machine 
-Spindle Size : Ø 100
-Table Size : 100 x 600 MM
-Longitudinal Travel : X-Axis - 1250 MM
-Vertical Travel : Y-Axis - 1100 MM
-Z-Axis : 1200 MM">
-          <video playsinline muted preload="metadata">
-            <source src="images/unit-3/unit-3-4.MP4" type="video/mp4">
-          </video>
-          <div class="video-play-icon">
-            <i class="fas fa-play-circle"></i>
-          </div>
-        </div>
-
-        <div class="media-container">
-          <img src="images/unit-3/unit-3-5.JPG" alt="" data-info="Plano Miller Machine
-Table Travel : 2500 MM
-Between Column : 1100 MM
-Y-Axis : 800 MM">
-        </div>
-
-        <div class="media-container">
-          <img src="images/unit-3/unit-3-6.jpg" alt="" data-info="">
-        </div>
-
-        <div class="media-container" data-type="video" data-info="Milling Operation ">
-          <video playsinline muted preload="metadata">
-            <source src="images/unit-3/unit-3-7.MP4" type="video/mp4">
-          </video>
-          <div class="video-play-icon">
-            <i class="fas fa-play-circle"></i>
-          </div>
-        </div>
-
-        <div class="media-container">
-          <img src="images/unit-3/unit-3-8.JPG" alt="" data-info="Horizontal Boring Machine 
-Spindle Size : Ø 80
-Longitudinal Travel : X-Axis - 800 MM
-Vertical Travel : Y-Axis - 900 MM
-Z-Axis : 1000 MM">
-        </div>
-
-        <div class="media-container">
-          <img src="images/unit-3/unit-3-9.jpg" alt="" data-info="">
-        </div>
-
-        <div class="media-container" data-type="video" data-info="Boring Operation">
-          <video playsinline muted preload="metadata">
-            <source src="images/unit-3/unit-3-10.MP4" type="video/mp4">
-          </video>
-          <div class="video-play-icon">
-            <i class="fas fa-play-circle"></i>
-          </div>
-        </div>
-
+        <div class="media-container"><img src="images/unit-3/unit-3-1.JPG" alt="" data-info="Machine Shop 3"></div>
+        <div class="media-container"><img src="images/unit-3/unit-3-2.jpg" alt="" data-info="Cooper VTL Swing - 1600 MM Height - 1200 MM"></div>
+        <div class="media-container" data-type="video" data-info="Job ID Machining"><video playsinline muted preload="metadata"><source src="images/unit-3/unit-3-3.mp4" type="video/mp4"></video><div class="video-play-icon"><i class="fas fa-play-circle"></i></div></div>
+        <div class="media-container" data-type="video" data-info="TOSS Horizontal Boring Machine Spindle Size : Ø 100 Table Size : 100 x 600 MM Longitudinal Travel : X-Axis - 1250 MM Vertical Travel : Y-Axis - 1100 MM Z-Axis : 1200 MM"><video playsinline muted preload="metadata"><source src="images/unit-3/unit-3-4.MP4" type="video/mp4"></video><div class="video-play-icon"><i class="fas fa-play-circle"></i></div></div>
+        <div class="media-container"><img src="images/unit-3/unit-3-5.JPG" alt="" data-info="Plano Miller Machine Table Travel : 2500 MM Between Column : 1100 MM Y-Axis : 800 MM"></div>
+        <div class="media-container"><img src="images/unit-3/unit-3-6.jpg" alt="" data-info=""></div>
+        <div class="media-container" data-type="video" data-info="Milling Operation"><video playsinline muted preload="metadata"><source src="images/unit-3/unit-3-7.MP4" type="video/mp4"></video><div class="video-play-icon"><i class="fas fa-play-circle"></i></div></div>
+        <div class="media-container"><img src="images/unit-3/unit-3-8.JPG" alt="" data-info="Horizontal Boring Machine Spindle Size : Ø 80 Longitudinal Travel : X-Axis - 800 MM Vertical Travel : Y-Axis - 900 MM Z-Axis : 1000 MM"></div>
+        <div class="media-container"><img src="images/unit-3/unit-3-9.jpg" alt="" data-info=""></div>
+        <div class="media-container" data-type="video" data-info="Boring Operation"><video playsinline muted preload="metadata"><source src="images/unit-3/unit-3-10.MP4" type="video/mp4"></video><div class="video-play-icon"><i class="fas fa-play-circle"></i></div></div>
       </div>
     </div>
   </section>
@@ -1416,18 +136,9 @@ Z-Axis : 1000 MM">
     <div class="carousel-wrapper">
       <div class="machine-title">Office Showcase</div>
       <div class="carousel" id="productCarousel">
-        <div class="media-container">
-          <img src="images/office/office-1.JPG" alt="" data-info="">
-        </div>
-        
-        <div class="media-container">
-          <img src="images/office/office-2.JPG" alt="" data-info="">
-        </div>
-
-        <div class="media-container">
-          <img src="images/office/office-3.JPG" alt="" data-info="">
-        </div>
-        
+        <div class="media-container"><img src="images/office/office-1.JPG" alt="" data-info=""></div>
+        <div class="media-container"><img src="images/office/office-2.JPG" alt="" data-info=""></div>
+        <div class="media-container"><img src="images/office/office-3.JPG" alt="" data-info=""></div>
       </div>
     </div>
   </section>
@@ -1437,34 +148,12 @@ Z-Axis : 1000 MM">
     <div class="carousel-wrapper">
       <div class="machine-title">Our Key Projects</div>
       <div class="carousel" id="galleryCarousel">
-        <div class="media-container">
-          <img src="images/projects/project-1.jpg" alt="" data-info="GRPF Assembly">
-        </div>
-
-        <div class="media-container">
-          <img src="images/projects/project-2.jpg" alt="" data-info="">
-        </div>
-        
-        <div class="media-container">
-          <img src="images/projects/project-3.jpg" alt="" data-info="Headstock Assembly">
-        </div>
-
-        <div class="media-container">
-          <img src="images/projects/project-4.jpg" alt="" data-info="">
-        </div>
-
-        <div class="media-container">
-          <img src="images/projects/project-5.jpg" alt="" data-info="">
-        </div>
-
-        <div class="media-container" data-type="video" data-info="Sugar Mill Assembly">
-          <video playsinline muted preload="metadata">
-            <source src="images/projects/project-6.mp4" type="video/mp4">
-          </video>
-          <div class="video-play-icon">
-            <i class="fas fa-play-circle"></i>
-          </div>
-        </div>
+        <div class="media-container"><img src="images/projects/project-1.jpg" alt="" data-info="GRPF Assembly"></div>
+        <div class="media-container"><img src="images/projects/project-2.jpg" alt="" data-info=""></div>
+        <div class="media-container"><img src="images/projects/project-3.jpg" alt="" data-info="Headstock Assembly"></div>
+        <div class="media-container"><img src="images/projects/project-4.jpg" alt="" data-info=""></div>
+        <div class="media-container"><img src="images/projects/project-5.jpg" alt="" data-info=""></div>
+        <div class="media-container" data-type="video" data-info="Sugar Mill Assembly"><video playsinline muted preload="metadata"><source src="images/projects/project-6.mp4" type="video/mp4"></video><div class="video-play-icon"><i class="fas fa-play-circle"></i></div></div>
       </div>
     </div>
   </section>
@@ -1474,61 +163,55 @@ Z-Axis : 1000 MM">
     <div class="carousel-wrapper">
       <div class="machine-title">Meet Our Leadership Team</div>
       <div class="carousel" id="bodCarousel">
-
         <div class="person-card">
           <h3>Mr. Uttam Jadhav</h3>
           <p class="person-post">Managing Director</p>
           <p class="person-experience">25+ years of experience</p>
         </div>
-
         <div class="person-card">
           <h3>Mr. A.D Kulkarni</h3>
           <p class="person-post">Director</p>
           <p class="person-experience">30+ years of experience</p>
         </div>
-        
         <div class="person-card">
           <h3>Mr. Prakash Dadde</h3>
           <p class="person-post">Head of Finance & Accounting</p>
           <p class="person-experience">25+ years of experience</p>
         </div>
-
         <div class="person-card">
           <h3>Mrs. Vijayalaxmi Jadhav</h3>
           <p class="person-post">Board Member</p>
         </div>
-        
       </div>
     </div>
   </section>
-<section id="contact">
-  <h2>Contact Us</h2>
-  <div class="contact-info">
-    <div class="contact-item">
-      <i class="fas fa-map-marker-alt contact-icon"></i>
-      <div>
-        <h3>Visit Us</h3>
-        <p>R.S. No. 542, Opp. S.V. Enterprises G51 M.I.D.C Shiroli, Kolhapur - 416122</p>
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <div class="contact-info">
+      <div class="contact-item">
+        <i class="fas fa-map-marker-alt contact-icon"></i>
+        <div>
+          <h3>Visit Us</h3>
+          <p>R.S. No. 542, Opp. S.V. Enterprises G51 M.I.D.C Shiroli, Kolhapur - 416122</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <i class="fas fa-phone contact-icon"></i>
+        <div>
+          <h3>Call Us</h3>
+          <p>7447435353 / 9890452602</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <i class="fas fa-envelope contact-icon"></i>
+        <div>
+          <h3>Email Us</h3>
+          <p>vrudhi_heavy@rediffmail.com</p>
+        </div>
       </div>
     </div>
-    
-    <div class="contact-item">
-      <i class="fas fa-phone contact-icon"></i>
-      <div>
-        <h3>Call Us</h3>
-        <p>7447435353 / 9890452602</p>
-      </div>
-    </div>
-    
-    <div class="contact-item">
-      <i class="fas fa-envelope contact-icon"></i>
-      <div>
-        <h3>Email Us</h3>
-        <p>vrudhi_heavy@rediffmail.com</p>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
   <footer>
     <p>&copy; 2004-2025 Vrudhi Heavy Engineers Pvt. Ltd. | All Rights Reserved</p>
@@ -1539,17 +222,13 @@ Z-Axis : 1000 MM">
       <span class="close-btn" title="Close">&times;</span>
       <div class="modal-media-container">
         <img id="modalImageDisplay" src="" alt="Expanded Image">
-        <video id="modalVideoDisplay" controls>
-          <source src="" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
+        <video id="modalVideoDisplay" controls><source src="" type="video/mp4">Your browser does not support the video tag.</video>
       </div>
       <div class="modal-info" id="modalInfo">Additional information about the media</div>
     </div>
   </div>
 
   <script>
-    // Performance optimizations
     document.addEventListener('DOMContentLoaded', function() {
       // Progress bar
       const loadingBar = document.getElementById('loadingBar');
@@ -1560,11 +239,87 @@ Z-Axis : 1000 MM">
         if (progress >= 100) clearInterval(progressInterval);
       }, 200);
       
-      // Lazy loading implementation
+      // Mobile menu toggle
+      const menuToggle = document.getElementById('menuToggle');
+      const navMenu = document.getElementById('navMenu');
+      menuToggle.addEventListener('click', () => navMenu.classList.toggle('active'));
+      document.querySelectorAll('#navMenu a').forEach(link => {
+        link.addEventListener('click', () => navMenu.classList.remove('active'));
+      });
+
+      // Animate sections on scroll
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = 1;
+            entry.target.style.transform = "translateY(0)";
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      document.querySelectorAll("section").forEach((section) => observer.observe(section));
+
+      // Modal functionality
+      const modal = document.getElementById('imageModal');
+      const modalImageDisplay = document.getElementById('modalImageDisplay');
+      const modalVideoDisplay = document.getElementById('modalVideoDisplay');
+      const modalInfo = document.getElementById('modalInfo');
+      const modalVideoSource = modalVideoDisplay.querySelector('source');
+      
+      const closeModal = () => {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+        modalVideoDisplay.pause();
+        modalVideoDisplay.currentTime = 0;
+      };
+
+      document.querySelector('.close-btn').addEventListener('click', closeModal);
+      window.addEventListener('click', (e) => e.target === modal && closeModal());
+      window.addEventListener('keydown', (e) => e.key === 'Escape' && modal.style.display === 'block' && closeModal());
+
+      // Handle media clicks
+      document.querySelectorAll('.media-container[data-type="video"], .media-container img, #certification-image-container img, .person-card').forEach(el => {
+        el.addEventListener('click', () => {
+          if (el.matches('.media-container[data-type="video"]')) {
+            const video = el.querySelector('video');
+            modalVideoSource.src = video.querySelector('source').src;
+            modalVideoDisplay.load();
+            modalVideoDisplay.style.display = 'block';
+            modalImageDisplay.style.display = 'none';
+            setTimeout(() => modalVideoDisplay.play().catch(e => console.log('Video play error:', e)), 300);
+          } 
+          else if (el.matches('img')) {
+            modalImageDisplay.src = el.src;
+            modalImageDisplay.alt = el.alt;
+            modalImageDisplay.style.display = 'block';
+            modalVideoDisplay.style.display = 'none';
+          }
+          else if (el.matches('.person-card')) {
+            const name = el.querySelector('h3').textContent;
+            const post = el.querySelector('.person-post').textContent;
+            const experience = el.querySelector('.person-experience')?.textContent || '';
+            modalImageDisplay.style.display = 'none';
+            modalVideoDisplay.style.display = 'none';
+          }
+          
+          modalInfo.textContent = el.dataset.info || el.alt || `${name}\n${post}\n${experience}`;
+          modal.style.display = 'block';
+          document.body.style.overflow = 'hidden';
+        });
+      });
+
+      // Smooth scrolling
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) window.scrollTo({ top: target.offsetTop - 70, behavior: 'smooth' });
+        });
+      });
+
+      // Lazy loading
       const lazyLoad = () => {
-        const lazyItems = document.querySelectorAll('.lazy');
-        
-        lazyItems.forEach(item => {
+        document.querySelectorAll('.lazy').forEach(item => {
           if (item.getBoundingClientRect().top <= window.innerHeight * 1.5 && 
               item.getBoundingClientRect().bottom >= 0 &&
               getComputedStyle(item).display !== "none") {
@@ -1578,18 +333,11 @@ Z-Axis : 1000 MM">
                 }
               };
             }
-            else if (item.tagName === 'VIDEO') {
-              const source = item.querySelector('source');
-              source.src = source.dataset.src;
-              item.load();
-            }
-            
             item.classList.add('loaded');
           }
         });
       };
       
-      // Initialize lazy loading
       lazyLoad();
       window.addEventListener('scroll', lazyLoad);
       window.addEventListener('resize', lazyLoad);
@@ -1604,8 +352,6 @@ Z-Axis : 1000 MM">
             if (source && !source.src) {
               source.src = source.dataset.src;
               video.load();
-              
-              // Hide placeholder
               const placeholder = video.parentNode.querySelector('.video-placeholder');
               if (placeholder) placeholder.style.display = 'none';
             }
@@ -1613,10 +359,8 @@ Z-Axis : 1000 MM">
         });
       }, { threshold: 0.1 });
       
-      document.querySelectorAll('video').forEach(video => {
-        videoObserver.observe(video);
-      });
-      
+      document.querySelectorAll('video').forEach(video => videoObserver.observe(video));
+
       // Clear progress bar when page fully loaded
       window.addEventListener('load', () => {
         clearInterval(progressInterval);
@@ -1627,239 +371,39 @@ Z-Axis : 1000 MM">
         }, 300);
       });
       
-      // Mobile menu toggle
-      const menuToggle = document.getElementById('menuToggle');
-      const navMenu = document.getElementById('navMenu');
-      
-      menuToggle.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
-      });
-      
-      // Close menu when clicking on a link
-      document.querySelectorAll('#navMenu a').forEach(link => {
-        link.addEventListener('click', () => {
-          navMenu.classList.remove('active');
-        });
-      });
-
-      // Animate sections on scroll
-      const sections = document.querySelectorAll("section");
-
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.style.opacity = 1;
-              entry.target.style.transform = "translateY(0)";
-              observer.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.1 }
-      );
-
-      sections.forEach((section) => {
-        observer.observe(section);
-      });
-
-      // Modal popup for images and videos
-      const modal = document.getElementById('imageModal');
-      const modalImageDisplay = document.getElementById('modalImageDisplay');
-      const modalVideoDisplay = document.getElementById('modalVideoDisplay');
-      const modalInfo = document.getElementById('modalInfo');
-      const closeBtn = document.querySelector('.close-btn');
-      const modalVideoSource = modalVideoDisplay.querySelector('source');
-
-      // Select all media that should open the modal
-      const clickableElements = document.querySelectorAll(
-        '.media-container img, .media-container[data-type="video"], #certification-image-container img, .person-card'
-      );
-
-      clickableElements.forEach(element => {
-        element.addEventListener('click', () => {
-          // Handle video containers
-          if (element.matches('.media-container[data-type="video"]')) {
-            const video = element.querySelector('video');
-            const source = video.querySelector('source').src;
-            const info = element.dataset.info || "Video content";
-            
-            modalVideoSource.src = source;
-            modalVideoDisplay.load();
-            modalVideoDisplay.style.display = 'block';
-            modalImageDisplay.style.display = 'none';
-            modalInfo.textContent = info;
-            
-            // Play the video in the modal
-            setTimeout(() => {
-              modalVideoDisplay.play().catch(e => console.log('Video play error:', e));
-            }, 300);
-          } 
-          // Handle images
-          else if (element.matches('img')) {
-            modalImageDisplay.src = element.src;
-            modalImageDisplay.alt = element.alt;
-            modalImageDisplay.style.display = 'block';
-            modalVideoDisplay.style.display = 'none';
-            modalInfo.textContent = element.dataset.info || element.alt; 
-          }
-          // Handle person cards
-          else if (element.matches('.person-card')) {
-            const name = element.querySelector('h3').textContent;
-            const post = element.querySelector('.person-post').textContent;
-            const experience = element.querySelector('.person-experience').textContent;
-            
-            modalImageDisplay.style.display = 'none';
-            modalVideoDisplay.style.display = 'none';
-            modalInfo.textContent = `${name}\n${post}\n${experience}`;
-          }
-
-          modal.style.display = 'block';
-          document.body.style.overflow = 'hidden';
-        });
-      });
-
-      // Close modal function
-      const closeModal = () => {
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
-        
-        // Pause and reset the video
-        modalVideoDisplay.pause();
-        modalVideoDisplay.currentTime = 0;
-      };
-
-      closeBtn.addEventListener('click', closeModal);
-
-      // Close modal on clicking outside the modal-content
-      window.addEventListener('click', (event) => {
-        if (event.target === modal) {
-          closeModal();
-        }
-      });
-
-      // Close modal on Escape key
-      window.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape' && modal.style.display === 'block') {
-          closeModal();
-        }
-      });
-      
-      // Smooth scrolling for anchor links
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-          e.preventDefault();
-          
-          const target = document.querySelector(this.getAttribute('href'));
-          if (target) {
-            window.scrollTo({
-              top: target.offsetTop - 70,
-              behavior: 'smooth'
-            });
-          }
-        });
-      });
-
-      // Optimized media loading for carousels
-      const carousels = document.querySelectorAll('.carousel');
-      carousels.forEach(carousel => {
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              // Load first 2 items immediately
-              const items = carousel.querySelectorAll('.media-container');
-              for (let i = 0; i < Math.min(2, items.length); i++) {
-                const img = items[i].querySelector('img');
-                if (img && img.dataset.src) {
-                  img.src = img.dataset.src;
-                  img.classList.add('loaded');
-                }
-              }
-              
-              // Load remaining items as needed
-              const lazyObserver = new IntersectionObserver((lazyEntries) => {
-                lazyEntries.forEach(lazyEntry => {
-                  if (lazyEntry.isIntersecting) {
-                    const lazyImg = lazyEntry.target.querySelector('img');
-                    if (lazyImg && lazyImg.dataset.src) {
-                      lazyImg.src = lazyImg.dataset.src;
-                      lazyImg.classList.add('loaded');
-                      lazyObserver.unobserve(lazyEntry.target);
-                    }
-                  }
-                });
-              }, { threshold: 0.1 });
-              
-              // Observe all items beyond the first 2
-              for (let i = 2; i < items.length; i++) {
-                lazyObserver.observe(items[i]);
-              }
-              
-              observer.unobserve(carousel);
-            }
-          });
-        }, { threshold: 0.01 });
-        
-        observer.observe(carousel);
-      });
-      
-      // iOS detection function
-      const isIOS = () => {
-        return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-      };
-
-      // Generate video thumbnails for iOS devices
-      const generateVideoThumbnails = () => {
-        if (!isIOS()) return;
-        
+      // iOS video thumbnails
+      if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
         document.querySelectorAll('.media-container[data-type="video"]').forEach(container => {
           const video = container.querySelector('video');
           const videoSource = video.querySelector('source').src;
-          
-          // Create thumbnail container
           const thumbnailContainer = document.createElement('div');
           thumbnailContainer.className = 'video-thumbnail-container';
-          
-          // Create thumbnail image element
           const thumbnail = document.createElement('img');
           thumbnail.className = 'video-thumbnail';
           thumbnail.alt = "Video thumbnail";
-          
-          // Create loader
           const loader = document.createElement('div');
           loader.className = 'thumbnail-loader';
-          
           thumbnailContainer.appendChild(thumbnail);
           thumbnailContainer.appendChild(loader);
           container.insertBefore(thumbnailContainer, video);
           
-          // Generate thumbnail
           const tempVideo = document.createElement('video');
           tempVideo.src = videoSource;
           tempVideo.muted = true;
           tempVideo.playsInline = true;
           
           tempVideo.addEventListener('loadeddata', () => {
-            // Seek to a good point for thumbnail
-            try {
-              tempVideo.currentTime = Math.min(1, tempVideo.duration * 0.1);
-            } catch (e) {
-              console.error('Error setting video time:', e);
-              tempVideo.currentTime = 0;
-            }
+            try { tempVideo.currentTime = Math.min(1, tempVideo.duration * 0.1); } 
+            catch (e) { tempVideo.currentTime = 0; }
           });
           
           tempVideo.addEventListener('seeked', () => {
             loader.style.display = 'block';
-            
-            // Create canvas to capture frame
             const canvas = document.createElement('canvas');
             canvas.width = tempVideo.videoWidth;
             canvas.height = tempVideo.videoHeight;
-            
             const ctx = canvas.getContext('2d');
             ctx.drawImage(tempVideo, 0, 0, canvas.width, canvas.height);
-            
-            // Convert to data URL and set as thumbnail source
             try {
               thumbnail.src = canvas.toDataURL('image/jpeg', 0.8);
               loader.style.display = 'none';
@@ -1869,64 +413,12 @@ Z-Axis : 1000 MM">
             }
           });
           
-          // Play the video to ensure it loads
-          tempVideo.play().then(() => {
-            tempVideo.pause();
-          }).catch(e => {
-            console.error('Error playing video for thumbnail:', e);
-          });
+          tempVideo.play().then(() => tempVideo.pause()).catch(e => console.error('Error playing video for thumbnail:', e));
         });
-      };
-
-      // Enhanced video click handler
-      const setupVideoHandlers = () => {
-        document.querySelectorAll('.media-container[data-type="video"]').forEach(container => {
-          const video = container.querySelector('video');
-          
-          container.addEventListener('click', () => {
-            // Hide thumbnail if present
-            const thumbnail = container.querySelector('.video-thumbnail');
-            if (thumbnail) {
-              thumbnail.classList.add('hidden');
-            }
-            
-            // Show video in modal
-            const source = video.querySelector('source').src;
-            const info = container.dataset.info || "Video content";
-            
-            modalVideoSource.src = source;
-            modalVideoDisplay.load();
-            modalVideoDisplay.style.display = 'block';
-            modalImageDisplay.style.display = 'none';
-            modalInfo.textContent = info;
-            
-            // Play the video in the modal
-            setTimeout(() => {
-              modalVideoDisplay.play().catch(e => {
-                console.log('Video play error:', e);
-                // Show play button in modal if autoplay fails
-                modalVideoDisplay.controls = true;
-              });
-            }, 300);
-            
-            modal.style.display = 'block';
-            document.body.style.overflow = 'hidden';
-          });
-        });
-      };
-
-      // Generate thumbnails on iOS
-      if (isIOS()) {
-        generateVideoThumbnails();
       }
       
-      // Set up video handlers
-      setupVideoHandlers();
-      
-      // Add event listener for modal video to show controls
-      modalVideoDisplay.addEventListener('play', function() {
-        this.controls = true;
-      });
+      // Modal video controls
+      modalVideoDisplay.addEventListener('play', function() { this.controls = true; });
     });
   </script>
 </body>
